@@ -1,8 +1,12 @@
+let img_background;
+
 function preload (s) {
     preload_player (s);
+    img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
 
 function create (s) {
+    PP.assets.image.add(s, img_background, 0, 0, 0, 0);
     create_player (s);
 }
 

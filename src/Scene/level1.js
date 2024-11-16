@@ -1,17 +1,32 @@
 let img_background;
+let rect;
 
 function preload (s) {
     preload_player (s);
-    img_background = PP.assets.image.load(s, "Assets/Immagini/SFONDO2.png");
+    preload_cassa (s);
+    img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
+
+
 
 function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
+    rect = PP.shapes.rectangle_add(s, 640, 620, 1280, 1, "0x000000", 0);
+    PP.physics.add(s, rect, PP.physics.type.STATIC); 
+
     create_player (s);
+    create_cassa (s);
+    configure_player_animations(s); 
+
+    PP.physics.add_collider(s, player, rect);
+    PP.physics.add_collider(s, player, cassa);
+    PP.physics.add_collider(s, cassa, rect);
 }
 
 function update (s) {
-    update_player (s);
+    manage_player_update(s);
+    update_cassa(s);
+    manage_dash(s);
 }
 
 function destroy (s) {

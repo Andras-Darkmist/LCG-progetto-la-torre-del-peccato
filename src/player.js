@@ -61,7 +61,7 @@ function manage_player_update(s) {
 
 
 
-    if(player.geometry.y>=floor_height-1 || player.is_on_platform) {
+    if(PP.physics.get_velocity_y(player) == 0) {
         // Se mi trovo sul pavimento OPPURE su una piattaforma...
 
         if(PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {

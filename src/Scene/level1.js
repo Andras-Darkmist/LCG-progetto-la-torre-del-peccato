@@ -16,11 +16,11 @@ function create (s) {
 
     create_player (s);
     create_cassa (s);
-    configure_player_animations(s); 
 
     PP.physics.add_collider(s, player, rect);
     PP.physics.add_collider(s, player, cassa);
     PP.physics.add_collider(s, cassa, rect);
+    configure_player_animations(s); 
 }
 
 function update (s) {

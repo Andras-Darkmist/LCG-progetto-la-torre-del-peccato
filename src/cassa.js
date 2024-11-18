@@ -8,7 +8,7 @@ function preload_cassa (s) {
 }
 
 function create_cassa (s){
-    cassa = PP.assets.image.add(s, img_cassa, 350, 520, 0, 0);
+    cassa = PP.assets.image.add(s, img_cassa, 400, 160, 0, 0);
     cassa.geometry.scale_x = 0.2;
     cassa.geometry.scale_y = 0.2;
     PP.physics.add(s, cassa, PP.physics.type.DYNAMIC);

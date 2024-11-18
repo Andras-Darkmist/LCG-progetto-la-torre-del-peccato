@@ -4,6 +4,9 @@ let rect;
 function preload (s) {
     preload_player (s);
     preload_cassa (s);
+    preload_cassa2 (s);
+    preload_cassa3 (s);
+    preload_piatt (s);
     img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
 
@@ -16,16 +19,24 @@ function create (s) {
 
     create_player (s);
     create_cassa (s);
+    create_cassa2 (s);
+    create_cassa3 (s);
+    create_piatt (s);
 
     PP.physics.add_collider(s, player, rect);
     PP.physics.add_collider(s, player, cassa);
     PP.physics.add_collider(s, cassa, rect);
+    PP.physics.add_collider(s, player, piatt);
+    PP.physics.add_collider(s, cassa, piatt);
     configure_player_animations(s); 
 }
 
 function update (s) {
     manage_player_update(s);
     update_cassa(s);
+    update_cassa2(s);
+    update_cassa3(s);
+    update_piatt (s);
     manage_dash(s);
 }
 

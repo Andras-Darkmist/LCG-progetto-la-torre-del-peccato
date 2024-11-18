@@ -10,7 +10,7 @@ function preload (s) {
     img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
 
-
+//problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano, la sprite del protagonista ha smesso di andare
 
 function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);

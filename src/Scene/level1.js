@@ -25,9 +25,18 @@ function create (s) {
 
     PP.physics.add_collider(s, player, rect);
     PP.physics.add_collider(s, player, cassa);
+    PP.physics.add_collider(s, player, cassa2);
+    PP.physics.add_collider(s, player, cassa3);
     PP.physics.add_collider(s, cassa, rect);
-    PP.physics.add_collider(s, player, piatt);
+    PP.physics.add_collider(s, cassa, cassa2);
+    PP.physics.add_collider(s, cassa, cassa3);
+    PP.physics.add_collider(s, cassa2, cassa3);
+    PP.physics.add_collider(s, cassa2, rect);
+    PP.physics.add_collider(s, cassa3, rect);
     PP.physics.add_collider(s, cassa, piatt);
+    PP.physics.add_collider(s, cassa2, piatt);
+    PP.physics.add_collider(s, cassa3, piatt);
+    PP.physics.add_collider(s, player, piatt);
     configure_player_animations(s); 
 }
 

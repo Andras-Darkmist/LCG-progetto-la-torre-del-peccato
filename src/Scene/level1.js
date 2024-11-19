@@ -37,6 +37,7 @@ function create (s) {
     PP.physics.add_collider(s, cassa2, piatt);
     PP.physics.add_collider(s, cassa3, piatt);
     PP.physics.add_collider(s, player, piatt);
+    
     configure_player_animations(s); 
 }
 

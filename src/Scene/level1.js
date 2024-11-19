@@ -15,7 +15,7 @@ function preload (s) {
 function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
     rect = PP.shapes.rectangle_add(s, 640, 620, 1280, 1, "0x000000", 0);
-    PP.physics.add(s, rect, PP.physics.type.STATIC); 
+    PP.physics.add(s, rect, PP.physics.type.STATIC);
 
     create_player (s);
     create_cassa (s);

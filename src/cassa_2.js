@@ -11,6 +11,7 @@ function create_cassa2 (s){
     cassa2.geometry.scale_x = 0.2;
     cassa2.geometry.scale_y = 0.2;
     PP.physics.add(s, cassa2, PP.physics.type.DYNAMIC);
+    //PP.physics.set_friction_x(cassa2, 1);
 }
 
 function update_cassa2 (s) {

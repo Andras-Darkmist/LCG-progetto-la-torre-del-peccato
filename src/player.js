@@ -35,6 +35,8 @@ function create_player(s) {
 }
 
 function manage_player_update(s) {
+
+    //console.log(PP.physics.get_velocity_y(player));
     // Questa funzione e' chiamata ad ogni frame dalla update()
 
     // Creo una variabile che conterra' l'animazione futura
@@ -72,8 +74,6 @@ function manage_player_update(s) {
         // Non gestisco qui le animazioni del salto, ma piu' avanti
     }
 
-    player.is_on_platform = false;  // Resetto il flag che viene messo a true quando il giocatore 
-                                    // si trova sulla piattaforma
 
     // Le animazioni del salto vengono gestite in base alla velocita'
     // verticale
@@ -93,6 +93,7 @@ function manage_player_update(s) {
     // - se e' cambiata, la applico e aggiorno curr_anim
     if(next_anim != curr_anim) {
         curr_anim = next_anim;
+        PP.assets.sprite.animation_play(player, next_anim);
     }
 
     // Logica per specchiare il giocatore:

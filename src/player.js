@@ -37,7 +37,6 @@ function create_player(s) {
 function manage_player_update(s) {
 
     //console.log(PP.physics.get_velocity_y(player));
-    // Questa funzione e' chiamata ad ogni frame dalla update()
 
     // Creo una variabile che conterra' l'animazione futura
     // per poter verificare se cambia dalla attuale
@@ -59,19 +58,14 @@ function manage_player_update(s) {
         }
     }
 
-    //meccanica?    
-
-
-
+    //salto
+    
     if(PP.physics.get_velocity_y(player) == 0) {
-        // Se mi trovo sul pavimento OPPURE su una piattaforma...
 
         if(PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
             // ... e premo il tasto spazio, allo salto
             PP.physics.set_velocity_y(player, -jump_init_speed);
         }
-
-        // Non gestisco qui le animazioni del salto, ma piu' avanti
     }
 
 
@@ -83,9 +77,6 @@ function manage_player_update(s) {
     else if(PP.physics.get_velocity_y(player) > 0) {
         next_anim = "jump_down";
     }
-
-    // Nota: non gestisco il caso == 0, perche' in quel caso l'animazione
-    // e' quella del movimento scelta prima.
 
 
     // Ora verifico l'animazione scelta:

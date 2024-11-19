@@ -3,7 +3,7 @@ let player;
 let png_shu;
 
 let player_speed    = 300;
-let jump_init_speed = 300;
+let jump_init_speed = 500;
 let floor_height    = 620;
 let player_dash     = 1000;
 
@@ -19,7 +19,6 @@ function configure_player_animations(s) {
     PP.assets.sprite.animation_add(player, "jump_down", 42, 45, 10, 0);
     PP.assets.sprite.animation_add(player, "stop", 21, 21, 10, 0);
     PP.assets.sprite.animation_play(player, "stop");
-
 }
 
 function preload_player(s) {
@@ -59,7 +58,7 @@ function manage_player_update(s) {
     }
 
     //salto
-    
+
     if(PP.physics.get_velocity_y(player) == 0) {
 
         if(PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {

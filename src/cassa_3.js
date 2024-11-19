@@ -9,7 +9,7 @@ function preload_cassa3 (s) {
 function create_cassa3 (s){
     cassa3 = PP.assets.image.add(s, img_cassa, 850, 360, 0, 0);
     PP.physics.add(s, cassa3, PP.physics.type.DYNAMIC);
-    PP.physics.set_friction_x(cassa3, 1);
+    PP.physics.set_drag_x(cassa3, 7000);
 }
 
 function update_cassa3 (s) {

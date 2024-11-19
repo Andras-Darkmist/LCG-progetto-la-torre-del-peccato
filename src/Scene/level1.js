@@ -16,7 +16,7 @@ function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
     rect = PP.shapes.rectangle_add(s, 640, 620, 1280, 1, "0x000000", 0);
     PP.physics.add(s, rect, PP.physics.type.STATIC);
-    PP.physics.set_friction_x(rect, 0);
+    //PP.physics.set_friction_y(rect, 1);
 
     create_player (s);
     create_cassa (s);
@@ -28,6 +28,7 @@ function create (s) {
     PP.physics.add_collider(s, player, cassa);
     PP.physics.add_collider(s, player, cassa2);
     PP.physics.add_collider(s, player, cassa3);
+    PP.physics.add_collider(s, player, piatt);
     PP.physics.add_collider(s, cassa, rect);
     PP.physics.add_collider(s, cassa, cassa2);
     PP.physics.add_collider(s, cassa, cassa3);
@@ -37,7 +38,6 @@ function create (s) {
     PP.physics.add_collider(s, cassa, piatt);
     PP.physics.add_collider(s, cassa2, piatt);
     PP.physics.add_collider(s, cassa3, piatt);
-    PP.physics.add_collider(s, player, piatt);
     
     configure_player_animations(s); 
 }

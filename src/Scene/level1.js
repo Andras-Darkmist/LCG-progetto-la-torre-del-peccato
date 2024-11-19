@@ -16,7 +16,7 @@ function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
     rect = PP.shapes.rectangle_add(s, 640, 620, 1280, 1, "0x000000", 0);
     PP.physics.add(s, rect, PP.physics.type.STATIC);
-    //PP.physics.set_friction_x(rect, 1);
+    PP.physics.set_friction_x(rect, 0);
 
     create_player (s);
     create_cassa (s);

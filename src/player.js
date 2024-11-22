@@ -33,7 +33,18 @@ function create_player(s) {
 
 }
 
-function manage_player_update(s) {
+function player_update(s) {
+
+    //il giocatore inizia ad essere seguito
+    
+    let pla_off = player.geometry.x -510;
+    
+    if(player.geometry.x >= 400) {
+        PP.camera.start_follow(s, player, -230, 260)
+    }
+    else {
+        PP.camera.set_follow_offset(s, -510, 260)
+    }
 
     //console.log(PP.physics.get_velocity_y(player));
 

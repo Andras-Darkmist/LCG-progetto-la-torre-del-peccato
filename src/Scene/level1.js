@@ -1,5 +1,6 @@
 let img_background;
 let rect;
+let barr_1;
 
 function preload (s) {
     preload_player (s);
@@ -15,8 +16,13 @@ function preload (s) {
 
 function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
+
     rect = PP.shapes.rectangle_add(s, 640, 620, 1280, 1, "0x000000", 0);
     PP.physics.add(s, rect, PP.physics.type.STATIC);
+
+    barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
+    PP.physics.add(s, barr_1, PP.physics.type.STATIC);
+
 
     //funzioni richiamate
 
@@ -33,6 +39,7 @@ function create (s) {
     PP.physics.add_collider(s, player, cassa2);
     PP.physics.add_collider(s, player, cassa3);
     PP.physics.add_collider(s, player, piatt);
+    PP.physics.add_collider(s, player, barr_1);
     PP.physics.add_collider(s, cassa, rect);
     PP.physics.add_collider(s, cassa, cassa2);
     PP.physics.add_collider(s, cassa, cassa3);

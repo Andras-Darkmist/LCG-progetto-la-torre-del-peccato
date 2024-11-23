@@ -40,6 +40,7 @@ function player_update(s) {
     if(player.geometry.x >= 400) {
         PP.camera.start_follow(s, player, -235, 260)
     }
+
     if(player.geometry.x < 400) {
         PP.camera.set_follow_offset(s, -235, 260)
     }

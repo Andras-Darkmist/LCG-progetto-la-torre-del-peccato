@@ -1,6 +1,9 @@
 let img_background;
 let floor;
 let barr_1;
+let scala_1;
+let scala_2;
+let scala_3;
 
 function preload (s) {
     preload_player (s);
@@ -23,6 +26,15 @@ function create (s) {
     barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
     PP.physics.add(s, barr_1, PP.physics.type.STATIC);
 
+    scala_1 = PP.shapes.rectangle_add(s, 1400, 370, 200, 500, "0xfab304", 0);
+    PP.physics.add(s, scala_1, PP.physics.type.STATIC);
+    
+    scala_2 = PP.shapes.rectangle_add(s, 1600, 430, 200, 350, "0xfab304", 0);
+    PP.physics.add(s, scala_2, PP.physics.type.STATIC);
+    
+    scala_3 = PP.shapes.rectangle_add(s, 1800, 500, 200, 230, "0xfab304", 0);
+    PP.physics.add(s, scala_3, PP.physics.type.STATIC);
+
 
     //funzioni richiamate
 
@@ -34,21 +46,29 @@ function create (s) {
 
     //collider di tutte le cose
 
+    
+    PP.physics.add_collider(s, player, barr_1);
     PP.physics.add_collider(s, player, floor);
+    PP.physics.add_collider(s, player, scala_1);
+    PP.physics.add_collider(s, player, scala_2);
+    PP.physics.add_collider(s, player, scala_3);
     PP.physics.add_collider(s, player, cassa);
     PP.physics.add_collider(s, player, cassa2);
     PP.physics.add_collider(s, player, cassa3);
     PP.physics.add_collider(s, player, piatt);
-    PP.physics.add_collider(s, player, barr_1);
+
     PP.physics.add_collider(s, cassa, floor);
-    PP.physics.add_collider(s, cassa, cassa2);
-    PP.physics.add_collider(s, cassa, cassa3);
-    PP.physics.add_collider(s, cassa2, cassa3);
     PP.physics.add_collider(s, cassa2, floor);
     PP.physics.add_collider(s, cassa3, floor);
     PP.physics.add_collider(s, cassa, piatt);
     PP.physics.add_collider(s, cassa2, piatt);
     PP.physics.add_collider(s, cassa3, piatt);
+    PP.physics.add_collider(s, cassa, scala_1);
+    PP.physics.add_collider(s, cassa2, scala_1);
+    PP.physics.add_collider(s, cassa3, scala_1);
+    PP.physics.add_collider(s, cassa, cassa2);
+    PP.physics.add_collider(s, cassa, cassa3);
+    PP.physics.add_collider(s, cassa2, cassa3);
     
     configure_player_animations(s); 
 }

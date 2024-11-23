@@ -13,5 +13,4 @@ function create_cassa3 (s){
 }
 
 function update_cassa3 (s) {
-    //PP.physics.set_velocity_x(cassa3, 0);
 }

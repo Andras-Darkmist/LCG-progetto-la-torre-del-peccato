@@ -150,6 +150,8 @@ function manage_dash (s){
 }
 
 function morte (s){
+    move_disable = true;
+    PP.physics.set_velocity_x(player, 0);
     PP.assets.sprite.animation_stop(player);
     next_anim = "die";
     PP.assets.sprite.animation_play(player, next_anim);

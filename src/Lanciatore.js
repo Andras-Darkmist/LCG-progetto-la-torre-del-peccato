@@ -40,7 +40,6 @@ function kill (s, obj1, obj2){
 
     else {
         morte(s);
-        move_disable = true;
         PP.timers.add_timer(s, 1000, game_over, false);
     }
 }
@@ -50,6 +49,24 @@ function game_over(s){
     move_disable = false;
     PP.scenes.start("morte");
 }
+
+
+//morte toccando una carta, immunità usando il dash
+
+
+function morte_carta(s, obj1, obj2){
+    if (dash_disable == false && 800 > PP.physics.get_velocity_x(player)){
+        if(PP.physics.get_velocity_x(player) > -800){
+            PP.assets.destroy(obj2);
+
+
+            morte(s);
+            move_disable = true;
+            PP.timers.add_timer(s, 700, game_over, false);
+        }
+    }
+}
+
 
 
 function attack(s) {
@@ -68,24 +85,6 @@ function attack(s) {
 
     console.log ("attacco");
     console.log (Math.abs(lanciatore.geometry.x - player.geometry.x));
-}
-
-
-//morte toccando una carta, immunità usando il dash
-
-
-function morte_carta(s, obj1, obj2){
-    if (dash_disable == false && 800 > PP.physics.get_velocity_x(player)){
-        if(PP.physics.get_velocity_x(player) > -800){
-            PP.assets.destroy(obj2);
-
-            PP.physics.set_velocity_x(player, 0);
-
-            morte(s);
-            move_disable = true;
-            PP.timers.add_timer(s, 700, game_over, false);
-        }
-    }
 }
 
 

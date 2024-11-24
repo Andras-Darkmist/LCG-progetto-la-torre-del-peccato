@@ -16,7 +16,10 @@ function preload (s) {
     img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
 
-//problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano, scala non si colora, l'animazione della morte per contatto con lanciatore non funziona bene, 
+//problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano, 
+    //scala non si colora, la morte per contatto da sopra impedisce di muoversi al ricaricamento della scena
+    //il nemico non sempre inizia a sparare quando gli si è vicino, 
+
 // da inserire: proiettili spostano casse, dash fa schivare i proiettili, il dash fa danno, 
 
 function create (s) {

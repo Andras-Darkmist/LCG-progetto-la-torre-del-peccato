@@ -55,14 +55,14 @@ function create (s) {
     PP.physics.add_collider(s, player, cassa);
     PP.physics.add_collider(s, player, cassa2);
     PP.physics.add_collider(s, player, cassa3);
-    PP.physics.add_collider(s, player, piatt);
+    PP.physics.add_collider(s, player, piatt1);
 
     PP.physics.add_collider(s, cassa, floor);
     PP.physics.add_collider(s, cassa2, floor);
     PP.physics.add_collider(s, cassa3, floor);
-    PP.physics.add_collider(s, cassa, piatt);
-    PP.physics.add_collider(s, cassa2, piatt);
-    PP.physics.add_collider(s, cassa3, piatt);
+    PP.physics.add_collider(s, cassa, piatt1);
+    PP.physics.add_collider(s, cassa2, piatt1);
+    PP.physics.add_collider(s, cassa3, piatt1);
     PP.physics.add_collider(s, cassa, scala_1);
     PP.physics.add_collider(s, cassa2, scala_1);
     PP.physics.add_collider(s, cassa3, scala_1);

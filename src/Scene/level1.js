@@ -11,6 +11,8 @@ function preload (s) {
     preload_cassa2 (s);
     preload_cassa3 (s);
     preload_piatt (s);
+    preload_Lanciatore(s);
+
     img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
 
@@ -43,6 +45,7 @@ function create (s) {
     create_cassa2 (s);
     create_cassa3 (s);
     create_piatt (s);
+    create_Lanciatore(s);
 
     //collider di tutte le cose
 
@@ -70,7 +73,8 @@ function create (s) {
     PP.physics.add_collider(s, cassa, cassa3);
     PP.physics.add_collider(s, cassa2, cassa3);
     
-    configure_player_animations(s); 
+    configure_player_animations(s);
+    configure_Lanciatore_animations(s);
 }
 
 function update (s) {
@@ -80,6 +84,7 @@ function update (s) {
     update_cassa3(s);
     update_piatt (s);
     manage_dash(s);
+    update_Lanciatore(s);
 }
 
 function destroy (s) {

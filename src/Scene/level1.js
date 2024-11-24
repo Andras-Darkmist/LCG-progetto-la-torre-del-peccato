@@ -48,7 +48,7 @@ function create (s) {
     create_Lanciatore(s);
 
     //collider di tutte le cose
-
+    //player
     
     PP.physics.add_collider(s, player, barr_1);
     PP.physics.add_collider(s, player, floor);
@@ -59,6 +59,11 @@ function create (s) {
     PP.physics.add_collider(s, player, cassa2);
     PP.physics.add_collider(s, player, cassa3);
     PP.physics.add_collider(s, player, piatt1);
+    PP.physics.add_collider_f(s, player, lanciatore, kill)
+    PP.physics.add_overlap_f(s, player, lanciatore, kill)
+
+
+    //casse
 
     PP.physics.add_collider(s, cassa, floor);
     PP.physics.add_collider(s, cassa2, floor);
@@ -72,6 +77,11 @@ function create (s) {
     PP.physics.add_collider(s, cassa, cassa2);
     PP.physics.add_collider(s, cassa, cassa3);
     PP.physics.add_collider(s, cassa2, cassa3);
+
+    //nemici
+    
+    PP.physics.add_collider(s, lanciatore, floor);
+
     
     configure_player_animations(s);
     configure_Lanciatore_animations(s);

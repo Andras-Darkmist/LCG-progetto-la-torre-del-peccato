@@ -30,7 +30,6 @@ function create_player(s) {
     player = PP.assets.sprite.add(s, img_player, 150, 620, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
-
 }
 
 function player_update(s) {
@@ -43,17 +42,19 @@ function player_update(s) {
     if(player.geometry.x >= 400) {
         PP.camera.start_follow(s, player, -235, (pos_y_pla))
     }
-    
 
     if(player.geometry.x < 400) {
         PP.camera.set_follow_offset(s, (pos_x_pla), (pos_y_pla))
     }
 
-    //console.log(PP.physics.get_velocity_y(player));
 
     // Creo una variabile che conterra' l'animazione futura
     // per poter verificare se cambia dalla attuale
+
     let next_anim = curr_anim;
+
+    //movimento laterale giocatore
+
     if (move_disable == false){
         if(PP.interactive.kb.is_key_down(s, PP.key_codes.RIGHT)) {
             // Se e' premuto il tasto destro...
@@ -84,6 +85,7 @@ function player_update(s) {
 
     // Le animazioni del salto vengono gestite in base alla velocita'
     // verticale
+
     if(PP.physics.get_velocity_y(player) < 0) {
         next_anim = "jump_up";
     }
@@ -95,12 +97,15 @@ function player_update(s) {
     // Ora verifico l'animazione scelta:
     // - se e' uguale a quella attuale, non faccio niente
     // - se e' cambiata, la applico e aggiorno curr_anim
+
     if(next_anim != curr_anim) {
         curr_anim = next_anim;
         PP.assets.sprite.animation_play(player, next_anim);
     }
 
+
     // Logica per specchiare il giocatore:
+
     if (PP.physics.get_velocity_x(player) < 0) {
         player.geometry.flip_x = true;
     }
@@ -110,31 +115,34 @@ function player_update(s) {
 
 }
 
-    function dash_reset(s) {
-        PP.physics.set_velocity_x(player, 0);
-        PP.physics.set_allow_gravity (player, true);
-        move_disable = false;
-    }
 
-    function reenable_dash(s) {
-        dash_disable = false;
-    }
+    //funzioni per il dash
 
-    function manage_dash (s){
-        if (dash_disable == false) {
-            if (PP.interactive.kb.is_key_down(s, PP.key_codes.Q)) {
-                PP.physics.set_velocity_y(player, 0);
-                if (player.geometry.flip_x == true) {
-                    PP.physics.set_velocity_x(player, -player_speed-800);
-                }
-                else if (player.geometry.flip_x == false) {
-                    PP.physics.set_velocity_x(player, player_speed+800);
-                }
-                move_disable = true;
-                PP.physics.set_allow_gravity (player, false);
-                PP.timers.add_timer(s, 700, reenable_dash, false);
-                PP.timers.add_timer(s,200, dash_reset, false);
-                dash_disable = true;
+function dash_reset(s) {
+    PP.physics.set_velocity_x(player, 0);
+    PP.physics.set_allow_gravity (player, true);
+    move_disable = false;
+}
+
+function reenable_dash(s) {
+    dash_disable = false;
+}
+
+function manage_dash (s){
+    if (dash_disable == false) {
+        if (PP.interactive.kb.is_key_down(s, PP.key_codes.Q)) {
+            PP.physics.set_velocity_y(player, 0);
+            if (player.geometry.flip_x == true) {
+                PP.physics.set_velocity_x(player, -player_speed-800);
             }
+            else if (player.geometry.flip_x == false) {
+                PP.physics.set_velocity_x(player, player_speed+800);
+            }
+            move_disable = true;
+            PP.physics.set_allow_gravity (player, false);
+            PP.timers.add_timer(s, 700, reenable_dash, false);
+            PP.timers.add_timer(s,200, dash_reset, false);
+            dash_disable = true;
         }
     }
+}

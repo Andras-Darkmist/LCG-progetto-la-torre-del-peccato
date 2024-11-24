@@ -9,7 +9,7 @@ let curr_anim_Lanciatore = "Idle"; // Questa variabile contiene l'animazione cor
 
 function preload_Lanciatore(s) {
     img_lanciatore = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Spritesheet_test_1.PNG", 154, 200);
-    img_carta = PP.assets.image.load(s, "assets/images/shuriken.png");
+    img_carta = PP.assets.image.load(s, "assets/immagini/carata.jpg");
 }
 
 function configure_Lanciatore_animations(s) {
@@ -20,6 +20,18 @@ function configure_Lanciatore_animations(s) {
 
 function create_Lanciatore(s){
     lanciatore = PP.assets.sprite.add(s, img_lanciatore, 800, 620, 0.5, 1);
+    PP.physics.add(s, lanciatore, PP.physics.type.DYNAMIC);
+
+}
+
+function kill (s, obj1, obj2){
+    if (dash_disable == true && PP.physics. get_velocity_x(player) >= 800){
+        PP.assets.destroy(obj2);
+    }
+
+    if (dash_disable == true && PP.physics. get_velocity_x(player) <= 800){
+        PP.assets.destroy(obj2);
+    }
 }
 
 function attack(s) {
@@ -33,9 +45,15 @@ function attack(s) {
     PP.physics.set_allow_gravity(carta, false);
     PP.physics.set_rotation(carta, 360);
     PP.physics.set_velocity_x(carta, -600);
+    
+    PP.physics.add_collider_f(s, player, carta, morte_carta);
 
     console.log ("attacco");
     console.log (Math.abs(lanciatore.geometry.x - player.geometry.x));
+}
+
+function morte_carta(s){
+    PP.scenes.start("morte");
 }
 
 function update_Lanciatore(s){
@@ -47,6 +65,7 @@ function update_Lanciatore(s){
         {
             return;
         }
+        
     if (Math.abs(lanciatore.geometry.x - player.geometry.x) < 500)
         {
             next_anim_Lanciatore = "Attack";

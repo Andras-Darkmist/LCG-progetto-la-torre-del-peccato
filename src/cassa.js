@@ -7,7 +7,7 @@ function preload_cassa (s) {
 }
 
 function create_cassa (s){
-    cassa = PP.assets.image.add(s, img_cassa, 460, 60, 0, 0);
+    cassa = PP.assets.image.add(s, img_cassa, 900, 60, 0, 0);
     PP.physics.add(s, cassa, PP.physics.type.DYNAMIC);
     PP.physics.set_drag_x(cassa, 7000);
 }

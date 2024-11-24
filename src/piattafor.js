@@ -6,7 +6,7 @@ function preload_piatt (s) {
 }
 
 function create_piatt (s){
-    piatt = PP.assets.image.add(s, img_piatt, 350, 310, 0, 0);
+    piatt = PP.assets.image.add(s, img_piatt, 850, 310, 0, 0);
     //piatt.geometry.scale_x = 0.2;
     //piatt.geometry.scale_y = 0.2;
     PP.physics.add(s, piatt, PP.physics.type.STATIC);

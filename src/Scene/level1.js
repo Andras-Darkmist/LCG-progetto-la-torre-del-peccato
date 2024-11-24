@@ -14,25 +14,25 @@ function preload (s) {
     img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
 
-//problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano
+//problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano, scala non si colora, 
 // da inserire: proiettili spostano casse, dash fa schivare i proiettili, il dash fa danno, 
 
 function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
 
-    floor = PP.shapes.rectangle_add(s, 640, 620, 3280, 1, "0x000000", 0);
+    floor = PP.shapes.rectangle_add(s, 640, 620, 6280, 1, "0x000000", 0);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 
     barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
     PP.physics.add(s, barr_1, PP.physics.type.STATIC);
 
-    scala_1 = PP.shapes.rectangle_add(s, 1400, 370, 200, 500, "0xfab304", 0);
+    scala_1 = PP.shapes.rectangle_add(s, 1800, 370, 200, 500, "0xfab304", 0);
     PP.physics.add(s, scala_1, PP.physics.type.STATIC);
     
-    scala_2 = PP.shapes.rectangle_add(s, 1600, 430, 200, 350, "0xfab304", 0);
+    scala_2 = PP.shapes.rectangle_add(s, 2000, 430, 200, 350, "0xfab304", 0);
     PP.physics.add(s, scala_2, PP.physics.type.STATIC);
     
-    scala_3 = PP.shapes.rectangle_add(s, 1800, 500, 200, 230, "0xfab304", 0);
+    scala_3 = PP.shapes.rectangle_add(s, 2200, 500, 200, 230, "0xfab304", 0);
     PP.physics.add(s, scala_3, PP.physics.type.STATIC);
 
 

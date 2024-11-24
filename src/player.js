@@ -36,13 +36,17 @@ function create_player(s) {
 function player_update(s) {
 
     //il giocatore inizia ad essere seguito
+
+    let pos_y_pla = player.geometry.y - 360;
+    let pos_x_pla = player.geometry.x - 645;
     
     if(player.geometry.x >= 400) {
-        PP.camera.start_follow(s, player, -235, 260)
+        PP.camera.start_follow(s, player, -235, (pos_y_pla))
     }
+    
 
     if(player.geometry.x < 400) {
-        PP.camera.set_follow_offset(s, -235, 260)
+        PP.camera.set_follow_offset(s, (pos_x_pla), (pos_y_pla))
     }
 
     //console.log(PP.physics.get_velocity_y(player));

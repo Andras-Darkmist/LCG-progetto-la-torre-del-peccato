@@ -12,17 +12,22 @@ function preload_Lanciatore(s) {
     img_carta = PP.assets.image.load(s, "assets/immagini/carata.jpg");
 }
 
+
 function configure_Lanciatore_animations(s) {
     PP.assets.sprite.animation_add(lanciatore, "Attack", 6, 13, 5, -1);
     PP.assets.sprite.animation_add(lanciatore, "Idle", 0, 5, 5, -1);
     PP.assets.sprite.animation_play(lanciatore, "Idle");
 }
 
+
 function create_Lanciatore(s){
     lanciatore = PP.assets.sprite.add(s, img_lanciatore, 800, 620, 0.5, 1);
     PP.physics.add(s, lanciatore, PP.physics.type.DYNAMIC);
+    PP.physics.set_drag_x(lanciatore, 7000);
 
 }
+
+//morte toccando il nemico, uccisione nemico se lo si tocca dashando
 
 function kill (s, obj1, obj2){
     if (dash_disable == true && PP.physics. get_velocity_x(player) >= 800){
@@ -32,7 +37,20 @@ function kill (s, obj1, obj2){
     if (dash_disable == true && PP.physics. get_velocity_x(player) <= 800){
         PP.assets.destroy(obj2);
     }
+
+    else {
+        morte(s);
+        move_disable = true;
+        PP.timers.add_timer(s, 1000, game_over, false);
+    }
 }
+
+
+function game_over(s){
+    move_disable = false;
+    PP.scenes.start("morte");
+}
+
 
 function attack(s) {
     attack_check = false;
@@ -52,9 +70,24 @@ function attack(s) {
     console.log (Math.abs(lanciatore.geometry.x - player.geometry.x));
 }
 
-function morte_carta(s){
-    PP.scenes.start("morte");
+
+//morte toccando una carta, immunità usando il dash
+
+
+function morte_carta(s, obj1, obj2){
+    if (dash_disable == false && 800 > PP.physics.get_velocity_x(player)){
+        if(PP.physics.get_velocity_x(player) > -800){
+            PP.assets.destroy(obj2);
+
+            PP.physics.set_velocity_x(player, 0);
+
+            morte(s);
+            move_disable = true;
+            PP.timers.add_timer(s, 700, game_over, false);
+        }
+    }
 }
+
 
 function update_Lanciatore(s){
     let next_anim_Lanciatore = curr_anim_Lanciatore;
@@ -65,7 +98,7 @@ function update_Lanciatore(s){
         {
             return;
         }
-        
+
     if (Math.abs(lanciatore.geometry.x - player.geometry.x) < 500)
         {
             next_anim_Lanciatore = "Attack";

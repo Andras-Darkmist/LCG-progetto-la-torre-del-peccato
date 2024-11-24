@@ -16,7 +16,7 @@ function preload (s) {
     img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
 
-//problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano, scala non si colora, 
+//problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano, scala non si colora, l'animazione della morte per contatto con lanciatore non funziona bene, 
 // da inserire: proiettili spostano casse, dash fa schivare i proiettili, il dash fa danno, 
 
 function create (s) {
@@ -95,6 +95,8 @@ function update (s) {
     update_piatt (s);
     manage_dash(s);
     update_Lanciatore(s);
+
+    //console.log(move_disable);
 }
 
 function destroy (s) {

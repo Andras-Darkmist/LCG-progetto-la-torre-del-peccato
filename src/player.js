@@ -18,6 +18,8 @@ function configure_player_animations(s) {
     PP.assets.sprite.animation_add(player, "jump_up", 36, 36, 10, 0);
     PP.assets.sprite.animation_add(player, "jump_down", 42, 45, 10, 0);
     PP.assets.sprite.animation_add(player, "stop", 21, 21, 10, 0);
+    PP.assets.sprite.animation_add_list(player, "die", [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 10, 10, 10, 10], 10, 0);
+    PP.assets.sprite.animation_add(player, "dead", 10, 10, 10, -1);
     PP.assets.sprite.animation_play(player, "stop");
 }
 
@@ -145,4 +147,10 @@ function manage_dash (s){
             dash_disable = true;
         }
     }
+}
+
+function morte (s){
+    PP.assets.sprite.animation_stop(player);
+    next_anim = "die";
+    PP.assets.sprite.animation_play(player, next_anim);
 }

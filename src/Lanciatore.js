@@ -32,12 +32,10 @@ function create_Lanciatore(s){
 function kill (s, obj1, obj2){
     if (dash_disable == true && PP.physics.get_velocity_x(player) >= 800){
         PP.assets.destroy(obj2);
-        console.log(PP.physics.get_velocity_x(player));
     }
 
     if (dash_disable == true && PP.physics.get_velocity_x(player) <= 800){
         PP.assets.destroy(obj2);
-        console.log(PP.physics.get_velocity_x(player));
     }
 
     else {

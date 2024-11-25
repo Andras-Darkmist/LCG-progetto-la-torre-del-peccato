@@ -136,9 +136,11 @@ function manage_dash (s){
             PP.physics.set_velocity_y(player, 0);
             if (player.geometry.flip_x == true) {
                 PP.physics.set_velocity_x(player, -player_speed-800);
+                console.log(PP.physics.get_velocity_x(player));
             }
             else if (player.geometry.flip_x == false) {
                 PP.physics.set_velocity_x(player, player_speed+800);
+                console.log(PP.physics.get_velocity_x(player));
             }
             move_disable = true;
             PP.physics.set_allow_gravity (player, false);
@@ -151,6 +153,8 @@ function manage_dash (s){
 
 function morte (s){
     move_disable = true;
+    dash_disable = true;
+
     PP.physics.set_velocity_x(player, 0);
     PP.assets.sprite.animation_stop(player);
     next_anim = "die";

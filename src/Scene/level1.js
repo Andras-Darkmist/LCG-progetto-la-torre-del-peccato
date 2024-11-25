@@ -18,7 +18,7 @@ function preload (s) {
 
 //problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano, 
     //scala non si colora, la morte per contatto da sopra impedisce di muoversi al ricaricamento della scena
-    //il nemico non sempre inizia a sparare quando gli si è vicino, 
+    //il nemico non sempre inizia a sparare quando gli si è vicino, alle volte il nemico viene ucciso al contatto anche senza il dash
 
 // da inserire: proiettili spostano casse, dash fa schivare i proiettili, il dash fa danno, 
 

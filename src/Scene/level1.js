@@ -17,8 +17,8 @@ function preload (s) {
 }
 
 //problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano, 
-    //la morte per contatto da sopra impedisce di muoversi al ricaricamento della scena
-    //alle volte il nemico viene ucciso al contatto anche senza il dash 
+    //la morte per contatto da sopra uccide il nemico oltre che il giocatore
+    //
 
 // da inserire: proiettili spostano casse, dash fa schivare i proiettili, il dash fa danno, 
 

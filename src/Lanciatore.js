@@ -35,16 +35,19 @@ function create_Lanciatore(s){
 
 function kill (s, obj1, obj2){
     if (dash_disable == true && PP.physics.get_velocity_x(player) >= 800){
+        console.log("sus")
         PP.assets.destroy(obj2);
         vita_lanciatore = false;
     }
 
     if (dash_disable == true && PP.physics.get_velocity_x(player) <= 800){
+        console.log("sus")
         PP.assets.destroy(obj2);
         vita_lanciatore = false;
     }
 
     else {
+        console.log("sus morto")
         morte(s);
         PP.timers.add_timer(s, 1000, game_over, false);
     }
@@ -53,9 +56,6 @@ function kill (s, obj1, obj2){
 //funzione che innesca la schermata di game over
 
 function game_over(s){
-    move_disable = false;
-    dash_disable = false;
-    attack_check = false;
 
     PP.scenes.start("morte");
 }
@@ -80,20 +80,22 @@ function morte_carta(s, obj1, obj2){
 
 
 function attack(s) {
-    attack_check = false;
+    if (vita_lanciatore == false){
+        return
+    }
+        attack_check = false;
     
-    carta = PP.assets.image.add(s, img_carta, lanciatore.geometry.x,
-        lanciatore.geometry.y - 120,
-        0.5, 0.5);
-    PP.physics.add(s, carta, PP.physics.type.DYNAMIC);
-    PP.physics.set_allow_gravity(carta, false);
-    PP.physics.set_rotation(carta, 360);
-    PP.physics.set_velocity_x(carta, -600);
+        carta = PP.assets.image.add(s, img_carta, lanciatore.geometry.x,
+            lanciatore.geometry.y - 120,
+            0.5, 0.5);
+        PP.physics.add(s, carta, PP.physics.type.DYNAMIC);
+        PP.physics.set_allow_gravity(carta, false);
+        PP.physics.set_rotation(carta, 360);
+        PP.physics.set_velocity_x(carta, -600);
     
-    PP.physics.add_overlap_f(s, player, carta, morte_carta);
+        PP.physics.add_collider_f(s, player, carta, morte_carta);
 
-    console.log ("attacco");
-    console.log (Math.abs(lanciatore.geometry.x - player.geometry.x));
+        console.log ("attacco");
 }
 
 
@@ -111,7 +113,6 @@ function update_Lanciatore(s){
 
     if (Math.abs(lanciatore.geometry.x - player.geometry.x) < 500)
         {
-            console.log("sus");
             next_anim_Lanciatore = "Attack";
             PP.timers.add_timer(s, 1600, attack, false);
             attack_check = true;
@@ -124,7 +125,6 @@ function update_Lanciatore(s){
         PP.assets.sprite.animation_play(lanciatore, next_anim_Lanciatore);
         curr_anim_Lanciatore = next_anim_Lanciatore;
     }
-    
 }
 
 

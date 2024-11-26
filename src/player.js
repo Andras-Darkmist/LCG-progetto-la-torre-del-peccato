@@ -36,6 +36,7 @@ function create_player(s) {
     //disattivo il blocco del movimento creato dalla morte  
 
     move_disable = false;
+    dash_disable = false;
 }
 
 function player_update(s) {
@@ -161,6 +162,7 @@ function morte (s){
     dash_disable = true;
 
     PP.physics.set_velocity_x(player, 0);
+    PP.physics.set_velocity_y(player, 0);
     PP.assets.sprite.animation_stop(player);
     next_anim = "die";
     PP.assets.sprite.animation_play(player, next_anim);

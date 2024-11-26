@@ -17,8 +17,8 @@ function preload (s) {
 }
 
 //problemi per ora: il personaggio è in una specie di caduta continua mentre è sulla cassa, le casse si compenetrano, 
-    //scala non si colora, la morte per contatto da sopra impedisce di muoversi al ricaricamento della scena
-    //il nemico non sempre inizia a sparare quando gli si è vicino, alle volte il nemico viene ucciso al contatto anche senza il dash
+    //la morte per contatto da sopra impedisce di muoversi al ricaricamento della scena
+    //alle volte il nemico viene ucciso al contatto anche senza il dash 
 
 // da inserire: proiettili spostano casse, dash fa schivare i proiettili, il dash fa danno, 
 
@@ -31,13 +31,13 @@ function create (s) {
     barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
     PP.physics.add(s, barr_1, PP.physics.type.STATIC);
 
-    scala_1 = PP.shapes.rectangle_add(s, 1800, 370, 200, 500, "0xfab304", 0);
+    scala_1 = PP.shapes.rectangle_add(s, 1800, 370, 200, 500, "0xfab304", 1);
     PP.physics.add(s, scala_1, PP.physics.type.STATIC);
     
-    scala_2 = PP.shapes.rectangle_add(s, 2000, 430, 200, 350, "0xfab304", 0);
+    scala_2 = PP.shapes.rectangle_add(s, 2000, 430, 200, 350, "0xfab304", 1);
     PP.physics.add(s, scala_2, PP.physics.type.STATIC);
     
-    scala_3 = PP.shapes.rectangle_add(s, 2200, 500, 200, 230, "0xfab304", 0);
+    scala_3 = PP.shapes.rectangle_add(s, 2200, 500, 200, 230, "0xfab304", 1);
     PP.physics.add(s, scala_3, PP.physics.type.STATIC);
 
 

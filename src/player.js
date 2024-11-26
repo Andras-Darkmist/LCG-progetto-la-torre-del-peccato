@@ -32,6 +32,10 @@ function create_player(s) {
     player = PP.assets.sprite.add(s, img_player, 150, 620, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
+
+    //disattivo il blocco del movimento creato dalla morte  
+
+    move_disable = false;
 }
 
 function player_update(s) {
@@ -67,7 +71,8 @@ function player_update(s) {
             // Se e' premuto il tasto sinistro...
             PP.physics.set_velocity_x(player, -player_speed);
             next_anim = "run";
-            } else {
+            } 
+        else {
             // Se non e' premuto alcun tasto...
             PP.physics.set_velocity_x(player, 0);
              next_anim = "stop";

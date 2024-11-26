@@ -1,8 +1,7 @@
 let img_lanciatore;
 let lanciatore;
-let attack_check =false;
+let attack_check = false;
 let img_carta;
-let lancio = true;
 let carta;
 let vita_lanciatore = true;
 
@@ -26,6 +25,10 @@ function create_Lanciatore(s){
     PP.physics.add(s, lanciatore, PP.physics.type.DYNAMIC);
     PP.physics.set_drag_x(lanciatore, 7000);
 
+    // riporto a true la vita del lanciatore e a false il lancio
+
+    vita_lanciatore = true;
+    attack_check = false;
 }
 
 //morte toccando il nemico, uccisione nemico se lo si tocca dashando
@@ -47,9 +50,13 @@ function kill (s, obj1, obj2){
     }
 }
 
+//funzione che innesca la schermata di game over
 
 function game_over(s){
     move_disable = false;
+    dash_disable = false;
+    attack_check = false;
+
     PP.scenes.start("morte");
 }
 
@@ -74,7 +81,6 @@ function morte_carta(s, obj1, obj2){
 
 function attack(s) {
     attack_check = false;
-    lancio = false;
     
     carta = PP.assets.image.add(s, img_carta, lanciatore.geometry.x,
         lanciatore.geometry.y - 120,
@@ -96,7 +102,7 @@ function update_Lanciatore(s){
     
     //se il lanciatore è morto update non fa niente
 
-    if (attack_check != false || vita_lanciatore == false)
+    if (attack_check == true || vita_lanciatore == false)
         {
             return;
         }
@@ -105,6 +111,7 @@ function update_Lanciatore(s){
 
     if (Math.abs(lanciatore.geometry.x - player.geometry.x) < 500)
         {
+            console.log("sus");
             next_anim_Lanciatore = "Attack";
             PP.timers.add_timer(s, 1600, attack, false);
             attack_check = true;

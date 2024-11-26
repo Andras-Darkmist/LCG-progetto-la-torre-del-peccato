@@ -4,6 +4,7 @@ let attack_check =false;
 let img_carta;
 let lancio = true;
 let carta;
+let vita_lanciatore = true;
 
 let curr_anim_Lanciatore = "Idle"; // Questa variabile contiene l'animazione corrente
 
@@ -32,10 +33,12 @@ function create_Lanciatore(s){
 function kill (s, obj1, obj2){
     if (dash_disable == true && PP.physics.get_velocity_x(player) >= 800){
         PP.assets.destroy(obj2);
+        vita_lanciatore = false;
     }
 
     if (dash_disable == true && PP.physics.get_velocity_x(player) <= 800){
         PP.assets.destroy(obj2);
+        vita_lanciatore = false;
     }
 
     else {
@@ -55,11 +58,11 @@ function game_over(s){
 
 
 function morte_carta(s, obj1, obj2){
-    if (dash_disable == false && 800 > PP.physics.get_velocity_x(player)){
-        if(PP.physics.get_velocity_x(player) > -800){
+    if (dash_disable == false){
+
+        if(PP.physics.get_velocity_x(player) > -800 || 800 > PP.physics.get_velocity_x(player)){
+
             PP.assets.destroy(obj2);
-
-
             morte(s);
             move_disable = true;
             PP.timers.add_timer(s, 700, game_over, false);
@@ -81,7 +84,7 @@ function attack(s) {
     PP.physics.set_rotation(carta, 360);
     PP.physics.set_velocity_x(carta, -600);
     
-    PP.physics.add_collider_f(s, player, carta, morte_carta);
+    PP.physics.add_overlap_f(s, player, carta, morte_carta);
 
     console.log ("attacco");
     console.log (Math.abs(lanciatore.geometry.x - player.geometry.x));
@@ -91,12 +94,14 @@ function attack(s) {
 function update_Lanciatore(s){
     let next_anim_Lanciatore = curr_anim_Lanciatore;
     
-    
+    //se il lanciatore è morto update non fa niente
 
-    if (attack_check != false)
+    if (attack_check != false || vita_lanciatore == false)
         {
             return;
         }
+
+    //il lanciatore spara solo se il giocatore gli è vicino
 
     if (Math.abs(lanciatore.geometry.x - player.geometry.x) < 500)
         {

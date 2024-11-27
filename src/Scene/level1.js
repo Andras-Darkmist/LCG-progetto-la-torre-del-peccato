@@ -62,7 +62,6 @@ function create (s) {
     PP.physics.add_collider(s, player, cassa2);
     PP.physics.add_collider(s, player, cassa3);
     PP.physics.add_collider(s, player, piatt1);
-    PP.physics.add_collider_f(s, player, lanciatore, kill)
     PP.physics.add_overlap_f(s, player, lanciatore, kill)
 
 

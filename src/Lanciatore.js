@@ -72,6 +72,9 @@ function morte_carta(s, obj1, obj2){
     }
 }
 
+function distruggi_carte(s, obj1){
+    PP.assets.destroy(obj1);
+}
 
 
 function attack(s) {
@@ -93,6 +96,7 @@ function attack(s) {
         PP.physics.add_collider(s, carta, cassa);
         PP.physics.add_collider(s, carta, cassa);
 
+        //PP.timers.add_timer(s, 2000, distruggi_carte(carta), false)
         console.log ("attacco");
 }
 

@@ -40,8 +40,6 @@ function create_player(s) {
 }
 
 function player_update(s) {
-    console.log(dash_disable);
-    console.log(PP.physics.get_velocity_x(player));
 
     //il giocatore inizia ad essere seguito
 

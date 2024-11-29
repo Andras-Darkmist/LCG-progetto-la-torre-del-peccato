@@ -20,7 +20,7 @@ function preload (s) {
     //la morte per contatto da sopra uccide il nemico oltre che il giocatore
     //
 
-// da inserire: proiettili spostano casse, dash fa schivare i proiettili, 
+// da inserire: proiettili spostano casse, 
 
 function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);

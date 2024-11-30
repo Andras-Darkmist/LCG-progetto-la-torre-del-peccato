@@ -54,15 +54,24 @@ function create (s) {
     //player
     
     PP.physics.add_collider(s, player, barr_1);
-    PP.physics.add_collider(s, player, floor);
+    /*PP.physics.add_collider(s, player, floor);
     PP.physics.add_collider(s, player, scala_1);
     PP.physics.add_collider(s, player, scala_2);
     PP.physics.add_collider(s, player, scala_3);
     PP.physics.add_collider(s, player, cassa);
     PP.physics.add_collider(s, player, cassa2);
     PP.physics.add_collider(s, player, cassa3);
-    PP.physics.add_collider(s, player, piatt1);
-    PP.physics.add_overlap_f(s, player, lanciatore, kill)
+    PP.physics.add_collider(s, player, piatt1);*/
+    PP.physics.add_collider_f(s, player, floor, salto_si);
+    PP.physics.add_collider_f(s, player, scala_1, salto_si);
+    PP.physics.add_collider_f(s, player, scala_2, salto_si);
+    PP.physics.add_collider_f(s, player, scala_3, salto_si);
+    PP.physics.add_collider_f(s, player, cassa, salto_si);
+    PP.physics.add_collider_f(s, player, cassa2, salto_si);
+    PP.physics.add_collider_f(s, player, cassa3, salto_si);
+    PP.physics.add_collider_f(s, player, piatt1, salto_si);
+
+    PP.physics.add_collider_f(s, player, lanciatore, kill);
 
 
     //casse

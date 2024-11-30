@@ -9,6 +9,7 @@ let player_dash     = 1000;
 
 move_disable = false;
 dash_disable = false;
+jump_disable = false;
 
 let curr_anim = "stop"; // Questa variabile contiene l'animazione corrente
 
@@ -99,7 +100,9 @@ function player_update(s) {
 
     //salto
 
-    if(PP.physics.get_velocity_y(player) == 0) {
+    //(PP.physics.get_velocity_y(player) == 0)
+
+    if(jump_disable == false) {
 
         if(PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
             // ... e premo il tasto spazio, allo salto
@@ -138,6 +141,13 @@ function player_update(s) {
         player.geometry.flip_x = false;
     }
 
+    jump_disable = true;
+}
+
+// funzione per permettere salto in collisioni
+
+function salto_si(s){
+    jump_disable = false;
 }
 
 

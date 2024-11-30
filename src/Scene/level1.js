@@ -25,19 +25,27 @@ function preload (s) {
 function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
 
+    //pavimento
+
     floor = PP.shapes.rectangle_add(s, 640, 620, 6280, 1, "0x000000", 0);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
+
+    //barriera inizio livello
 
     barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
     PP.physics.add(s, barr_1, PP.physics.type.STATIC);
 
-    scala_1 = PP.shapes.rectangle_add(s, 1800, 370, 200, 500, "0xfab304", 1);
+    //prime scale
+
+    scala_1 = PP.shapes.rectangle_add(s, 1800, 470, 200, 300, "0xfab304", 1);
     PP.physics.add(s, scala_1, PP.physics.type.STATIC);
     
-    scala_2 = PP.shapes.rectangle_add(s, 2000, 430, 200, 350, "0xfab304", 1);
+    scala_2 = PP.shapes.rectangle_add(s, 2000, 545, 200, 150, "0xfab304", 1);
     PP.physics.add(s, scala_2, PP.physics.type.STATIC);
     
-    scala_3 = PP.shapes.rectangle_add(s, 2200, 500, 200, 230, "0xfab304", 1);
+    //bo
+    
+    scala_3 = PP.shapes.rectangle_add(s, 3200, 500, 200, 230, "0xfab304", 1);
     PP.physics.add(s, scala_3, PP.physics.type.STATIC);
 
 

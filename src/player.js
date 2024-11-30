@@ -3,7 +3,7 @@ let player;
 let png_shu;
 
 let player_speed    = 300;
-let jump_init_speed = 500;
+let jump_init_speed = 400;
 let floor_height    = 620;
 let player_dash     = 1000;
 
@@ -41,6 +41,10 @@ function create_player(s) {
 }
 
 function player_update(s) {
+
+    // per capire le misure del livello
+    console.log(player.geometry.x)
+    //console.log(player.geometry.y)
 
     //il giocatore inizia ad essere seguito dalla camera
 

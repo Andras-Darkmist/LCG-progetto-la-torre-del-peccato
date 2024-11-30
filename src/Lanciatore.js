@@ -21,7 +21,7 @@ function configure_Lanciatore_animations(s) {
 
 
 function create_Lanciatore(s){
-    lanciatore = PP.assets.sprite.add(s, img_lanciatore, 800, 620, 0.5, 1);
+    lanciatore = PP.assets.sprite.add(s, img_lanciatore, 1300, 620, 0.5, 1);
     PP.physics.add(s, lanciatore, PP.physics.type.DYNAMIC);
     PP.physics.set_drag_x(lanciatore, 7000);
 

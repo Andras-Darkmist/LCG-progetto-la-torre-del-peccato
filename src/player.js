@@ -30,7 +30,7 @@ function preload_player(s) {
 
 function create_player(s) {
 
-    player = PP.assets.sprite.add(s, img_player, 150, 620, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 2500, 620, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -107,7 +107,6 @@ function player_update(s) {
     //(PP.physics.get_velocity_y(player) == 0)
 
     if(jump_disable == false) {
-
         if(PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
             // ... e premo il tasto spazio, allo salto
             PP.physics.set_velocity_y(player, -jump_init_speed);

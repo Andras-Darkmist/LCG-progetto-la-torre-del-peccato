@@ -2,7 +2,7 @@
 let cassa3;
 
 function preload_cassa3 (s) {
-    img_cassa = PP.assets.image.load(s, "assets/immagini/cassabassa.png", 150, 156);
+    img_cassa = PP.assets.image.load(s, "assets/immagini/cassa.png", 150, 156);
 
 }
 

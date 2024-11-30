@@ -41,14 +41,31 @@ function create_player(s) {
 
 function player_update(s) {
 
-    //il giocatore inizia ad essere seguito
+    //il giocatore inizia ad essere seguito dalla camera
 
-    let pos_y_pla = player.geometry.y - 360;
+    let pos_y_pla = player.geometry.y - 400;
     let pos_x_pla = player.geometry.x - 645;
-    
+
     if(player.geometry.x >= 400) {
         PP.camera.start_follow(s, player, -235, (pos_y_pla))
     }
+    
+    //prova per sistemare problema della camera
+    
+    /*if(player.geometry.x >= 400) {
+        if(player.geometry.x >= 401){
+            if (PP.physics.get_velocity_y(player) < 0 || PP.physics.get_velocity_y(player) > 0){
+                PP.camera.set_follow_offset(s, -235, pos_y_pla)
+                console.log("sus")
+            }
+            else {
+                PP.camera.set_follow_offset(s, -235, 260)
+            }
+        }
+        else {
+            PP.camera.start_follow(s, player, -235, 260)
+        }
+    }*/
 
     if(player.geometry.x < 400) {
         PP.camera.set_follow_offset(s, (pos_x_pla), (pos_y_pla))
@@ -142,15 +159,15 @@ function manage_dash (s){
             PP.physics.set_velocity_y(player, 0);
             if (player.geometry.flip_x == true) {
                 PP.physics.set_velocity_x(player, -player_speed-800);
-                console.log(PP.physics.get_velocity_x(player));
+                //console.log(PP.physics.get_velocity_x(player));
             }
             else if (player.geometry.flip_x == false) {
                 PP.physics.set_velocity_x(player, player_speed+800);
-                console.log(PP.physics.get_velocity_x(player));
+                //console.log(PP.physics.get_velocity_x(player));
             }
             move_disable = true;
             PP.physics.set_allow_gravity (player, false);
-            PP.timers.add_timer(s, 700, reenable_dash, false);
+            PP.timers.add_timer(s, 2000, reenable_dash, false);
             PP.timers.add_timer(s,200, dash_reset, false);
             dash_disable = true;
         }

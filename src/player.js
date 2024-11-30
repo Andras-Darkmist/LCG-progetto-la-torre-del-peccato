@@ -30,7 +30,7 @@ function preload_player(s) {
 
 function create_player(s) {
 
-    player = PP.assets.sprite.add(s, img_player, 2500, 620, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 2500, 420, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -43,7 +43,7 @@ function create_player(s) {
 function player_update(s) {
 
     // per capire le misure del livello
-    console.log(player.geometry.x)
+    //console.log(player.geometry.x)
     //console.log(player.geometry.y)
 
     //il giocatore inizia ad essere seguito dalla camera
@@ -149,8 +149,20 @@ function player_update(s) {
 
 // funzione per permettere salto in collisioni
 
-function salto_si(s){
-    jump_disable = false;
+function salto_si(s, obj1, obj2){
+// if necessario per impedire che si possa saltare anche toccando il lato degli oggetti
+    //  PROBLEMA - penso per il fatto che il personaggio cade mentre è sulle cassa la posizione y di personaggio e cassa
+    // risulta sfasata, questa soluzione non permette quindi di saltare mentre si è sulle casse ma su tutto
+    // il resto si
+
+    //if((obj1).geometry.y < (obj2).geometry.y){
+        jump_disable = false;
+        console.log("sus");
+    //}
+
+    //console.log((obj1).geometry.y);
+    //console.log((obj2).geometry.y);
+
 }
 
 

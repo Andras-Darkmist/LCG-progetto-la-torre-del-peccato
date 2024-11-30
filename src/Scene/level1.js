@@ -20,18 +20,19 @@ function preload (s) {
     img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
 
-//problemi per ora: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, 
+// PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, 
     // servirebbe un modo di mettere 2 collider per lo stesso oggetto in modo da poter saltare anche su pedana
-    //
+    // animazione morte personaggio non va ogni tanto, 
 
-// da inserire: proiettili spostano casse,
+// DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
+    // modo di rendere immateriale la porta, 
 
 function create (s) {
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
 
     //pavimento
 
-    floor = PP.shapes.rectangle_add(s, 640, 620, 6280, 1, "0x000000", 0);
+    floor = PP.shapes.rectangle_add(s, 640, 620, 12280, 1, "0x000000", 0);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 
     //barriera inizio livello
@@ -150,7 +151,7 @@ function apertura_porta1(s) {
     console.log(chiusura_porta);
 
     // implementare funzione per il salto
-    if (player.geometry.x < 3000 && player.geometry.x > 2800 && player.geometry.y >= 618){
+    if (player.geometry.x < 3050 && player.geometry.x > 2700 && player.geometry.y >= 618){
     jump_disable = false;
     }
 }

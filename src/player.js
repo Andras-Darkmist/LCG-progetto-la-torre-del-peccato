@@ -51,7 +51,7 @@ function player_update(s) {
     }
     
     //prova per sistemare problema della camera
-    
+
     /*if(player.geometry.x >= 400) {
         if(player.geometry.x >= 401){
             if (PP.physics.get_velocity_y(player) < 0 || PP.physics.get_velocity_y(player) > 0){
@@ -179,7 +179,7 @@ function morte (s){
     dash_disable = true;
 
     PP.physics.set_velocity_x(player, 0);
-    PP.physics.set_velocity_y(player, 0);
+    PP.physics.set_velocity_y(player, 30);
     PP.assets.sprite.animation_stop(player);
     next_anim = "die";
     PP.assets.sprite.animation_play(player, next_anim);

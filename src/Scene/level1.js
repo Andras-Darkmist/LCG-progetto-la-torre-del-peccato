@@ -79,6 +79,7 @@ function create (s) {
     PP.physics.add_collider(s, cassa, cassa2);
     PP.physics.add_collider(s, cassa, cassa3);
     PP.physics.add_collider(s, cassa2, cassa3);
+    PP.physics.add_collider(s, cassa, lanciatore);
 
     //nemici
     

@@ -33,8 +33,7 @@ function create_Lanciatore(s){
 
 //morte toccando il nemico, uccisione nemico se lo si tocca dashando
 
-function kill (s, obj1, obj2){
-    
+function kill (s, obj1, obj2){    
     if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)){
         console.log("sus")
         PP.assets.destroy(obj2);
@@ -60,15 +59,15 @@ function game_over(s){
 
 
 function morte_carta(s, obj1, obj2){
-    if (dash_disable == false){
+    if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)){
 
-        if(PP.physics.get_velocity_x(player) > -800 || 800 > PP.physics.get_velocity_x(player)){
-
-            PP.assets.destroy(obj2);
-            morte(s);
-            move_disable = true;
-            PP.timers.add_timer(s, 700, game_over, false);
-        }
+        PP.assets.destroy(obj2);
+    }
+    else {
+        PP.assets.destroy(obj2);
+        morte(s);
+        move_disable = true;
+        PP.timers.add_timer(s, 700, game_over, false);
     }
 }
 

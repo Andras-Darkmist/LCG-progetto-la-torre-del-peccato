@@ -22,7 +22,7 @@ function preload (s) {
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, 
     // servirebbe un modo di mettere 2 collider per lo stesso oggetto in modo da poter saltare anche su pedana
-    // animazione morte personaggio non va ogni tanto, 
+    // animazione morte personaggio non va ogni tanto, animazione morte non viene riprodotta alla morte
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
     // modo di rendere immateriale la porta, 
@@ -86,7 +86,7 @@ function create (s) {
     PP.physics.add_collider_f(s, player, cassa3, salto_si);
     PP.physics.add_collider_f(s, player, piatt1, salto_si);
 
-    PP.physics.add_collider_f(s, player, lanciatore, kill);
+    PP.physics.add_overlap_f(s, player, lanciatore, kill);
 
 
     //casse
@@ -148,7 +148,6 @@ function destroy (s) {
 
 function apertura_porta1(s) {
     chiusura_porta = false;
-    console.log(chiusura_porta);
 
     // implementare funzione per il salto
     if (player.geometry.x < 3050 && player.geometry.x > 2700 && player.geometry.y >= 618){

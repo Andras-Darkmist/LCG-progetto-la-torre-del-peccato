@@ -48,7 +48,7 @@ function player_update(s) {
 
     //il giocatore inizia ad essere seguito dalla camera
 
-    let pos_y_pla = player.geometry.y - 400;
+    let pos_y_pla = player.geometry.y - 350;
     let pos_x_pla = player.geometry.x - 645;
 
     if(player.geometry.x >= 400) {

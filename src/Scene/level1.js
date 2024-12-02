@@ -89,6 +89,7 @@ function create (s) {
     PP.physics.add_collider_f(s, player, piatt1, salto_si);
 
     PP.physics.add_overlap_f(s, player, lanciatore, kill);
+    PP.physics.add_collider(s, player, slot_animata);
 
 
     //casse
@@ -111,6 +112,7 @@ function create (s) {
     //nemici
     
     PP.physics.add_collider(s, lanciatore, floor);
+    PP.physics.add_collider(s, slot_animata, floor);
 
     
     configure_player_animations(s);

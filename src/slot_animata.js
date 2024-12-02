@@ -2,7 +2,7 @@ let img_slot;
 let slot_animata;
 
 function preload_slot(s) {
-    img_slot = PP.assets.image.load(s, "Assets/Immagini/slot.png", 154, 200);
+    img_slot = PP.assets.image.load(s, "Assets/Immagini/slot-giusta.png", 154, 200);
 }
 
 function create_slot_animata(s){

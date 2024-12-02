@@ -16,6 +16,7 @@ function preload (s) {
     preload_porta1 (s);
     preload_piatt (s);
     preload_Lanciatore(s);
+    preload_slot(s);
 
     img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
@@ -63,6 +64,7 @@ function create (s) {
     create_porta1(s);
     create_piatt (s);
     create_Lanciatore(s);
+    create_slot_animata(s);
 
     //collider di tutte le cose
     //player
@@ -122,6 +124,7 @@ function update (s) {
     update_cassa3(s);
     update_porta1(s);
     update_piatt (s);
+    update_slot_animata(s);
     manage_dash(s);
     update_Lanciatore(s);
 

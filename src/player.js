@@ -3,7 +3,7 @@ let player;
 let png_shu;
 
 let player_speed    = 300;
-let jump_init_speed = 400;
+let jump_init_speed = 350;
 let floor_height    = 620;
 let player_dash     = 1000;
 

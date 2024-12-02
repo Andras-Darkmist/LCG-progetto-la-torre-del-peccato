@@ -33,7 +33,7 @@ function create (s) {
 
     //pavimento
 
-    floor = PP.shapes.rectangle_add(s, 640, 620, 12280, 1, "0x000000", 0);
+    floor = PP.shapes.rectangle_add(s, 640, 635, 20280, 30, "0x000000", 0);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 
     //barriera inizio livello

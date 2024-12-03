@@ -34,6 +34,7 @@ function update (s) {
     
     if(PP.interactive.kb.is_key_down(s, PP.key_codes.Q)) {
         //riavvia la partita
+        console.log("sus");
         PP.scenes.start("level1");
     }
 }

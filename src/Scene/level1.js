@@ -8,7 +8,6 @@ let scala_2;
 let pedana1;
 let chiusura_porta = true;
 
-let morte_nemici = [];
 
 function preload (s) {
     preload_player (s);
@@ -169,7 +168,7 @@ function apertura_porta1(s) {
 
     // implementare funzione per il salto
     if ((player.geometry.x < 3050 || player.geometry.x > 2700) && player.geometry.y >= 618){
-    jump_disable = false;
+        jump_disable = false;
     }
 }
 

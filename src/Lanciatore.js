@@ -7,15 +7,14 @@ let img_carta;
 let carta;
 let vita_lanciatore = [] /*true*/;
 
+let morte_nemici = [];
+
 // Questa variabile contiene l'animazione corrente
 
 function preload_Lanciatore(s) {
     img_lanciatore = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Spritesheet_test_1.PNG", 154, 200);
     img_carta = PP.assets.image.load(s, "assets/immagini/carata.jpg");
 }
-
-
-
 
 function create_Lanciatore(s, x) {
     let lanciatore = PP.assets.sprite.add(s, img_lanciatore, x, 620, 0.5, 1);
@@ -47,7 +46,7 @@ function kill(s, obj1, obj2) {
         vita_lanciatore[i] = false;
     }
 
-    else {
+    else if (curr_anim != "die"){
         console.log("sus morto")
         morte(s);
         PP.timers.add_timer(s, 1000, game_over, false);
@@ -85,6 +84,7 @@ function distruggi_carte(s, obj1) {
 
 function attack(s) {
     i = enemy_check.shift();
+    console.log(i);
     if (vita_lanciatore[i] == false) {
         return
     }
@@ -114,27 +114,29 @@ function update_Lanciatore(s) {
     for (let i = 0; i < lanciatori.length; i++) {
         let next_anim_Lanciatore = curr_anim_Lanciatore[i];
 
-        if (attack_check[i] == true || vita_lanciatore[i] == false) {
-            return;
+        if (vita_lanciatore[i] != false) {
+            if(attack_check[i] != true){
+                if (Math.abs(lanciatori[i].geometry.x - player.geometry.x) < 500) {
+                    next_anim_Lanciatore = "Attack";
+                    attack_check [i] = true;
+                    PP.timers.add_timer(s, 1600, attack, false);
+                    enemy_check.push(i);
+                }
+
+                else {
+                    next_anim_Lanciatore = "Idle";
+                }
+        
+                if (next_anim_Lanciatore != curr_anim_Lanciatore[i]) {
+                    PP.assets.sprite.animation_play(lanciatori[i], next_anim_Lanciatore);
+                    curr_anim_Lanciatore [i] = next_anim_Lanciatore;
+                }
+            }
+        }
+    
         }
 
         //il lanciatore spara solo se il giocatore gli è vicino
-
-        if (Math.abs(lanciatori[i].geometry.x - player.geometry.x) < 500) {
-            next_anim_Lanciatore = "Attack";
-            PP.timers.add_timer(s, 1600, attack, false);
-            enemy_check.push(i);
-            attack_check [i] = true;
-        }
-        else {
-            next_anim_Lanciatore = "Idle";
-        }
-
-        if (next_anim_Lanciatore != curr_anim_Lanciatore[i]) {
-            PP.assets.sprite.animation_play(lanciatori[i], next_anim_Lanciatore);
-            curr_anim_Lanciatore [i] = next_anim_Lanciatore;
-        }
-    }
 
 }
 

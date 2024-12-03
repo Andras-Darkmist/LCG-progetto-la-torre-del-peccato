@@ -2,6 +2,10 @@ let img_enemy_3;
 let attack_check2 = false;
 let caricatore;
 
+let curr_anim_caricatore = "Base";
+let next_anim_caricatore = curr_anim_caricatore;
+
+
 
 function preload_caricatore(s) {
     img_enemy_3 = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Sprite Caricatore.PNG", 258, 260);
@@ -21,9 +25,6 @@ function load_animazioni_caricatore(s){
     PP.assets.sprite.animation_play(caricatore, "Base");
 }
 
-
-let curr_anim_caricatore = "Base";
-let next_anim_caricatore = curr_anim_caricatore;
 
 function charge(s) {
     next_anim_caricatore = "corsa";

@@ -82,7 +82,7 @@ function player_update(s) {
 
     let next_anim = curr_anim;
 
-    //movimento laterale giocatore
+    // MOVIMENTO laterale giocatore
 
     if (move_disable == false){
         if(PP.interactive.kb.is_key_down(s, PP.key_codes.RIGHT)) {
@@ -102,7 +102,7 @@ function player_update(s) {
         }
     }
 
-    //salto
+    // SALTO
 
     //(PP.physics.get_velocity_y(player) == 0)
 
@@ -158,10 +158,6 @@ function salto_si(s, obj1, obj2){
     //if((obj1).geometry.y < (obj2).geometry.y){
         jump_disable = false;
     //}
-
-    //console.log((obj1).geometry.y);
-    //console.log((obj2).geometry.y);
-
 }
 
 

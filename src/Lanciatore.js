@@ -12,7 +12,7 @@ let morte_nemici = [];
 // Questa variabile contiene l'animazione corrente
 
 function preload_Lanciatore(s) {
-    img_lanciatore = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Spritesheet_test_1.PNG", 154, 200);
+    img_lanciatore = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Sprite_Lanciatore.PNG", 172, 200);
     img_carta = PP.assets.image.load(s, "assets/immagini/carata.jpg");
 }
 
@@ -26,8 +26,8 @@ function create_Lanciatore(s, x) {
 
 function configure_Lanciatore_animations(s) {
     for (let i = 0; i < lanciatori.length; i++) {
-        PP.assets.sprite.animation_add(lanciatori[i], "Attack", 6, 13, 5, -1);
-        PP.assets.sprite.animation_add(lanciatori[i], "Idle", 0, 5, 5, -1);
+        PP.assets.sprite.animation_add(lanciatori[i], "Attack", 3, 10, 5, -1);
+        PP.assets.sprite.animation_add(lanciatori[i], "Idle", 0, 2, 5, -1);
         PP.assets.sprite.animation_play(lanciatori[i], "Idle");
         vita_lanciatore[i] = true;
         attack_check[i] = false;

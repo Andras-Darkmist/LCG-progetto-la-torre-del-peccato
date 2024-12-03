@@ -8,6 +8,8 @@ let scala_2;
 let pedana1;
 let chiusura_porta = true;
 
+let morte_nemici = [];
+
 function preload (s) {
     preload_player (s);
     preload_cassa (s);
@@ -67,7 +69,9 @@ function create (s) {
     create_cassa3 (s);
     create_porta1(s);
     create_piatt (s);
-    create_Lanciatore(s);
+    create_Lanciatore(s, 1300);
+    create_Lanciatore(s, 5000);
+    create_Lanciatore(s, 7000);
     create_slot_animata(s);
 
     //collider di tutte le cose
@@ -91,8 +95,13 @@ function create (s) {
     PP.physics.add_collider_f(s, player, cassa2, salto_si);
     PP.physics.add_collider_f(s, player, cassa3, salto_si);
     PP.physics.add_collider_f(s, player, piatt1, salto_si);
-
-    PP.physics.add_overlap_f(s, player, lanciatore, kill);
+    for (let i = 0; i < lanciatori.length; i++)
+    {
+        PP.physics.add_overlap_f(s, player, lanciatori[i], kill);
+        PP.physics.add_collider(s, cassa, lanciatori[i]);
+        PP.physics.add_collider(s, lanciatori[i], floor);
+        morte_nemici.push(i);
+    }
     PP.physics.add_collider(s, player, slot_animata);
 
 
@@ -111,11 +120,11 @@ function create (s) {
     PP.physics.add_collider(s, cassa, cassa3);
     PP.physics.add_collider(s, cassa2, cassa3);
     PP.physics.add_collider_f(s, cassa2, pedana1, apertura_porta1);
-    PP.physics.add_collider(s, cassa, lanciatore);
+   
 
     //nemici
     
-    PP.physics.add_collider(s, lanciatore, floor);
+    
     PP.physics.add_collider(s, slot_animata, floor);
 
     

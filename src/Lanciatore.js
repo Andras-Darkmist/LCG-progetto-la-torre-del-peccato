@@ -1,11 +1,13 @@
 let img_lanciatore;
-let lanciatore;
-let attack_check = false;
+let lanciatori = [];
+let curr_anim_Lanciatore = [];
+let attack_check = [];
+let enemy_check = [];
 let img_carta;
 let carta;
-let vita_lanciatore = true;
+let vita_lanciatore = [] /*true*/;
 
-let curr_anim_Lanciatore = "Idle"; // Questa variabile contiene l'animazione corrente
+// Questa variabile contiene l'animazione corrente
 
 function preload_Lanciatore(s) {
     img_lanciatore = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Spritesheet_test_1.PNG", 154, 200);
@@ -13,31 +15,36 @@ function preload_Lanciatore(s) {
 }
 
 
-function configure_Lanciatore_animations(s) {
-    PP.assets.sprite.animation_add(lanciatore, "Attack", 6, 13, 5, -1);
-    PP.assets.sprite.animation_add(lanciatore, "Idle", 0, 5, 5, -1);
-    PP.assets.sprite.animation_play(lanciatore, "Idle");
-}
 
 
-function create_Lanciatore(s){
-    lanciatore = PP.assets.sprite.add(s, img_lanciatore, 1300, 620, 0.5, 1);
+function create_Lanciatore(s, x) {
+    let lanciatore = PP.assets.sprite.add(s, img_lanciatore, x, 620, 0.5, 1);
     PP.physics.add(s, lanciatore, PP.physics.type.DYNAMIC);
     PP.physics.set_drag_x(lanciatore, 7000);
+    lanciatori.push(lanciatore);
 
-    // riporto a true la vita del lanciatore e a false il lancio
-
-    vita_lanciatore = true;
-    attack_check = false;
 }
+
+function configure_Lanciatore_animations(s) {
+    for (let i = 0; i < lanciatori.length; i++) {
+        PP.assets.sprite.animation_add(lanciatori[i], "Attack", 6, 13, 5, -1);
+        PP.assets.sprite.animation_add(lanciatori[i], "Idle", 0, 5, 5, -1);
+        PP.assets.sprite.animation_play(lanciatori[i], "Idle");
+        vita_lanciatore[i] = true;
+        attack_check[i] = false;
+        curr_anim_Lanciatore[i] = "Idle";
+    }
+}
+
 
 //morte toccando il nemico, uccisione nemico se lo si tocca dashando
 
-function kill (s, obj1, obj2){    
-    if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)){
+function kill(s, obj1, obj2) {
+    if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)) {
         console.log("sus")
         PP.assets.destroy(obj2);
-        vita_lanciatore = false;
+        i = morte_nemici.shift();
+        vita_lanciatore[i] = false;
     }
 
     else {
@@ -49,7 +56,7 @@ function kill (s, obj1, obj2){
 
 //funzione che innesca la schermata di game over
 
-function game_over(s){
+function game_over(s) {
 
     PP.scenes.start("morte");
 }
@@ -58,8 +65,8 @@ function game_over(s){
 //morte toccando una carta, immunità usando il dash
 
 
-function morte_carta(s, obj1, obj2){
-    if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)){
+function morte_carta(s, obj1, obj2) {
+    if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)) {
 
         PP.assets.destroy(obj2);
     }
@@ -71,61 +78,64 @@ function morte_carta(s, obj1, obj2){
     }
 }
 
-function distruggi_carte(s, obj1){
+function distruggi_carte(s, obj1) {
     PP.assets.destroy(obj1);
 }
 
 
 function attack(s) {
-    if (vita_lanciatore == false){
+    i = enemy_check.shift();
+    if (vita_lanciatore[i] == false) {
         return
     }
-        attack_check = false;
-    
-        carta = PP.assets.image.add(s, img_carta, lanciatore.geometry.x,
-            lanciatore.geometry.y - 120,
-            0.5, 0.5);
-        PP.physics.add(s, carta, PP.physics.type.DYNAMIC);
-        PP.physics.set_allow_gravity(carta, false);
-        PP.physics.set_rotation(carta, 360);
-        PP.physics.set_velocity_x(carta, -600);
-    
-        PP.physics.add_overlap_f(s, player, carta, morte_carta);
-        PP.physics.add_collider(s, carta, cassa);
-        PP.physics.add_collider(s, carta, cassa);
-        PP.physics.add_collider(s, carta, cassa);
+    attack_check[i] = false;
 
-        //PP.timers.add_timer(s, 2000, distruggi_carte(carta), false)
-        console.log ("attacco");
+    carta = PP.assets.image.add(s, img_carta, lanciatori[i].geometry.x,
+        lanciatori[i].geometry.y - 120,
+        0.5, 0.5);
+    PP.physics.add(s, carta, PP.physics.type.DYNAMIC);
+    PP.physics.set_allow_gravity(carta, false);
+    PP.physics.set_rotation(carta, 360);
+    PP.physics.set_velocity_x(carta, -600);
+
+    PP.physics.add_overlap_f(s, player, carta, morte_carta);
+    PP.physics.add_collider(s, carta, cassa);
+    PP.physics.add_collider(s, carta, cassa);
+    PP.physics.add_collider(s, carta, cassa);
+
+    //PP.timers.add_timer(s, 2000, distruggi_carte(carta), false)
+    console.log("attacco");
+
+
 }
 
 
-function update_Lanciatore(s){
-    let next_anim_Lanciatore = curr_anim_Lanciatore;
-    
-    //se il lanciatore è morto update non fa niente
+function update_Lanciatore(s) {
+    for (let i = 0; i < lanciatori.length; i++) {
+        let next_anim_Lanciatore = curr_anim_Lanciatore[i];
 
-    if (attack_check == true || vita_lanciatore == false)
-        {
+        if (attack_check[i] == true || vita_lanciatore[i] == false) {
             return;
         }
 
-    //il lanciatore spara solo se il giocatore gli è vicino
+        //il lanciatore spara solo se il giocatore gli è vicino
 
-    if (Math.abs(lanciatore.geometry.x - player.geometry.x) < 500)
-        {
+        if (Math.abs(lanciatori[i].geometry.x - player.geometry.x) < 500) {
             next_anim_Lanciatore = "Attack";
             PP.timers.add_timer(s, 1600, attack, false);
-            attack_check = true;
+            enemy_check.push(i);
+            attack_check [i] = true;
         }
-    else {
-                next_anim_Lanciatore = "Idle";
-    }    
-    
-    if (next_anim_Lanciatore != curr_anim_Lanciatore) {
-        PP.assets.sprite.animation_play(lanciatore, next_anim_Lanciatore);
-        curr_anim_Lanciatore = next_anim_Lanciatore;
+        else {
+            next_anim_Lanciatore = "Idle";
+        }
+
+        if (next_anim_Lanciatore != curr_anim_Lanciatore[i]) {
+            PP.assets.sprite.animation_play(lanciatori[i], next_anim_Lanciatore);
+            curr_anim_Lanciatore [i] = next_anim_Lanciatore;
+        }
     }
+
 }
 
 

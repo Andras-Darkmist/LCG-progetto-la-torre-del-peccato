@@ -17,13 +17,17 @@ function preload (s) {
     preload_piatt (s);
     preload_Lanciatore(s);
     preload_slot(s);
+    preload_ghiglio(s);
+    create_ghiglio(s);
+    update_ghiglio(s);
 
     img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, 
-    // servirebbe un modo di mettere 2 collider per lo stesso oggetto in modo da poter saltare anche su pedana
-    // animazione morte personaggio non va ogni tanto, animazione morte non viene riprodotta alla morte
+    // servirebbe un modo di mettere 2 collider per lo stesso oggetto in modo da poter saltare anche su pedana,
+    // animazione morte personaggio non va ogni tanto, animazione morte non viene riprodotta alla morte, serve modo per far cambiare l'estetica 
+    // di un oggetto quando si realizza una condizione, 
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
     // modo di rendere immateriale la porta, 
@@ -155,7 +159,7 @@ function apertura_porta1(s) {
     chiusura_porta = false;
 
     // implementare funzione per il salto
-    if (player.geometry.x < 3050 && player.geometry.x > 2700 && player.geometry.y >= 618){
+    if ((player.geometry.x < 3050 || player.geometry.x > 2700) && player.geometry.y >= 618){
     jump_disable = false;
     }
 }

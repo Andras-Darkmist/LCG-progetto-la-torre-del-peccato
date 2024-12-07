@@ -32,6 +32,7 @@ function update_slot_animata(s){
 function cambio_direz(s) {
     if (direzione_positiva == true) {
         direzione_positiva = false;
+        console.log("turbosus")
         for (let i = 0; i < slot_animate.length; i++) {
             if (slot_spenta[i] == 0) {
                 PP.physics.set_velocity_x(slot_animate[i], -200);
@@ -42,10 +43,12 @@ function cambio_direz(s) {
                 }
             }
         }
+        return;
     }
 
-    else if (direzione_positiva == false) {
+    if (direzione_positiva == false) {
         direzione_positiva = true;
+        console.log("susturbo")
         for (let i = 0; i < slot_animate.length; i++) {
             if (slot_spenta[i] == false) {
                 PP.physics.set_velocity_x(slot_animate[i], 200);

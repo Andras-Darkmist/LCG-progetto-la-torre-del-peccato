@@ -106,10 +106,9 @@ function attack(s) {
     PP.physics.set_velocity_x(carta, -600);
 
     PP.physics.add_overlap_f(s, player, carta, morte_carta);
-    PP.physics.add_collider(s, carta, cassa);
-    PP.physics.add_collider(s, carta, cassa);
-    PP.physics.add_collider(s, carta, cassa);
-
+    for (let g = 0; g < casse.length; g++) {
+        PP.physics.add_collider(s, casse[g], carta);
+    }
     //PP.timers.add_timer(s, 2000, distruggi_carte(carta), false)
     console.log("attacco");
 

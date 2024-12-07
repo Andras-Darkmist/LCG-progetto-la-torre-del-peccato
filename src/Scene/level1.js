@@ -16,7 +16,7 @@ function preload (s) {
     preload_cassa3 (s);
     preload_porta1 (s);
     preload_piatt (s);
-    preload_piatt_move1 (s);
+    preload_piatt_move (s);
     preload_Lanciatore(s);
     preload_slot(s);
     preload_ghiglio(s);
@@ -68,8 +68,10 @@ function create (s) {
     create_cassa2 (s);
     create_cassa3 (s);
     create_porta1(s);
-    create_piatt (s);
-    create_piatt_move1 (s);
+    create_piatt (s, 4760, 310);
+    create_piatt (s, 4945, -950);
+    create_piatt_move (s, 5175, 300);
+    create_piatt_move (s, 5395, -450);
     create_Lanciatore(s, 1300);
     create_Lanciatore(s, 5000);
     create_Lanciatore(s, 7000);
@@ -95,10 +97,18 @@ function create (s) {
     PP.physics.add_collider_f(s, player, cassa, salto_si);
     PP.physics.add_collider_f(s, player, cassa2, salto_si);
     PP.physics.add_collider_f(s, player, cassa3, salto_si);
-    PP.physics.add_collider_f(s, player, piatt1, salto_si);
-    PP.physics.add_collider_f(s, player, piatt_move1, salto_si);
-    for (let i = 0; i < lanciatori.length; i++)
-    {
+
+    for (let i = 0; i < piatt.length; i++) {
+        PP.physics.add_collider_f(s, player, piatt[i], salto_si);
+        PP.physics.add_collider(s, cassa, piatt[i]);
+    }
+
+    for (let i = 0; i < piatt_move.length; i++) {
+        PP.physics.add_collider_f(s, player, piatt_move[i], salto_si);
+        PP.physics.add_collider(s, cassa, piatt_move[i]);
+    }
+
+    for (let i = 0; i < lanciatori.length; i++) {
         PP.physics.add_overlap_f(s, player, lanciatori[i], kill);
         PP.physics.add_collider(s, cassa, lanciatori[i]);
         PP.physics.add_collider(s, lanciatori[i], floor);
@@ -112,9 +122,6 @@ function create (s) {
     PP.physics.add_collider(s, cassa, floor);
     PP.physics.add_collider(s, cassa2, floor);
     PP.physics.add_collider(s, cassa3, floor);
-    PP.physics.add_collider(s, cassa, piatt1);
-    PP.physics.add_collider(s, cassa2, piatt1);
-    PP.physics.add_collider(s, cassa3, piatt1);
     PP.physics.add_collider(s, cassa, scala_1);
     PP.physics.add_collider(s, cassa2, scala_1);
     PP.physics.add_collider(s, cassa3, scala_1);
@@ -141,7 +148,7 @@ function update (s) {
     update_cassa3(s);
     update_porta1(s);
     update_piatt (s);
-    update_piatt_move1 (s);
+    update_piatt_move (s);
     update_slot_animata(s);
     manage_dash(s);
     update_Lanciatore(s);

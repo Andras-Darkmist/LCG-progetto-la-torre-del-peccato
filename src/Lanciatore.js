@@ -6,6 +6,8 @@ let enemy_check = [];
 let img_carta;
 let carta;
 let vita_lanciatore = [] /*true*/;
+let img_moneta;
+let moneta;
 
 let morte_nemici = [];
 
@@ -14,6 +16,7 @@ let morte_nemici = [];
 function preload_Lanciatore(s) {
     img_lanciatore = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Sprite_Lanciatore.PNG", 172, 200);
     img_carta = PP.assets.image.load(s, "assets/immagini/carata.jpg");
+    img_moneta = PP.assets.image.load(s, "assets/immagini/monetamini.png");
 }
 
 function create_Lanciatore(s, x) {
@@ -21,13 +24,12 @@ function create_Lanciatore(s, x) {
     PP.physics.add(s, lanciatore, PP.physics.type.DYNAMIC);
     PP.physics.set_drag_x(lanciatore, 7000);
     lanciatori.push(lanciatore);
-
 }
 
 function configure_Lanciatore_animations(s) {
     for (let i = 0; i < lanciatori.length; i++) {
-        PP.assets.sprite.animation_add(lanciatori[i], "Attack", 3, 10, 5, -1);
-        PP.assets.sprite.animation_add(lanciatori[i], "Idle", 0, 2, 5, -1);
+        PP.assets.sprite.animation_add(lanciatori[i], "Attack", 4, 10, 5, -1);
+        PP.assets.sprite.animation_add(lanciatori[i], "Idle", 0, 3, 5, -1);
         PP.assets.sprite.animation_play(lanciatori[i], "Idle");
         vita_lanciatore[i] = true;
         attack_check[i] = false;
@@ -44,6 +46,11 @@ function kill(s, obj1, obj2) {
         PP.assets.destroy(obj2);
         i = morte_nemici.shift();
         vita_lanciatore[i] = false;
+        let x = 1200;
+        let y = 600;
+        let moneta = PP.assets.image.add(s, img_moneta, (x), (y), 0, 0)
+        PP.physics.add(s, moneta, PP.physics.type.DYNAMIC);
+        PP.physics.set_drag_x(moneta, 7000);
     }
 
     else if (curr_anim != "die"){

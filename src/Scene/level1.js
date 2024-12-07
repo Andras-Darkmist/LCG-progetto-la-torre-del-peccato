@@ -83,7 +83,9 @@ function create (s) {
     create_piatt (s, 5350, -950);
     create_piatt_move (s, 5550, 320);
     create_piatt_move (s, 5780, -450);
-    create_ghiglio(s);
+    create_ghiglio(s, 7950, 170);
+    create_ghiglio(s, 8500, 170);
+    create_ghiglio(s, 8950, 170);
     
     create_Lanciatore(s, 1500, 450);
     create_Lanciatore(s, 4650, 450);
@@ -102,6 +104,14 @@ function create (s) {
     PP.physics.add_collider_f(s, player, scala_4, salto_si);
     PP.physics.add_collider_f(s, player, scala_5, salto_si);
     PP.physics.add_collider_f(s, player, pedana, apertura_porta1);
+
+    for (let i = 0; i < ghigliottine.length; i++) {
+        PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
+        PP.physics.add_collider(s, floor, ghigliottine[i]);
+        for (let g = 0; g < casse.length; g++) {
+            PP.physics.add_collider(s, casse[g], ghigliottine[i]);
+        }
+    }
 
     for (let i = 0; i < piatt.length; i++) {
         PP.physics.add_collider_f(s, player, piatt[i], salto_si);

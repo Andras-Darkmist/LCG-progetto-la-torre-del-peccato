@@ -63,7 +63,6 @@ function kill(s, obj1, obj2) {
 //funzione che innesca la schermata di game over
 
 function game_over(s) {
-
     PP.scenes.start("morte");
 }
 

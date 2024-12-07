@@ -7,7 +7,7 @@ function preload_porta1 (s) {
 }
 
 function create_porta1 (s){
-    porta1 = PP.assets.image.add(s, img_porta, 3250, 320, 0, 0);
+    porta1 = PP.assets.image.add(s, img_porta, 3450, 320, 0, 0);
     PP.physics.add(s, porta1, PP.physics.type.STATIC);
 }
 

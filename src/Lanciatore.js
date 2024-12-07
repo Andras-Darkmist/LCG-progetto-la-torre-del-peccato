@@ -19,8 +19,8 @@ function preload_Lanciatore(s) {
     img_moneta = PP.assets.image.load(s, "assets/immagini/monetamini.png");
 }
 
-function create_Lanciatore(s, x) {
-    let lanciatore = PP.assets.sprite.add(s, img_lanciatore, x, 620, 0.5, 1);
+function create_Lanciatore(s, x, y) {
+    let lanciatore = PP.assets.sprite.add(s, img_lanciatore, x, y, 0.5, 1);
     PP.physics.add(s, lanciatore, PP.physics.type.DYNAMIC);
     PP.physics.set_drag_x(lanciatore, 7000);
     lanciatori.push(lanciatore);

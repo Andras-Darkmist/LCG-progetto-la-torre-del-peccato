@@ -73,9 +73,10 @@ function create (s) {
     create_piatt_move (s, 5175, 300);
     create_piatt_move (s, 5395, -450);
     create_Lanciatore(s, 1300);
-    create_Lanciatore(s, 5000);
+    create_Lanciatore(s, 4400);
     create_Lanciatore(s, 7000);
-    create_slot_animata(s);
+    create_slot_animata(s, 5300, 620);
+    create_slot_animata(s, 5300, 620);
 
     //collider di tutte le cose
     //player
@@ -108,14 +109,6 @@ function create (s) {
         PP.physics.add_collider(s, cassa, piatt_move[i]);
     }
 
-    for (let i = 0; i < lanciatori.length; i++) {
-        PP.physics.add_overlap_f(s, player, lanciatori[i], kill);
-        PP.physics.add_collider(s, cassa, lanciatori[i]);
-        PP.physics.add_collider(s, lanciatori[i], floor);
-        morte_nemici.push(i);
-    }
-    PP.physics.add_collider(s, player, slot_animata);
-
 
     //casse
 
@@ -132,9 +125,23 @@ function create (s) {
    
 
     //nemici
+
+    for (let i = 0; i < slot_animate.length; i++) {
+        PP.physics.add_collider_f(s, player, slot_animate[i], inerme);
+        PP.physics.add_collider(s, cassa, slot_animate[i]);
+        PP.physics.add_collider(s, slot_animate[i], floor);
+        inermità_slot. push(i);
+    }
     
-    
-    PP.physics.add_collider(s, slot_animata, floor);
+
+    for (let i = 0; i < lanciatori.length; i++) {
+        PP.physics.add_overlap_f(s, player, lanciatori[i], kill);
+        PP.physics.add_collider(s, cassa, lanciatori[i]);
+        PP.physics.add_collider(s, lanciatori[i], floor);
+        morte_nemici.push(i);
+    }
+
+
 
     
     configure_player_animations(s);

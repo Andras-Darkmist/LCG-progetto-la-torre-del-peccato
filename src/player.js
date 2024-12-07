@@ -30,7 +30,7 @@ function preload_player(s) {
 
 function create_player(s) {
 
-    player = PP.assets.sprite.add(s, img_player, 4500, 300, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 3700, 300, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -52,7 +52,7 @@ function player_update(s) {
     let pos_x_pla = player.geometry.x - 645;
 
     if(player.geometry.x >= 400) {
-        PP.camera.start_follow(s, player, -235, 0)
+        PP.camera.start_follow(s, player, -235, pos_y_pla)
     }
     
     //prova per sistemare problema della camera

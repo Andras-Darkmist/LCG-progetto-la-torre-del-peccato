@@ -13,7 +13,7 @@ function create_piatt_move (s, x, y){
     PP.physics.add(s, piatt_move_sing, PP.physics.type.DYNAMIC);
     PP.physics.set_immovable(piatt_move_sing, true);
     PP.physics.set_allow_gravity(piatt_move_sing, false);
-    PP.physics.set_velocity_y(piatt_move_sing, 0)
+    PP.physics.set_velocity_y(piatt_move_sing, 0);
     piatt_move.push(piatt_move_sing);
     vicinanza.push(piatt_move_sing);
 }

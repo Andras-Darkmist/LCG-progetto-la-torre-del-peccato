@@ -15,15 +15,15 @@ function create_ghiglio (s, x, y){
 
 function update_ghiglio(s) {
     for (let i = 0; i < ghigliottine.length; i++) {
-        if (Math.abs(ghigliottine[i].geometry.x - player.geometry.x) < 10)
-            let (i);
+        if (Math.abs((ghigliottine[i].geometry.x) - player.geometry.x) < 10) {
             numero_ghiglio.push(i);
             console.log(numero_ghiglio);
             PP.timers.add_timer(s, 500, scatto_ghiglio(), false);
+        }
     }
 }
 
 function scatto_ghiglio(s){
     let i = numero_ghiglio.shift();
-    PP.physics.set_velocity_y(ghigliottine[i], 300);
+    PP.physics.set_velocity_y((ghigliottine[i]), 300);
 }

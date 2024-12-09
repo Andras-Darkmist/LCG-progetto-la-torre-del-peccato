@@ -16,7 +16,7 @@ function create_piatt_move (s, x, y){
     PP.physics.set_immovable(piatt_move_sing, true);
     PP.physics.set_allow_gravity(piatt_move_sing, false);
     PP.physics.set_velocity_y(piatt_move_sing, 0);
-    piatt_move.push(piatt_move_sing);
+    /*piatt_move.push(piatt_move_sing);*/
    /* vicinanza.push(piatt_move_sing);*/
 }
 
@@ -26,7 +26,7 @@ function update_piatt_move(s) {
             PP.physics.set_velocity_y(piatt_move_sing, 0)
             PP.timers.add_timer(s, 2000, inizio_discesa, false)
         }
-        if (piatt_move[0].geometry.y >= 350) {
+        if (piatt_move_sing.geometry.y >= 350) {
             PP.physics.set_velocity_y(piatt_move_sing, 0)
             PP.timers.add_timer(s, 2000, inizio_salita, false)
         }

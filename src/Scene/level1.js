@@ -104,7 +104,13 @@ function create (s) {
     PP.physics.add_collider_f(s, player, scala_4, salto_si);
     PP.physics.add_collider_f(s, player, scala_5, salto_si);
     PP.physics.add_collider_f(s, player, pedana, apertura_porta1);
+    for (let g = 0; g < casse.length; g++) {
+        PP.physics.add_collider(s, casse[g], piatt_move_sing);
+    }
+    PP.physics.add_collider_f(s, player, piatt_move_sing, salto_si);
+    PP.physics.add_collider_f(s, player, ghiglio, salto_si);
 
+    /*
     for (let i = 0; i < ghigliottine.length; i++) {
         PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
         PP.physics.add_collider(s, floor, ghigliottine[i]);
@@ -112,6 +118,7 @@ function create (s) {
             PP.physics.add_collider(s, casse[g], ghigliottine[i]);
         }
     }
+        */
 
     for (let i = 0; i < piatt.length; i++) {
         PP.physics.add_collider_f(s, player, piatt[i], salto_si);
@@ -120,12 +127,14 @@ function create (s) {
         }
     }
 
+    /*
     for (let i = 0; i < piatt_move.length; i++) {
         PP.physics.add_collider_f(s, player, piatt_move[i], salto_si);
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], piatt_move[i]);
         }
     }
+        */
 
 
     //casse

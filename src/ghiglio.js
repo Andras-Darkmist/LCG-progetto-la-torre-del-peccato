@@ -1,6 +1,7 @@
 let img_ghiglio;
-let ghiglio;
-let ghiglio_check = true;
+let ghigliottine = [];
+let numero_ghiglio = [];
+let lama;
 
 function preload_ghiglio (s) {
     img_ghiglio = PP.assets.image.load(s, "assets/immagini/ghiglio.png", 150, 156);
@@ -17,8 +18,12 @@ function create_ghiglio (s, x, y){
 }
 
 function update_ghiglio(s) {
-    if (ghiglio.geometry.y <= -170){
-        PP.physics.set_velocity_y(ghiglio, 1500);
+    for (let i = 0; i < ghigliottine.length; i++) {
+        if (Math.abs(ghigliottine[i].geometry.x - player.geometry.x) <= 100) {
+            numero_ghiglio.push(i);
+            console.log(numero_ghiglio);
+            PP.timers.add_timer(s, 500, scatto_ghiglio, false);
+        }
     }
     if (ghiglio.geometry.y >= 180 ){
         PP.physics.set_velocity_y(ghiglio, -100);    
@@ -26,7 +31,10 @@ function update_ghiglio(s) {
           
 }
 
-function scatto_ghiglio(s)
-{ 
-    PP.physics.set_velocity_y(ghiglio, 1500);
+function scatto_ghiglio(s){
+
+    lama = PP.assets.image.add(s, img_carta, ghigliottine[i].geometry.x, ghigliottine[i].geometry.y - 120, 0.5, 0.5);
+    PP.physics.add(s, carta, PP.physics.type.DYNAMIC);
+    PP.physics.set_allow_gravity(carta, false);
+    PP.physics.set_velocity_x(carta, -600);
 }

@@ -28,7 +28,7 @@ function preload (s) {
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, 
     // servirebbe un modo di mettere 2 collider per lo stesso oggetto in modo da poter saltare anche su pedana,
     // animazione morte personaggio non va ogni tanto, animazione morte non viene riprodotta alla morte, dal secondo lanciatore in poi sparano
-    // anche da morti e fanno si che il giocatore possa muoversi quando lo uccide, cambio visuale si bugga quando si salta, 
+    // anche da morti e fanno si che il giocatore possa muoversi anche dopo la morte, cambio visuale si bugga quando si salta, 
     // le pedane mobili non vanno su e giù come dovrebbero, 
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto

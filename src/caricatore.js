@@ -37,7 +37,6 @@ function charge(s) {
     }
 
     PP.physics.set_velocity_x(caricatore, sp);
-    
 }
 
 function charge_stop(s) {

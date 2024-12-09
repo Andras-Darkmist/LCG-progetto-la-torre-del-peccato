@@ -5,6 +5,11 @@ let scalino_1;
 let scalino_2;
 let scalino_3;
 let scalino_4;
+let scalino_5;
+let scalino_6;
+let scalino_7;
+let scalino_8;
+let scalino_9;
 let muro_iniziale;
 
 let scala_1;
@@ -64,8 +69,23 @@ function create (s) {
     scalino_3 = PP.shapes.rectangle_add(s, 10970, 900, 30, 185, "0x00f080", 1   );
     PP.physics.add(s, scalino_3, PP.physics.type.STATIC);
     
-    scalino_4 = PP.shapes.rectangle_add(s, 11080, 820, 2, 30, "0x00f080", 1   );
+    scalino_4 = PP.shapes.rectangle_add(s, 10560, 1010, 860, 30, "0x00f080", 1   );
     PP.physics.add(s, scalino_4, PP.physics.type.STATIC);
+
+    scalino_5 = PP.shapes.rectangle_add(s, 9490, 1000, 30, 750, "0x00f080", 1   );
+    PP.physics.add(s, scalino_5, PP.physics.type.STATIC);
+    
+    scalino_6 = PP.shapes.rectangle_add(s, 9900, 1410, 850, 30, "0x00f080", 1   );
+    PP.physics.add(s, scalino_6, PP.physics.type.STATIC);
+    
+    scalino_7 = PP.shapes.rectangle_add(s, 10320, 1550, 30, 300, "0x00f080", 1   );
+    PP.physics.add(s, scalino_7, PP.physics.type.STATIC);
+    
+    scalino_8 = PP.shapes.rectangle_add(s, 11410, 1710, 2210, 30, "0x00f080", 1   );
+    PP.physics.add(s, scalino_8, PP.physics.type.STATIC);
+    
+    scalino_9 = PP.shapes.rectangle_add(s, 12500, 1220, 30, 1150, "0x00f080", 1   );
+    PP.physics.add(s, scalino_9, PP.physics.type.STATIC);
 
     //barriera inizio livello
 
@@ -105,6 +125,8 @@ function create (s) {
     create_cassa (s, 4050, 360);
     create_cassa (s, 5400, 60);
     create_cassa (s, 7350, 60);
+    create_cassa (s, 11050, 950);
+    create_cassa (s, 11090, 780);
     create_porta1 (s);
     create_piatt (s, 5100, 310);
     create_piatt (s, 5350, -950);
@@ -129,6 +151,13 @@ function create (s) {
     PP.physics.add_collider_f(s, player, scala_1, salto_si);
     PP.physics.add_collider_f(s, player, scalino_1, salto_si);
     PP.physics.add_collider_f(s, player, scalino_2, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_3, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_4, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_5, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_6, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_7, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_8, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_9, salto_si);
     PP.physics.add_collider_f(s, player, scala_2, salto_si);
     PP.physics.add_collider_f(s, player, scala_3, salto_si);
     PP.physics.add_collider_f(s, player, scala_4, salto_si);
@@ -176,7 +205,16 @@ function create (s) {
     for (let i = 0; i < casse.length; i++) {
         PP.physics.add_collider_f(s, player, casse[i], salto_si);
         PP.physics.add_collider(s, floor, casse[i]);
+        PP.physics.add_collider(s, floor_finale, casse[i]);
         PP.physics.add_collider(s, casse[i], scala_1);
+        PP.physics.add_collider(s, casse[i], scalino_2);
+        PP.physics.add_collider(s, casse[i], scalino_3);
+        PP.physics.add_collider(s, casse[i], scalino_6);
+        PP.physics.add_collider(s, casse[i], scalino_7);
+        PP.physics.add_collider(s, casse[i], scalino_8);
+        for (let g = 0; g < casse.length; g++) {
+            PP.physics.add_collider(s, casse[g], casse[i]);
+        }
     }
     
     for (let g = 0; g < casse.length; g++) {

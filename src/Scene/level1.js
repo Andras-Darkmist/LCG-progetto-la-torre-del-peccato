@@ -1,5 +1,10 @@
 let img_background;
 let floor;
+let floor_finale;
+let scalino_1;
+let scalino_2;
+let scalino_3;
+let scalino_4;
 let muro_iniziale;
 
 let scala_1;
@@ -44,8 +49,23 @@ function create (s) {
 
     //pavimento
 
-    floor = PP.shapes.rectangle_add(s, 640, 635, 20280, 30, "0x000000", 0);
+    floor = PP.shapes.rectangle_add(s, 640, 635, 19880, 30, "0x000000", 1   );
     PP.physics.add(s, floor, PP.physics.type.STATIC);
+
+    floor_finale = PP.shapes.rectangle_add(s, 12300, 635, 2250, 30, "0x00f080", 1   );
+    PP.physics.add(s, floor_finale, PP.physics.type.STATIC);
+    
+    scalino_1 = PP.shapes.rectangle_add(s, 11190, 713, 30, 185, "0x00f080", 1   );
+    PP.physics.add(s, scalino_1, PP.physics.type.STATIC);
+    
+    scalino_2 = PP.shapes.rectangle_add(s, 11080, 820, 250, 30, "0x00f080", 1   );
+    PP.physics.add(s, scalino_2, PP.physics.type.STATIC);
+    
+    scalino_3 = PP.shapes.rectangle_add(s, 10970, 900, 30, 185, "0x00f080", 1   );
+    PP.physics.add(s, scalino_3, PP.physics.type.STATIC);
+    
+    scalino_4 = PP.shapes.rectangle_add(s, 11080, 820, 2, 30, "0x00f080", 1   );
+    PP.physics.add(s, scalino_4, PP.physics.type.STATIC);
 
     //barriera inizio livello
 
@@ -105,7 +125,10 @@ function create (s) {
     PP.physics.add_collider(s, player, muro_iniziale);
     PP.physics.add_collider(s, player, porta1);
     PP.physics.add_collider_f(s, player, floor, salto_si);
+    PP.physics.add_collider_f(s, player, floor_finale, salto_si);
     PP.physics.add_collider_f(s, player, scala_1, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_1, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_2, salto_si);
     PP.physics.add_collider_f(s, player, scala_2, salto_si);
     PP.physics.add_collider_f(s, player, scala_3, salto_si);
     PP.physics.add_collider_f(s, player, scala_4, salto_si);

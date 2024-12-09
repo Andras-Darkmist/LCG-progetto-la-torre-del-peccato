@@ -13,6 +13,8 @@ let chiusura_porta = true;
 
 
 function preload (s) {
+    preload_lettera (s);
+    preload_score (s);
     preload_player (s);
     preload_cassa (s);
     preload_porta1 (s);
@@ -35,6 +37,9 @@ function preload (s) {
     // modo di rendere immateriale la porta, 
 
 function create (s) {
+    create_score(s);
+
+
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
 
     //pavimento
@@ -71,6 +76,8 @@ function create (s) {
 
 
     //funzioni richiamate
+    create_lettera(s, 7800, 170);
+    create_lettera(s, 7000, 170);
 
     create_player (s);
     create_cassa (s, 750, 450);
@@ -109,6 +116,10 @@ function create (s) {
     }
     PP.physics.add_collider_f(s, player, piatt_move_sing, salto_si);
     PP.physics.add_collider_f(s, player, ghiglio, salto_si);
+
+    for (let g = 0; g < Lettere.length; g++) {
+        PP.physics.add_overlap_f(s, Lettere[g], player, collision_lettera);
+    }
 
     /*
     for (let i = 0; i < ghigliottine.length; i++) {
@@ -180,10 +191,11 @@ function create (s) {
 }
 
 function update (s) {
+
+    update_score(s);
+
     player_update(s);
     update_cassa(s);
-    update_cassa2(s);
-    update_cassa3(s);
     update_porta1(s);
     update_piatt (s);
     update_piatt_move (s);

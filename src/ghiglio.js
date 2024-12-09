@@ -8,10 +8,13 @@ function preload_ghiglio (s) {
 }
 
 function create_ghiglio (s, x, y){
-    let ghiglio = PP.assets.image.add(s, img_ghiglio, x, y, 0, 0);
-    PP.physics.add(s, ghiglio, PP.physics.type.DYNAMIC);
-    ghiglio.geometry.body_y = -190
-    ghigliottine.push(ghiglio);
+    
+    /*ghiglio.geometry.body_y = -190
+    ghigliottine.push(ghiglio);*/
+        ghiglio = PP.assets.image.add(s, img_ghiglio, x, y, 0, 0);
+        PP.physics.add(s, ghiglio, PP.physics.type.DYNAMIC);
+        PP.physics.set_allow_gravity(ghiglio, false);
+           
 }
 
 function update_ghiglio(s) {
@@ -22,6 +25,10 @@ function update_ghiglio(s) {
             PP.timers.add_timer(s, 500, scatto_ghiglio, false);
         }
     }
+    if (ghiglio.geometry.y >= 180 ){
+        PP.physics.set_velocity_y(ghiglio, -100);    
+    }
+          
 }
 
 function scatto_ghiglio(s){

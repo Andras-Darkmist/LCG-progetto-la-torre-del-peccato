@@ -13,6 +13,8 @@ let chiusura_porta = true;
 
 
 function preload (s) {
+    preload_lettera (s);
+    preload_score (s);
     preload_player (s);
     preload_cassa (s);
     preload_porta1 (s);
@@ -35,6 +37,9 @@ function preload (s) {
     // modo di rendere immateriale la porta, 
 
 function create (s) {
+    create_score(s);
+
+
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
 
     //pavimento
@@ -71,6 +76,8 @@ function create (s) {
 
 
     //funzioni richiamate
+    create_lettera(s, 7800, 170);
+    create_lettera(s, 7000, 170);
 
     create_player (s);
     create_cassa (s, 750, 450);
@@ -104,7 +111,17 @@ function create (s) {
     PP.physics.add_collider_f(s, player, scala_4, salto_si);
     PP.physics.add_collider_f(s, player, scala_5, salto_si);
     PP.physics.add_collider_f(s, player, pedana, apertura_porta1);
+    for (let g = 0; g < casse.length; g++) {
+        PP.physics.add_collider(s, casse[g], piatt_move_sing);
+    }
+    PP.physics.add_collider_f(s, player, piatt_move_sing, salto_si);
+    PP.physics.add_collider_f(s, player, ghiglio, salto_si);
 
+    for (let g = 0; g < Lettere.length; g++) {
+        PP.physics.add_overlap_f(s, Lettere[g], player, collision_lettera);
+    }
+
+    /*
     for (let i = 0; i < ghigliottine.length; i++) {
         PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
         PP.physics.add_collider(s, floor, ghigliottine[i]);
@@ -112,6 +129,7 @@ function create (s) {
             PP.physics.add_collider(s, casse[g], ghigliottine[i]);
         }
     }
+        */
 
     for (let i = 0; i < piatt.length; i++) {
         PP.physics.add_collider_f(s, player, piatt[i], salto_si);
@@ -120,12 +138,14 @@ function create (s) {
         }
     }
 
+    /*
     for (let i = 0; i < piatt_move.length; i++) {
         PP.physics.add_collider_f(s, player, piatt_move[i], salto_si);
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], piatt_move[i]);
         }
     }
+        */
 
 
     //casse
@@ -171,6 +191,9 @@ function create (s) {
 }
 
 function update (s) {
+
+    update_score(s);
+
     player_update(s);
     update_cassa(s);
     update_porta1(s);

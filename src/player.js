@@ -52,7 +52,7 @@ function player_update(s) {
     let pos_x_pla = player.geometry.x - 645;
 
     if(player.geometry.x >= 400) {
-        PP.camera.start_follow(s, player, -235, 0)
+        PP.camera.start_follow(s, player, -235, 200)
     }
     
     //prova per sistemare problema della camera

@@ -173,8 +173,6 @@ function create (s) {
 function update (s) {
     player_update(s);
     update_cassa(s);
-    update_cassa2(s);
-    update_cassa3(s);
     update_porta1(s);
     update_piatt (s);
     update_piatt_move (s);

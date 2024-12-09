@@ -13,19 +13,22 @@ jump_disable = false;
 
 let curr_anim = "stop"; // Questa variabile contiene l'animazione corrente
 
+let next_anim;
+
 function configure_player_animations(s) {
     // Configuro le animazioni secondo lo spritesheet
-    PP.assets.sprite.animation_add_list(player, "run", [6, 13, 20, 27, 34], 10, -1);    // Lista di frame, a 10 fps, inifito
-    PP.assets.sprite.animation_add(player, "jump_up", 36, 36, 10, 0);
-    PP.assets.sprite.animation_add(player, "jump_down", 42, 45, 10, 0);
-    PP.assets.sprite.animation_add(player, "stop", 21, 21, 10, 0);
-    PP.assets.sprite.animation_add_list(player, "die", [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 10, 10, 10, 10], 10, 0);
-    PP.assets.sprite.animation_add(player, "dead", 10, 10, 10, -1);
+    PP.assets.sprite.animation_add(player, "run", 4, 7, 5, -1);    // Lista di frame, a 10 fps, inifito
+    PP.assets.sprite.animation_add(player, "jump_up", 8, 8, 5, 0);
+    PP.assets.sprite.animation_add(player, "jump_down", 8, 8, 10, 0);
+    PP.assets.sprite.animation_add(player, "stop", 0, 0, 5, 0);
+    PP.assets.sprite.animation_add(player, "dash", 1, 3, 5, -1);
+    //PP.assets.sprite.animation_add_list(player, "die", [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 10, 10, 10, 10], 10, 0);
+    //PP.assets.sprite.animation_add(player, "dead", 10, 10, 10, -1);
     PP.assets.sprite.animation_play(player, "stop");
 }
 
 function preload_player(s) {
-    img_player = PP.assets.sprite.load_spritesheet(s, "assets/immagini/spritesheet_player.png", 223, 190);
+    img_player = PP.assets.sprite.load_spritesheet(s, "assets/immagini/Elia_spritehseet_1.PNG", 188, 200);
 }
 
 function create_player(s) {
@@ -80,7 +83,7 @@ function player_update(s) {
     // Creo una variabile che conterra' l'animazione futura
     // per poter verificare se cambia dalla attuale
 
-    let next_anim = curr_anim;
+    next_anim = curr_anim;
 
     // MOVIMENTO laterale giocatore
 
@@ -102,6 +105,7 @@ function player_update(s) {
         }
     }
 
+    
     // SALTO
 
     //(PP.physics.get_velocity_y(player) == 0)
@@ -124,6 +128,12 @@ function player_update(s) {
         next_anim = "jump_down";
     }
 
+    if(PP.physics.get_velocity_x(player) < -800) {
+        next_anim = "dash";
+    }
+    else if(PP.physics.get_velocity_x(player) > 800) {
+        next_anim = "dash";
+    }
 
     // Ora verifico l'animazione scelta:
     // - se e' uguale a quella attuale, non faccio niente
@@ -181,6 +191,7 @@ function manage_dash (s){
                 PP.physics.set_velocity_x(player, -player_speed-800);
                 console.log(player.geometry.x);
                 console.log(PP.physics.get_velocity_x(player));
+                
             }
             else if (player.geometry.flip_x == false) {
                 PP.physics.set_velocity_x(player, player_speed+800);
@@ -190,7 +201,7 @@ function manage_dash (s){
             move_disable = true;
             PP.physics.set_allow_gravity (player, false);
             PP.timers.add_timer(s, 2000, reenable_dash, false);
-            PP.timers.add_timer(s,200, dash_reset, false);
+            PP.timers.add_timer(s,600, dash_reset, false);
             dash_disable = true;
         }
     }
@@ -203,6 +214,6 @@ function morte (s){
     PP.physics.set_velocity_x(player, 0);
     PP.physics.set_velocity_y(player, 30);
     PP.assets.sprite.animation_stop(player);
-    next_anim = "die";
+    //next_anim = "die";
     PP.assets.sprite.animation_play(player, next_anim);
 }

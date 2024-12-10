@@ -18,6 +18,8 @@ let scala_3;
 let scala_4;
 let scala_5;
 
+let bg;
+
 let pedana;
 let chiusura_porta = true;
 
@@ -34,7 +36,7 @@ function preload (s) {
     preload_Lanciatore(s);
     preload_slot(s);
 
-    img_background = PP.assets.image.load(s, "Assets/Immagini/sfondo.png");
+    img_background = PP.assets.image.load(s, "Assets/Immagini/Sfondo lvl1.PNG");
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, 
@@ -50,8 +52,9 @@ function create (s) {
     create_score(s);
 
 
-    PP.assets.image.add(s, img_background, 0, 0, 0, 0);
-
+    bg = PP.assets.tilesprite.add(s, img_background, 0, -180, 2800, 800, 0, 0);
+    bg.tile_geometry.scroll_factor_x = 0;
+    //bg.tile_geometry.scroll_factor_y = 0;
     //pavimento
 
     floor = PP.shapes.rectangle_add(s, 640, 635, 19880, 30, "0x000000", 1   );
@@ -252,6 +255,8 @@ function create (s) {
 }
 
 function update (s) {
+    bg.tile_geometry_x = PP.camera.get_scroll_x(s) * 0.5;
+
 
     update_score(s);
 

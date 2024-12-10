@@ -32,6 +32,7 @@ function preload (s) {
     preload_porta1 (s);
     preload_piatt (s);
     preload_piatt_move (s);
+    preload_piatt_move2 (s);
     preload_ghiglio(s);
     preload_Lanciatore(s);
     preload_slot(s);
@@ -136,6 +137,7 @@ function create (s) {
     create_piatt (s, 5350, -950);
     create_piatt_move (s, 5550, 320);
     create_piatt_move (s, 5780, -450);
+    create_piatt_move2 (s, 5780, -450);
     create_ghiglio(s, 7950, 170);
     create_ghiglio(s, 8500, 170);
     create_ghiglio(s, 8950, 170);
@@ -167,10 +169,12 @@ function create (s) {
     PP.physics.add_collider_f(s, player, scala_4, salto_si);
     PP.physics.add_collider_f(s, player, scala_5, salto_si);
     PP.physics.add_collider_f(s, player, pedana, apertura_porta1);
+    /*
     for (let g = 0; g < casse.length; g++) {
         PP.physics.add_collider(s, casse[g], piatt_move_sing);
-    }
-    PP.physics.add_collider_f(s, player, piatt_move_sing, salto_si);
+    }*/
+    
+    PP.physics.add_collider_f(s, player, piatt_move_sing2, salto_si);
     PP.physics.add_collider_f(s, player, ghiglio, salto_si);
 
     for (let g = 0; g < Lettere.length; g++) {
@@ -194,14 +198,14 @@ function create (s) {
         }
     }
 
-    /*
+    
     for (let i = 0; i < piatt_move.length; i++) {
         PP.physics.add_collider_f(s, player, piatt_move[i], salto_si);
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], piatt_move[i]);
         }
     }
-        */
+
 
 
     //casse
@@ -266,6 +270,7 @@ function update (s) {
     update_porta1(s);
     update_piatt (s);
     update_piatt_move (s);
+    update_piatt_move2 (s);
     update_ghiglio(s);
 
     update_Lanciatore(s);
@@ -294,10 +299,12 @@ function destroy (s) {
     
 }
 
-function apertura_porta1(s) {
+
+function apertura_porta1(s, obj1, obj2) {
     chiusura_porta = false;
 
     // implementare funzione per il salto
+
     if ((player.geometry.x < 3050 || player.geometry.x > 2700) && player.geometry.y >= 618){
         jump_disable = false;
     }

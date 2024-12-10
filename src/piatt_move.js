@@ -5,6 +5,9 @@ let piatt_move = [];
 let valori_piatt_move = [];
 
 function preload_piatt_move (s) {
+    piatt_move = [];
+    valori_piatt_move = [];
+    
     img_piatt_move1 = PP.assets.image.load(s, "assets/immagini/piatt_move.png", 150, 156);
 
 }
@@ -33,38 +36,35 @@ function update_piatt_move(s) {
 
 
     if (piatt_move[0].geometry.y <= -450) {
-        PP.physics.set_velocity_y(piatt_move[0], 0)
-        PP.timers.add_timer(s, 2000, inizio_discesa, false)
+        PP.physics.set_velocity_y(piatt_move[0], 0);
+        PP.timers.add_timer(s, 2000, inizio_discesa, false);
         valori_piatt_move.push(0);
     }
     if (piatt_move[0].geometry.y >= 310) {
-        PP.physics.set_velocity_y(piatt_move[0], 0)
-        PP.timers.add_timer(s, 2000, inizio_salita, false)
+        PP.physics.set_velocity_y(piatt_move[0], 0);
+        PP.timers.add_timer(s, 2000, inizio_salita, false);
         valori_piatt_move.push(0);
     }
 
 
     if (piatt_move[1].geometry.y <= -950) {
-        PP.physics.set_velocity_y(piatt_move[0], 0)
-        PP.timers.add_timer(s, 2000, inizio_discesa, false)
+        PP.physics.set_velocity_y(piatt_move[1], 0);
+        PP.timers.add_timer(s, 2000, inizio_discesa, false);
         valori_piatt_move.push(1);
     }
     if (piatt_move[1].geometry.y >= -450) {
-        PP.physics.set_velocity_y(piatt_move[0], 0)
-        PP.timers.add_timer(s, 2000, inizio_salita, false)
+        PP.physics.set_velocity_y(piatt_move[1], 0);
+        PP.timers.add_timer(s, 2000, inizio_salita, false);
         valori_piatt_move.push(1);
     }
 }
 
 function inizio_discesa(s){
     i = valori_piatt_move.shift();
-    console.log(i);
-    console.log("lamao");
-    PP.physics.set_velocity_y(piatt_move[i], 200)
+    PP.physics.set_velocity_y(piatt_move[i], 200);
 }
 
 function inizio_salita(s){
     i = valori_piatt_move.shift();
-    console.log(i);
-    PP.physics.set_velocity_y(piatt_move[i], -200)
+    PP.physics.set_velocity_y(piatt_move[i], -200);
 }

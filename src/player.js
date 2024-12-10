@@ -22,6 +22,7 @@ function configure_player_animations(s) {
     PP.assets.sprite.animation_add(player, "jump_down", 8, 8, 10, 0);
     PP.assets.sprite.animation_add(player, "stop", 0, 0, 5, 0);
     PP.assets.sprite.animation_add(player, "dash", 1, 3, 5, -1);
+    PP.assets.sprite.animation_add(player, "die", 1, 3, 5, -1);
     //PP.assets.sprite.animation_add_list(player, "die", [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 10, 10, 10, 10], 10, 0);
     //PP.assets.sprite.animation_add(player, "dead", 10, 10, 10, -1);
     PP.assets.sprite.animation_play(player, "stop");
@@ -33,7 +34,7 @@ function preload_player(s) {
 
 function create_player(s) {
 
-    player = PP.assets.sprite.add(s, img_player, 5500, 250, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 200, 250, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -210,10 +211,12 @@ function manage_dash (s){
 function morte (s){
     move_disable = true;
     dash_disable = true;
+    jump_disable = true;
 
     PP.physics.set_velocity_x(player, 0);
     PP.physics.set_velocity_y(player, 30);
     PP.assets.sprite.animation_stop(player);
-    //next_anim = "die";
+    next_anim = "die";
+    console.log(next_anim);
     PP.assets.sprite.animation_play(player, next_anim);
 }

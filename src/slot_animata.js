@@ -9,6 +9,10 @@ let direzione_positiva = true;
 
 
 function preload_slot(s) {
+    slot_animate = [];
+    inermità_slot = [];
+    slot_spenta = [];
+
     img_slot = PP.assets.image.load(s, "Assets/Immagini/slot-giusta.png", 154, 200);
 }
 
@@ -65,7 +69,15 @@ function cambio_direz(s) {
 // funzione che pegne la slot tramite il dash
 
 function inerme(s){
-    i = inermità_slot.shift();
-    PP.physics.set_velocity_x(slot_animate[i], 0)
-    slot_spenta[i] = true;
+    if (dash_disable == true) {
+        i = inermità_slot.shift();
+        PP.physics.set_velocity_x(slot_animate[i], 0);
+        slot_spenta[i] = true;
+        console.log(slot_spenta[i]);
+    }
+    else {
+        console.log("sus morto")
+        morte(s);
+        PP.timers.add_timer(s, 1000, game_over, false);
+    }
 }

@@ -41,10 +41,6 @@ function preload (s) {
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, 
-    // servirebbe un modo di mettere 2 collider per lo stesso oggetto in modo da poter saltare anche su pedana,
-    // animazione morte personaggio non va ogni tanto, animazione morte non viene riprodotta alla morte, dal secondo lanciatore in poi sparano
-    // anche da morti e fanno si che il giocatore possa muoversi anche dopo la morte, cambio visuale si bugga quando si salta, 
-    // le pedane mobili non vanno su e giù come dovrebbero, 
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
     // modo di rendere immateriale la porta, 
@@ -305,7 +301,9 @@ function apertura_porta1(s, obj1, obj2) {
 
     // implementare funzione per il salto
 
-    if ((player.geometry.x < 3050 || player.geometry.x > 2700) && player.geometry.y >= 618){
+    console.log(obj2.geometry.x);
+
+    if ((player.geometry.x >= (obj2.geometry.x - 100) && player.geometry.x <= (obj2.geometry.x) + 100) || player.geometry.y >= (obj2.geometry.y + 20)){
         jump_disable = false;
     }
 }

@@ -49,7 +49,7 @@ function preload (s) {
     // modo di rendere immateriale la porta, 
 
 function create (s) {
-    create_score(s);
+    
 
 
     bg = PP.assets.tilesprite.add(s, img_background, 0, -180, 2800, 800, 0, 0);
@@ -57,6 +57,7 @@ function create (s) {
     //bg.tile_geometry.scroll_factor_y = 0;
     //pavimento
 
+    create_score(s);
     floor = PP.shapes.rectangle_add(s, 640, 635, 19880, 30, "0x000000", 1   );
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 

@@ -37,23 +37,21 @@ function preload (s) {
     preload_Lanciatore(s);
     preload_slot(s);
 
-    img_background = PP.assets.image.load(s, "Assets/Immagini/Sfondo lvl1.PNG");
+    img_background = PP.assets.image.load(s, "Assets/Immagini/Sfondo lvl1 copia.jpg");
 }
 
-// PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, 
-    // servirebbe un modo di mettere 2 collider per lo stesso oggetto in modo da poter saltare anche su pedana,
-    // animazione morte personaggio non va ogni tanto, animazione morte non viene riprodotta alla morte, dal secondo lanciatore in poi sparano
-    // anche da morti e fanno si che il giocatore possa muoversi anche dopo la morte, cambio visuale si bugga quando si salta, 
-    // le pedane mobili non vanno su e giù come dovrebbero, 
+// PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma, se si lascia in vita il primo
+// lanciatore e si uccide il secondo quando si esce dall'area di lancio carte crasha tutto, il restart dopo game over non va,
+//  problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
-    // modo di rendere immateriale la porta, 
+    // modo di rendere immateriale la porta, sostituire carta di quadri con picche,
 
 function create (s) {
-    
 
-
-    bg = PP.assets.tilesprite.add(s, img_background, 0, -180, 2800, 800, 0, 0);
+    bg = PP.assets.tilesprite.add(s, img_background, 0, -30, 2800, 400, 0, 0);
+    bg.geometry.scale_x = 1.7;
+    bg.geometry.scale_y = 1.7;
     bg.tile_geometry.scroll_factor_x = 0;
     //bg.tile_geometry.scroll_factor_y = 0;
     //pavimento
@@ -129,7 +127,7 @@ function create (s) {
     create_cassa (s, 2550, 450);
     create_cassa (s, 4050, 360);
     create_cassa (s, 5400, 60);
-    create_cassa (s, 7350, 60);
+    //create_cassa (s, 7350, 60);
     create_cassa (s, 11050, 950);
     create_cassa (s, 11090, 780);
     create_porta1 (s);
@@ -169,27 +167,16 @@ function create (s) {
     PP.physics.add_collider_f(s, player, scala_4, salto_si);
     PP.physics.add_collider_f(s, player, scala_5, salto_si);
     PP.physics.add_collider_f(s, player, pedana, apertura_porta1);
-    /*
-    for (let g = 0; g < casse.length; g++) {
-        PP.physics.add_collider(s, casse[g], piatt_move_sing);
-    }*/
     
     PP.physics.add_collider_f(s, player, piatt_move_sing2, salto_si);
-    PP.physics.add_collider_f(s, player, ghiglio, salto_si);
+
+    for (let i = 0; i < piatt.length; i++) {
+        PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
+    }
 
     for (let g = 0; g < Lettere.length; g++) {
         PP.physics.add_overlap_f(s, Lettere[g], player, collision_lettera);
     }
-
-    /*
-    for (let i = 0; i < ghigliottine.length; i++) {
-        PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
-        PP.physics.add_collider(s, floor, ghigliottine[i]);
-        for (let g = 0; g < casse.length; g++) {
-            PP.physics.add_collider(s, casse[g], ghigliottine[i]);
-        }
-    }
-        */
 
     for (let i = 0; i < piatt.length; i++) {
         PP.physics.add_collider_f(s, player, piatt[i], salto_si);
@@ -228,22 +215,28 @@ function create (s) {
     for (let g = 0; g < casse.length; g++) {
         PP.physics.add_collider_f(s, casse[g], pedana, apertura_porta1);
     }
-   
+
+    // lame ghigliottine
+    
+
+    for (let g = 0; g < lame.length; g++) {
+        PP.physics.add_collider_f(s, player, lame[g], decapitazione);
+    }
 
     //nemici
 
     for (let i = 0; i < slot_animate.length; i++) {
-        PP.physics.add_collider_f(s, player, slot_animate[i], inerme);
+        PP.physics.add_collider_f(s, player, slot_animate[i], kill_slot);
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], slot_animate[i]);
         }
         PP.physics.add_collider(s, slot_animate[i], floor);
-        inermità_slot. push(i);
+        posizione_slot.push(i);
     }
     
 
     for (let i = 0; i < lanciatori.length; i++) {
-        PP.physics.add_overlap_f(s, player, lanciatori[i], kill);
+        PP.physics.add_overlap_f(s, player, lanciatori[i], kill_lanciatore);
         PP.physics.add_collider(s, lanciatori[i], scala_3);
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], lanciatori[i]);
@@ -305,7 +298,7 @@ function apertura_porta1(s, obj1, obj2) {
 
     // implementare funzione per il salto
 
-    if ((player.geometry.x < 3050 || player.geometry.x > 2700) && player.geometry.y >= 618){
+    if ((player.geometry.x >= (obj2.geometry.x - 100) && player.geometry.x <= (obj2.geometry.x) + 100) || player.geometry.y >= (obj2.geometry.y + 20)){
         jump_disable = false;
     }
 }

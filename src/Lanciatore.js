@@ -44,12 +44,13 @@ function configure_Lanciatore_animations(s) {
 
 //morte toccando il nemico, uccisione nemico se lo si tocca dashando
 
-function kill(s, obj1, obj2) {
+function kill_lanciatore(s, obj1, obj2) {
     if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)) {
         console.log("sus")
         PP.assets.destroy(obj2);
         i = morte_nemici.shift();
         vita_lanciatore[i] = false;
+        console.log(vita_lanciatore[i]);
         let x = 1200;
         let y = 600;
         let moneta = PP.assets.image.add(s, img_moneta, (x), (y), 0, 0)
@@ -87,10 +88,6 @@ function morte_carta(s, obj1, obj2) {
     }
 }
 
-function distruggi_carte(s, obj1) {
-    PP.assets.destroy(obj1);
-}
-
 
 function attack(s) {
     i = enemy_check.shift();
@@ -109,11 +106,18 @@ function attack(s) {
     PP.physics.set_velocity_x(carta, -600);
 
     PP.physics.add_overlap_f(s, player, carta, morte_carta);
+    
     for (let g = 0; g < casse.length; g++) {
         PP.physics.add_collider(s, casse[g], carta);
     }
-    //PP.timers.add_timer(s, 2000, distruggi_carte(carta), false)
+
+    PP.timers.add_timer(s, 2000, distruggi_carte, false)
+
     console.log("attacco");
+
+    function distruggi_carte(s, obj1) {
+    PP.assets.destroy(carta);
+}
 
 
 }

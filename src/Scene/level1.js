@@ -41,10 +41,11 @@ function preload (s) {
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma, se si lascia in vita il primo
-// lanciatore e si uccide il secondo quando si esce dall'area di lancio carte crasha tutto, 
+// lanciatore e si uccide il secondo quando si esce dall'area di lancio carte crasha tutto, il restart dopo game over non va,
+//  problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
-    // modo di rendere immateriale la porta, 
+    // modo di rendere immateriale la porta, sostituire carta di quadri con picche,
 
 function create (s) {
 
@@ -126,7 +127,7 @@ function create (s) {
     create_cassa (s, 2550, 450);
     create_cassa (s, 4050, 360);
     create_cassa (s, 5400, 60);
-    create_cassa (s, 7350, 60);
+    //create_cassa (s, 7350, 60);
     create_cassa (s, 11050, 950);
     create_cassa (s, 11090, 780);
     create_porta1 (s);
@@ -166,27 +167,16 @@ function create (s) {
     PP.physics.add_collider_f(s, player, scala_4, salto_si);
     PP.physics.add_collider_f(s, player, scala_5, salto_si);
     PP.physics.add_collider_f(s, player, pedana, apertura_porta1);
-    /*
-    for (let g = 0; g < casse.length; g++) {
-        PP.physics.add_collider(s, casse[g], piatt_move_sing);
-    }*/
     
     PP.physics.add_collider_f(s, player, piatt_move_sing2, salto_si);
-    PP.physics.add_collider_f(s, player, ghiglio, salto_si);
+
+    for (let i = 0; i < piatt.length; i++) {
+        PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
+    }
 
     for (let g = 0; g < Lettere.length; g++) {
         PP.physics.add_overlap_f(s, Lettere[g], player, collision_lettera);
     }
-
-    /*
-    for (let i = 0; i < ghigliottine.length; i++) {
-        PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
-        PP.physics.add_collider(s, floor, ghigliottine[i]);
-        for (let g = 0; g < casse.length; g++) {
-            PP.physics.add_collider(s, casse[g], ghigliottine[i]);
-        }
-    }
-        */
 
     for (let i = 0; i < piatt.length; i++) {
         PP.physics.add_collider_f(s, player, piatt[i], salto_si);
@@ -225,12 +215,12 @@ function create (s) {
     for (let g = 0; g < casse.length; g++) {
         PP.physics.add_collider_f(s, casse[g], pedana, apertura_porta1);
     }
+
+    // lame ghigliottine
     
-    for (let i = 0; i < ghigliottine.length; i++) {
-        PP.physics.add_collider(s, player, ghigliottine[i]);
-        for (let g = 0; g < lame.length; g++) {
-            PP.physics.add_collider(s, casse[g], piatt_move[i]);
-        }
+
+    for (let g = 0; g < lame.length; g++) {
+        PP.physics.add_collider_f(s, player, lame[g], decapitazione);
     }
 
     //nemici

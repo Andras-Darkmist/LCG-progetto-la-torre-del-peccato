@@ -202,7 +202,7 @@ function manage_dash (s){
             move_disable = true;
             PP.physics.set_allow_gravity (player, false);
             PP.timers.add_timer(s, 2000, reenable_dash, false);
-            PP.timers.add_timer(s,600, dash_reset, false);
+            PP.timers.add_timer(s,300, dash_reset, false);
             dash_disable = true;
         }
     }

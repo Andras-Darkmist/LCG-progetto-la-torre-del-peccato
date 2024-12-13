@@ -33,7 +33,7 @@ function preload_player(s) {
 
 function create_player(s) {
 
-    player = PP.assets.sprite.add(s, img_player, 5500, 250, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 50, 250, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -201,7 +201,7 @@ function manage_dash (s){
             move_disable = true;
             PP.physics.set_allow_gravity (player, false);
             PP.timers.add_timer(s, 2000, reenable_dash, false);
-            PP.timers.add_timer(s,600, dash_reset, false);
+            PP.timers.add_timer(s,300, dash_reset, false);
             dash_disable = true;
         }
     }

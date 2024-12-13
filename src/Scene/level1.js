@@ -37,19 +37,20 @@ function preload (s) {
     preload_Lanciatore(s);
     preload_slot(s);
 
-    img_background = PP.assets.image.load(s, "Assets/Immagini/Sfondo lvl1.PNG");
+    img_background = PP.assets.image.load(s, "Assets/Immagini/Sfondo lvl1 copia.jpg");
 }
 
-// PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, 
+// PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma, se si lascia in vita il primo
+// lanciatore e si uccide il secondo quando si esce dall'area di lancio carte crasha tutto, 
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
     // modo di rendere immateriale la porta, 
 
 function create (s) {
-    
 
-
-    bg = PP.assets.tilesprite.add(s, img_background, 0, -180, 2800, 800, 0, 0);
+    bg = PP.assets.tilesprite.add(s, img_background, 0, -30, 2800, 400, 0, 0);
+    bg.geometry.scale_x = 1.7;
+    bg.geometry.scale_y = 1.7;
     bg.tile_geometry.scroll_factor_x = 0;
     //bg.tile_geometry.scroll_factor_y = 0;
     //pavimento
@@ -224,22 +225,28 @@ function create (s) {
     for (let g = 0; g < casse.length; g++) {
         PP.physics.add_collider_f(s, casse[g], pedana, apertura_porta1);
     }
-   
+    
+    for (let i = 0; i < ghigliottine.length; i++) {
+        PP.physics.add_collider(s, player, ghigliottine[i]);
+        for (let g = 0; g < lame.length; g++) {
+            PP.physics.add_collider(s, casse[g], piatt_move[i]);
+        }
+    }
 
     //nemici
 
     for (let i = 0; i < slot_animate.length; i++) {
-        PP.physics.add_collider_f(s, player, slot_animate[i], inerme);
+        PP.physics.add_collider_f(s, player, slot_animate[i], kill_slot);
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], slot_animate[i]);
         }
         PP.physics.add_collider(s, slot_animate[i], floor);
-        inermità_slot. push(i);
+        posizione_slot.push(i);
     }
     
 
     for (let i = 0; i < lanciatori.length; i++) {
-        PP.physics.add_overlap_f(s, player, lanciatori[i], kill);
+        PP.physics.add_overlap_f(s, player, lanciatori[i], kill_lanciatore);
         PP.physics.add_collider(s, lanciatori[i], scala_3);
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], lanciatori[i]);
@@ -256,7 +263,8 @@ function create (s) {
 }
 
 function update (s) {
-    bg.tile_geometry_x = PP.camera.get_scroll_x(s) * 0.5;
+    
+    bg.tile_geometry_x = PP.camera.get_scroll_x(s) * 1/100;
 
 
     update_score(s);
@@ -300,8 +308,6 @@ function apertura_porta1(s, obj1, obj2) {
     chiusura_porta = false;
 
     // implementare funzione per il salto
-
-    console.log(obj2.geometry.x);
 
     if ((player.geometry.x >= (obj2.geometry.x - 100) && player.geometry.x <= (obj2.geometry.x) + 100) || player.geometry.y >= (obj2.geometry.y + 20)){
         jump_disable = false;

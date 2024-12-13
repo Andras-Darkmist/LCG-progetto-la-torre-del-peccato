@@ -44,7 +44,7 @@ function configure_Lanciatore_animations(s) {
 
 //morte toccando il nemico, uccisione nemico se lo si tocca dashando
 
-function kill(s, obj1, obj2) {
+function kill_lanciatore(s, obj1, obj2) {
     if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)) {
         console.log("sus")
         PP.assets.destroy(obj2);

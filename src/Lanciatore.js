@@ -19,7 +19,7 @@ function preload_Lanciatore(s) {
     attack_check = [];
     enemy_check = [];
     img_lanciatore = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Sprite_Lanciatore.PNG", 172, 200);
-    img_carta = PP.assets.image.load(s, "assets/immagini/carata.jpg");
+    img_carta = PP.assets.image.load(s, "assets/immagini/cartapicche.png");
     img_moneta = PP.assets.image.load(s, "assets/immagini/monetamini.png");
 }
 

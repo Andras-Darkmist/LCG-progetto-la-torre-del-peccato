@@ -32,7 +32,7 @@ function preload (s) {
     preload_porta1 (s);
     preload_piatt (s);
     preload_piatt_move (s);
-    preload_piatt_move2 (s);
+    //preload_piatt_move2 (s);
     preload_ghiglio(s);
     preload_Lanciatore(s);
     preload_slot(s);
@@ -43,6 +43,7 @@ function preload (s) {
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma, se si lascia in vita il primo
 // lanciatore e si uccide il secondo quando si esce dall'area di lancio carte crasha tutto, il restart dopo game over non va,
 //  problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
+// 
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
     // modo di rendere immateriale la porta, sostituire carta di quadri con picche,
@@ -57,6 +58,7 @@ function create (s) {
     //pavimento
 
     create_score(s);
+    
     floor = PP.shapes.rectangle_add(s, 640, 635, 19880, 30, "0x000000", 1   );
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 
@@ -112,7 +114,7 @@ function create (s) {
     scala_5 = PP.shapes.rectangle_add(s, 10200, 470, 150, 300, "0xfab304", 1);
     PP.physics.add(s, scala_5, PP.physics.type.STATIC);
 
-    //bo
+    // pedana a pressione
     
     pedana = PP.shapes.rectangle_add(s, 3000, 639, 150, 40, "0xfbc456", 1);
     PP.physics.add(s, pedana, PP.physics.type.STATIC);
@@ -131,11 +133,11 @@ function create (s) {
     create_cassa (s, 11050, 950);
     create_cassa (s, 11090, 780);
     create_porta1 (s);
-    create_piatt (s, 5100, 310);
+    create_piatt (s, 5100, 320);
     create_piatt (s, 5350, -950);
     create_piatt_move (s, 5550, 320);
-    create_piatt_move (s, 5780, -450);
-    create_piatt_move2 (s, 5780, -450);
+    create_piatt_move (s, 5780, -950);
+    //create_piatt_move2 (s, 5780, -450);  potenzialmente da silurare permanentemente
     create_ghiglio(s, 7950, 170);
     create_ghiglio(s, 8500, 170);
     create_ghiglio(s, 8950, 170);
@@ -168,10 +170,14 @@ function create (s) {
     PP.physics.add_collider_f(s, player, scala_5, salto_si);
     PP.physics.add_collider_f(s, player, pedana, apertura_porta1);
     
-    PP.physics.add_collider_f(s, player, piatt_move_sing2, salto_si);
+    //PP.physics.add_collider_f(s, player, piatt_move_sing2, salto_si);
+    console.log(ghigliottine[1])
 
-    for (let i = 0; i < piatt.length; i++) {
+    for (let i = 0; i < ghigliottine.length; i++) {
         PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
+        for (let g = 0; g < casse.length; g++) {
+            PP.physics.add_collider(s, casse[g], ghigliottine[i]);
+        }
     }
 
     for (let g = 0; g < Lettere.length; g++) {
@@ -218,9 +224,8 @@ function create (s) {
 
     // lame ghigliottine
     
-
     for (let g = 0; g < lame.length; g++) {
-        PP.physics.add_collider_f(s, player, lame[g], decapitazione);
+        PP.physics.add_overlap_f(s, player, lame[g], decapitazione);
     }
 
     //nemici
@@ -263,7 +268,7 @@ function update (s) {
     update_porta1(s);
     update_piatt (s);
     update_piatt_move (s);
-    update_piatt_move2 (s);
+    //update_piatt_move2 (s);
     update_ghiglio(s);
 
     update_Lanciatore(s);

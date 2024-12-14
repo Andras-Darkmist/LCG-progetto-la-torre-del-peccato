@@ -43,6 +43,7 @@ function preload (s) {
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma, se si lascia in vita il primo
 // lanciatore e si uccide il secondo quando si esce dall'area di lancio carte crasha tutto, il restart dopo game over non va,
 //  problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
+// 
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
     // modo di rendere immateriale la porta, sostituire carta di quadri con picche,
@@ -136,7 +137,7 @@ function create (s) {
     create_piatt (s, 5350, -950);
     create_piatt_move (s, 5550, 320);
     create_piatt_move (s, 5780, -950);
-    //create_piatt_move2 (s, 5780, -450);
+    //create_piatt_move2 (s, 5780, -450);  potenzialmente da silurare permanentemente
     create_ghiglio(s, 7950, 170);
     create_ghiglio(s, 8500, 170);
     create_ghiglio(s, 8950, 170);
@@ -170,9 +171,13 @@ function create (s) {
     PP.physics.add_collider_f(s, player, pedana, apertura_porta1);
     
     //PP.physics.add_collider_f(s, player, piatt_move_sing2, salto_si);
+    console.log(ghigliottine[1])
 
-    for (let i = 0; i < piatt.length; i++) {
+    for (let i = 0; i < ghigliottine.length; i++) {
         PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
+        for (let g = 0; g < casse.length; g++) {
+            PP.physics.add_collider(s, casse[g], ghigliottine[i]);
+        }
     }
 
     for (let g = 0; g < Lettere.length; g++) {
@@ -219,9 +224,8 @@ function create (s) {
 
     // lame ghigliottine
     
-
     for (let g = 0; g < lame.length; g++) {
-        PP.physics.add_collider_f(s, player, lame[g], decapitazione);
+        PP.physics.add_overlap_f(s, player, lame[g], decapitazione);
     }
 
     //nemici

@@ -83,32 +83,32 @@ function create (s) {
     let floor7 = PP.assets.image.add(s, pavimento1, 4100, 620, 0, 0);
     PP.physics.add(s, floor7, PP.physics.type.STATIC);
     
-    let floor8 = PP.assets.image.add(s, pavimento1, 4100, 1650, 0, 0);
+    let floor8 = PP.assets.image.add(s, pavimento1, 5100, 1650, 0, 0);
     PP.physics.add(s, floor8, PP.physics.type.STATIC);
 
-    let spine1 = PP.assets.image.add(s, spine_img, 3800, 1700, 0, 0);
+    let spine1 = PP.assets.image.add(s, spine_img, 5800, 1700, 0, 0);
     PP.physics.add(s, spine1, PP.physics.type.STATIC);
 
-    let spine2 = PP.assets.image.add(s, spine_img, 3546, 1700, 0, 0);
+    let spine2 = PP.assets.image.add(s, spine_img, 6054, 1700, 0, 0);
     PP.physics.add(s, spine2, PP.physics.type.STATIC);
     
-    let spine3 = PP.assets.image.add(s, spine_img, 3292, 1700, 0, 0);
+    let spine3 = PP.assets.image.add(s, spine_img, 6302, 1700, 0, 0);
     PP.physics.add(s, spine3, PP.physics.type.STATIC);
 
-    let floor9 = PP.assets.image.add(s, pavimento1, 3134, 1794, 0, 0);
+    let floor9 = PP.assets.image.add(s, pavimento1, 5800, 1794, 0, 0);
     PP.physics.add(s, floor9, PP.physics.type.STATIC);
-    let floor10 = PP.assets.image.add(s, pavimento1, 3784, 1794, 0, 0);
+    let floor10 = PP.assets.image.add(s, pavimento1, 6450, 1794, 0, 0);
     PP.physics.add(s, floor10, PP.physics.type.STATIC);
-    let floor11 = PP.assets.image.add(s, pavimento1, 2490, 1650, 0, 0);
+    let floor11 = PP.assets.image.add(s, pavimento1, 7100, 1650, 0, 0);
     PP.physics.add(s, floor11, PP.physics.type.STATIC);
 
-    create_lettera(s, 2650, 1500);
+    create_lettera(s, 7300, 1500);
     /*
     for (let i = 0; i < Lettere.length; i++) {
         PP.physics.add_overlap_f(s, Lettere[i], player, collision_lettera);
     }
     */
-    create_piatt_move_level2 (s, 4800, 625);
+    create_piatt_move_level2 (s, 4880, 625);
 
     let scalin6 = PP.assets.image.add(s, scala1, 3000, 470, 0, 0);
     PP.physics.add(s, scalin6, PP.physics.type.STATIC);
@@ -241,7 +241,7 @@ function create (s) {
     PP.physics.add(s, pedana2, PP.physics.type.STATIC);
     PP.physics.add_collider_f(s, player, pedana2, generatore_crea_cassa);
 
-    pedana3 = PP.shapes.rectangle_add(s, 4220, 1650, 150, 40, "0xfbc456", 1);
+    pedana3 = PP.shapes.rectangle_add(s, 5400, 1665, 150, 40, "0xfbc456", 1);
     PP.physics.add(s, pedana3, PP.physics.type.STATIC);
     PP.physics.add_collider_f(s, player, pedana3, generatore_crea_cassa2);
     //PP.physics.add_collider(s, player, piatt1);

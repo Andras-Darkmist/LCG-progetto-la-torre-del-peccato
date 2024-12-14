@@ -61,15 +61,12 @@ function kill_lanciatore(s, obj1, obj2) {
     else if (curr_anim != "die"){
         console.log("sus morto")
         morte(s);
-        PP.timers.add_timer(s, 1000, game_over, false);
     }
 }
 
 //funzione che innesca la schermata di game over
 
-function game_over(s) {
-    PP.scenes.start("morte");
-}
+
 
 
 //morte toccando una carta, immunità usando il dash
@@ -84,7 +81,6 @@ function morte_carta(s, obj1, obj2) {
         PP.assets.destroy(obj2);
         morte(s);
         move_disable = true;
-        PP.timers.add_timer(s, 700, game_over, false);
     }
 }
 

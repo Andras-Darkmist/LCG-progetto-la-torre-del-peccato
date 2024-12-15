@@ -34,7 +34,7 @@ function preload_player(s) {
 
 function create_player(s) {
 
-    player = PP.assets.sprite.add(s, img_player, 12000, 950, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 240, 550, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -158,18 +158,35 @@ function player_update(s) {
     jump_disable = true;
 }
 
-// funzione per permettere salto in collisioni
+// FUNZIONE PER IL SALTO IN COLLISIONE
 
-function salto_si(s, obj1, obj2){
-// if necessario per impedire che si possa saltare anche toccando il lato degli oggetti
-    //  PROBLEMA - penso per il fatto che il personaggio cade mentre è sulle cassa la posizione y di personaggio e cassa
-    // risulta sfasata, questa soluzione non permette quindi di saltare mentre si è sulle casse ma su tutto
-    // il resto si
+    function salto_si(s, obj1, obj2){
+        // if necessario per impedire che si possa saltare anche toccando il lato degli oggetti
+            //  PROBLEMA - penso per il fatto che il personaggio cade mentre è sulle cassa la posizione y di personaggio e cassa
+            // risulta sfasata, questa soluzione non permette quindi di saltare mentre si è sulle casse ma su tutto
+            // il resto si
+        
+            //if((obj1).geometry.y < (obj2).geometry.y){
+                jump_disable = false;
+            //}
 
-    //if((obj1).geometry.y < (obj2).geometry.y){
-        jump_disable = false;
-    //}
+            // questa parte della funzione permette di spingere la cassa un po' più forte e quindi più lontano quando si dasha
+            // sostanzialmente sospende temporaneamente il drag delle casse nel momento in cui avviene la collisione
+
+            for(let i = 0; i < ghigliottine.length; i++){
+            if (obj2 == casse[i]){
+                PP.physics.set_drag_x(casse[i], 0);
+                PP.timers.add_timer(s, 500, rimetti_drag, false);
+            }
+        }
+        }
+
+function rimetti_drag(s){
+    for(let i = 0; i < ghigliottine.length; i++){
+        PP.physics.set_drag_x(casse[i], 7000);
+    }
 }
+    
 
 
     //funzioni per il dash
@@ -191,13 +208,13 @@ function manage_dash (s){
             if (player.geometry.flip_x == true) {
                 PP.physics.set_velocity_x(player, -player_speed-800);
                 console.log(player.geometry.x);
-                console.log(PP.physics.get_velocity_x(player));
+                //console.log(PP.physics.get_velocity_x(player));
                 
             }
             else if (player.geometry.flip_x == false) {
                 PP.physics.set_velocity_x(player, player_speed+800);
-                console.log(player.geometry.x);
-                console.log(PP.physics.get_velocity_x(player));
+                //console.log(player.geometry.x);
+                //console.log(PP.physics.get_velocity_x(player));
             }
             move_disable = true;
             PP.physics.set_allow_gravity (player, false);

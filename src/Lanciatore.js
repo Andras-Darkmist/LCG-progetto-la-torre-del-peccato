@@ -9,7 +9,6 @@ let vita_lanciatore = [] /*true*/;
 let img_moneta;
 let moneta;
 
-let morte_nemici = [];
 
 // Questa variabile contiene l'animazione corrente
 
@@ -48,8 +47,14 @@ function kill_lanciatore(s, obj1, obj2) {
     if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)) {
         console.log("sus")
         PP.assets.destroy(obj2);
-        i = morte_nemici.shift();
-        vita_lanciatore[i] = false;
+
+        // questo for per ogni lanciatore in mappa controlla se la collisione è avvenuta con lui, poi dstrugge quello con cui la collisione è effettivamente avventuta
+
+        for (g = 0; g < lanciatori.length; g++){
+            if (obj2 == lanciatori[g]){
+                vita_lanciatore[g] = false;
+            }
+        }
         console.log(vita_lanciatore[i]);
         let x = 1200;
         let y = 600;

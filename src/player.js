@@ -219,4 +219,9 @@ function morte (s){
     next_anim = "die";
     console.log(next_anim);
     PP.assets.sprite.animation_play(player, next_anim);
+    PP.timers.add_timer(s, 1000, game_over, false);
+}
+
+function game_over(s) {
+    PP.scenes.start("morte");
 }

@@ -2,6 +2,7 @@ let img_lettere;
 let Lettere=[];
 
 function preload_lettera (s) {
+    Lettere=[];
     img_lettere= PP.assets.image.load(s, "assets/immagini/Lettera.PNG", 150, 156);
 
 }

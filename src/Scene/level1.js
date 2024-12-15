@@ -267,7 +267,8 @@ function create (s) {
 }
 
 function update (s) {
-    bg.tile_geometry_x = PP.camera.get_scroll_x(s) * 1/10;
+    bg.tile_geometry.x = PP.camera.get_scroll_x(s) * 1/(2+1);
+    //bg.tile_geometry.y = PP.camera.get_scroll_y(s);
 
 
     update_score(s);

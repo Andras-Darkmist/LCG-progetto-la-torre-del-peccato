@@ -37,6 +37,7 @@ function spostamento_cassa_generaider1 (s, x, y){
     {
         for (let i=0; i < casse_generaider1.length; i++)
         {
+            
             casse_generaider1[i].geometry.y = 3000;
         }  
         numero_casse = 0;
@@ -44,6 +45,7 @@ function spostamento_cassa_generaider1 (s, x, y){
     }
     casse_generaider1[numero_casse].geometry.x = x;
     casse_generaider1[numero_casse].geometry.y = y;
+    PP.physics.set_velocity_y(casse_generaider1[numero_casse], 0);
     console.log(numero_casse); 
     numero_casse ++;
 }

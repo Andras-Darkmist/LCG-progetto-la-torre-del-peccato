@@ -21,14 +21,14 @@ function create_piatt_move_level2 (s, x, y){
 }
 
 function update_piatt_move_level2 (s) {
-    if (Math.abs(piatt_move_sing_level2.geometry.x - player.geometry.x < 500)) {
-        if (piatt_move_sing_level2.geometry.y <= 625) {
+    if (Math.abs(piatt_move_sing_level2.geometry.x - player.geometry.x <= 500)) {
+        if (piatt_move_sing_level2.geometry.y <= 200) {
             PP.physics.set_velocity_y(piatt_move_sing_level2, 0);
             PP.timers.add_timer(s, 2000, inizio_discesa_level2, false);
         }
         if (piatt_move_sing_level2.geometry.y >= 1600) {
             PP.physics.set_velocity_y(piatt_move_sing_level2, 0);
-            PP.timers.add_timer(s, 2000, inizio_salita_level2, false);
+            PP.timers.add_timer(s, 500, inizio_salita_level2, false);
         }
     }
     

@@ -70,13 +70,12 @@ function update_piatt_move(s) {
             if (i == 2 && blocco_piatt_move == true) {
                 return;
             }
-        }  //console.log(blocco_piatt_move);
+        }
     }
 
     if(blocco_piatt_move == true){
         if (PP.physics.get_velocity_y(piatt_move[2]) < 0){
             verso_lalto = true;
-            console.log("56")
         }
         else if (PP.physics.get_velocity_y(piatt_move[2]) > 0){
             verso_lalto = false;
@@ -97,7 +96,6 @@ function inizio_salita(s){
 
 function attiva_piatt_move(s, obj1, obj2) {
     blocco_piatt_move = false;
-    console.log(verso_lalto);
     if (620 > piatt_move[2].geometry.y < 1695 && PP.physics.get_velocity_y(piatt_move[2]) == 0){
         if (verso_lalto == false){
         PP.physics.set_velocity_y(piatt_move[2], 200);
@@ -116,5 +114,4 @@ function attiva_piatt_move(s, obj1, obj2) {
 
 function bloccamento(s){
     blocco_piatt_move = true;
-    console.log("£$")
 }

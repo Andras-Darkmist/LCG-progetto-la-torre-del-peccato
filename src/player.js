@@ -2,14 +2,15 @@ let img_player;
 let player;
 let png_shu;
 
-let player_speed    = 300;
+let player_speed = 300;
 let jump_init_speed = 350;
-let floor_height    = 620;
-let player_dash     = 1000;
+let floor_height = 620;
+let player_dash = 1000;
 
 move_disable = false;
 dash_disable = false;
 jump_disable = false;
+eseguendo_dash = false;
 
 let curr_anim = "stop"; // Questa variabile contiene l'animazione corrente
 
@@ -55,10 +56,10 @@ function player_update(s) {
     let pos_y_pla = player.geometry.y - 350;
     let pos_x_pla = player.geometry.x - 645;
 
-    if(player.geometry.x >= 400) {
-        PP.camera.start_follow(s, player, -235, 200)
+    if (player.geometry.x >= 400) {
+        PP.camera.start_follow(s, player, -235, 260)
     }
-    
+
     //prova per sistemare problema della camera
 
     /*if(player.geometry.x >= 400) {
@@ -76,7 +77,7 @@ function player_update(s) {
         }
     }*/
 
-    if(player.geometry.x < 400) {
+    if (player.geometry.x < 400) {
         PP.camera.set_follow_offset(s, (pos_x_pla), (pos_y_pla))
     }
 
@@ -88,31 +89,31 @@ function player_update(s) {
 
     // MOVIMENTO laterale giocatore
 
-    if (move_disable == false){
-        if(PP.interactive.kb.is_key_down(s, PP.key_codes.RIGHT)) {
+    if (move_disable == false) {
+        if (PP.interactive.kb.is_key_down(s, PP.key_codes.RIGHT)) {
             // Se e' premuto il tasto destro...
             PP.physics.set_velocity_x(player, player_speed);
             next_anim = "run";
         }
-        else if(PP.interactive.kb.is_key_down(s, PP.key_codes.LEFT)) {
+        else if (PP.interactive.kb.is_key_down(s, PP.key_codes.LEFT)) {
             // Se e' premuto il tasto sinistro...
             PP.physics.set_velocity_x(player, -player_speed);
             next_anim = "run";
-            } 
+        }
         else {
             // Se non e' premuto alcun tasto...
             PP.physics.set_velocity_x(player, 0);
-             next_anim = "stop";
+            next_anim = "stop";
         }
     }
 
-    
+
     // SALTO
 
     //(PP.physics.get_velocity_y(player) == 0)
 
-    if(jump_disable == false) {
-        if(PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
+    if (jump_disable == false) {
+        if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
             // ... e premo il tasto spazio, allo salto
             PP.physics.set_velocity_y(player, -jump_init_speed);
         }
@@ -122,17 +123,17 @@ function player_update(s) {
     // Le animazioni del salto vengono gestite in base alla velocita'
     // verticale
 
-    if(PP.physics.get_velocity_y(player) < 0) {
+    if (PP.physics.get_velocity_y(player) < 0) {
         next_anim = "jump_up";
     }
-    else if(PP.physics.get_velocity_y(player) > 0) {
+    else if (PP.physics.get_velocity_y(player) > 0) {
         next_anim = "jump_down";
     }
 
-    if(PP.physics.get_velocity_x(player) < -800) {
+    if (PP.physics.get_velocity_x(player) < -800) {
         next_anim = "dash";
     }
-    else if(PP.physics.get_velocity_x(player) > 800) {
+    else if (PP.physics.get_velocity_x(player) > 800) {
         next_anim = "dash";
     }
 
@@ -140,7 +141,7 @@ function player_update(s) {
     // - se e' uguale a quella attuale, non faccio niente
     // - se e' cambiata, la applico e aggiorno curr_anim
 
-    if(next_anim != curr_anim) {
+    if (next_anim != curr_anim) {
         curr_anim = next_anim;
         PP.assets.sprite.animation_play(player, next_anim);
     }
@@ -160,72 +161,83 @@ function player_update(s) {
 
 // FUNZIONE PER IL SALTO IN COLLISIONE
 
-    function salto_si(s, obj1, obj2){
-        // if necessario per impedire che si possa saltare anche toccando il lato degli oggetti
-            //  PROBLEMA - penso per il fatto che il personaggio cade mentre è sulle cassa la posizione y di personaggio e cassa
-            // risulta sfasata, questa soluzione non permette quindi di saltare mentre si è sulle casse ma su tutto
-            // il resto si
-        
-            //if((obj1).geometry.y < (obj2).geometry.y){
-                jump_disable = false;
-            //}
+function salto_si(s, obj1, obj2) {
+    // if necessario per impedire che si possa saltare anche toccando il lato degli oggetti
+    //  PROBLEMA - penso per il fatto che il personaggio cade mentre è sulle cassa la posizione y di personaggio e cassa
+    // risulta sfasata, questa soluzione non permette quindi di saltare mentre si è sulle casse ma su tutto
+    // il resto si
 
-            // questa parte della funzione permette di spingere la cassa un po' più forte e quindi più lontano quando si dasha
-            // sostanzialmente sospende temporaneamente il drag delle casse nel momento in cui avviene la collisione
+    //if((obj1).geometry.y < (obj2).geometry.y){
+    jump_disable = false;
+    //}
 
-            for(let i = 0; i < ghigliottine.length; i++){
-            if (obj2 == casse[i]){
-                PP.physics.set_drag_x(casse[i], 0);
-                PP.timers.add_timer(s, 500, rimetti_drag, false);
+    // questa parte della funzione permette di spingere la cassa un po' più forte e quindi più lontano quando si dasha
+    // sostanzialmente sospende temporaneamente il drag delle casse nel momento in cui avviene la collisione
+
+    for (let i = 0; i < ghigliottine.length; i++) {
+        if (obj2 == casse[i] && eseguendo_dash ==true) {
+            console.log("sus")
+            PP.physics.set_drag_x(casse[i], 0);
+            if (player.geometry.flip_x == true) {
+                PP.physics.set_velocity_x(casse[i], -500);
+                PP.timers.add_timer(s, 400, rimetti_drag, false);
+            }
+            if (player.geometry.flip_x == false) {
+                PP.physics.set_velocity_x(casse[i], 500);
+                PP.timers.add_timer(s, 400, rimetti_drag, false);
             }
         }
-        }
+    }
+}
 
-function rimetti_drag(s){
-    for(let i = 0; i < ghigliottine.length; i++){
+function rimetti_drag(s) {
+    for (let i = 0; i < ghigliottine.length; i++) {
         PP.physics.set_drag_x(casse[i], 7000);
     }
 }
-    
 
 
-    //funzioni per il dash
+
+//funzioni per il dash
 
 function dash_reset(s) {
     PP.physics.set_velocity_x(player, 0);
-    PP.physics.set_allow_gravity (player, true);
+    PP.physics.set_allow_gravity(player, true);
     move_disable = false;
+    eseguendo_dash = false;
 }
 
 function reenable_dash(s) {
     dash_disable = false;
 }
 
-function manage_dash (s){
+function manage_dash(s) {
     if (dash_disable == false) {
         if (PP.interactive.kb.is_key_down(s, PP.key_codes.Q)) {
             PP.physics.set_velocity_y(player, 0);
             if (player.geometry.flip_x == true) {
-                PP.physics.set_velocity_x(player, -player_speed-800);
+                eseguendo_dash = true;
+                PP.physics.set_velocity_x(player, -player_speed - 800);
                 console.log(player.geometry.x);
                 //console.log(PP.physics.get_velocity_x(player));
-                
+
             }
             else if (player.geometry.flip_x == false) {
-                PP.physics.set_velocity_x(player, player_speed+800);
+                eseguendo_dash = true;
+                PP.physics.set_velocity_x(player, player_speed + 800);
                 //console.log(player.geometry.x);
                 //console.log(PP.physics.get_velocity_x(player));
             }
             move_disable = true;
-            PP.physics.set_allow_gravity (player, false);
+            PP.physics.set_allow_gravity(player, false);
             PP.timers.add_timer(s, 2000, reenable_dash, false);
-            PP.timers.add_timer(s,300, dash_reset, false);
+            PP.timers.add_timer(s, 300, dash_reset, false);
             dash_disable = true;
         }
     }
 }
 
-function morte (s){
+function morte(s) {
     move_disable = true;
     dash_disable = true;
     jump_disable = true;

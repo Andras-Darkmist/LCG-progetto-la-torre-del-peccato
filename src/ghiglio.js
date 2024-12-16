@@ -67,7 +67,8 @@ function ritorno_ghiglio(s) {
 }
 
 function decapitazione(s){
-    console.log("sus morto")
-    morte(s);    
-    PP.timers.add_timer(s, 1000, game_over, false);
+    if (invincibilità == false) {
+        console.log("sus morto")
+        vita_persa (s);
+    }
 }

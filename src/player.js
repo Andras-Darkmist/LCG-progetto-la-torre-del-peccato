@@ -34,7 +34,7 @@ function preload_player(s) {
 
 function create_player(s) {
 
-    player = PP.assets.sprite.add(s, img_player, 240, 550, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 4000, 550, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -241,4 +241,28 @@ function morte (s){
 
 function game_over(s) {
     PP.scenes.start("morte");
+}
+
+
+let invincibilità = false;
+
+function danno(s) {
+    invincibilità = true;
+    next_anim = "die";
+    console.log("dano subito");
+    move_disable = true;
+    dash_disable = true;
+    jump_disable = true;
+    PP.physics.set_velocity_x(player, -200);
+    PP.physics.set_velocity_y(player, -300);
+    PP.assets.sprite.animation_stop(player);
+    PP.timers.add_timer(s,1000, fine_danno, false);
+}
+
+function fine_danno(s) {
+    invincibilità = false;
+    move_disable = false;
+    dash_disable = false;
+    jump_disable = false;
+    next_anim = "idle";
 }

@@ -30,6 +30,7 @@ let chiusura_porta_finale = true;
 
 
 function preload (s) {
+    preload_vite (s);
     preload_lettera (s);
     preload_score (s);
     preload_player (s);
@@ -64,7 +65,7 @@ function create (s) {
     //pavimento
 
     create_score(s);
-    
+    create_vite(s);
     floor = PP.shapes.rectangle_add(s, 640, 635, 19880, 30, "0x000000", 1   );
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 
@@ -290,7 +291,7 @@ function update (s) {
 
 
     update_score(s);
-
+    update_vite (s);
     player_update(s);
     update_cassa(s);
     update_porta(s);

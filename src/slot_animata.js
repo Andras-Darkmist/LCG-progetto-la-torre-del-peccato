@@ -55,9 +55,8 @@ function kill_slot(s, obj1, obj2){
         i = posizione_slot.shift();
         slot_spenta[i] = true;
     }
-    else if (slot_spenta[i] == false) {
+    else if (slot_spenta[i] == false && invincibilità == false) {
         console.log("sus morto")
-        morte(s);
-        PP.timers.add_timer(s, 1000, game_over, false);
+        vita_persa (s);
     }
 }

@@ -63,9 +63,9 @@ function kill_lanciatore(s, obj1, obj2) {
         PP.physics.set_drag_x(moneta, 7000);
     }
 
-    else if (curr_anim != "die"){
-        console.log("sus morto")
-        morte(s);
+    else if (curr_anim != "die" && invincibilità == false){
+        console.log("sus danno");
+        vita_persa (s);
     }
 }
 
@@ -82,10 +82,9 @@ function morte_carta(s, obj1, obj2) {
 
         PP.assets.destroy(obj2);
     }
-    else {
+    else if (invincibilità == false) {
         PP.assets.destroy(obj2);
-        morte(s);
-        move_disable = true;
+        vita_persa (s);
     }
 }
 
@@ -133,7 +132,7 @@ function update_Lanciatore(s) {
                 if (Math.abs(lanciatori[i].geometry.x - player.geometry.x) < 500) {
                     next_anim_Lanciatore = "Attack";
                     attack_check [i] = true;
-                    PP.timers.add_timer(s, 1600, attack, false);
+                    PP.timers.add_timer(s, 1400, attack, false);
                     enemy_check.push(i);
                 }
 

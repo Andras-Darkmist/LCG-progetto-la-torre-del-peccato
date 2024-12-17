@@ -139,6 +139,7 @@ function create (s) {
 
     let floor14 = PP.assets.image.add(s, pavimento1, 8600, -100, 0, 0);
     PP.physics.add(s, floor14, PP.physics.type.STATIC);
+    create_lettera(s, 8800, -200);
 
     let floor15 = PP.assets.image.add(s, pavimento1, 8650, 250, 0, 0);
     PP.physics.add(s, floor15, PP.physics.type.STATIC);
@@ -368,6 +369,10 @@ function create (s) {
         }
     }
 
+    for (let g = 0; g < Lettere.length; g++) {
+        PP.physics.add_overlap_f(s, Lettere[g], player, collision_lettera);
+    }
+
     PP.physics.add_collider_f(s, player, floor, salto_si);
     PP.physics.add_collider(s, player, scalin);
     PP.physics.add_collider_f(s, player, scalin2, salto_si);
@@ -454,7 +459,6 @@ function create (s) {
 function update (s) {
     
     update_score(s);
-    update_vite (s);
     player_update(s);
     update_cassa (s);
     update_generatore(s);

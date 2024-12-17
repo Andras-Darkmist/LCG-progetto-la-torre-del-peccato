@@ -325,7 +325,6 @@ function update (s) {
 
 
     update_score(s);
-    update_vite (s);
     player_update(s);
     update_cassa(s);
     update_porta(s);

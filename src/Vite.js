@@ -11,7 +11,9 @@ function preload_vite (s) {
 function create_vite(s) {
     for (let i=0; i<PP.game_state.get_variable("Vite"); i++)
     {
-         let cuore = PP.assets.image.add(s, img_cuore, 3450, 320, 0, 0);
+         let cuore = PP.assets.image.add(s, img_cuore, 100 +i*30, 20, 0, 0);
+         cuore.tile_geometry.scroll_factor_x = 0;
+         cuore.tile_geometry.scroll_factor_y = 0;
         cuori.push(cuore);
     }
 }
@@ -30,9 +32,3 @@ function vita_persa (s) {
     }
 }
 
-function update_vite(s) {
-    for (let i=0; i<PP.game_state.get_variable("Vite"); i++)
-    {
-        cuori[i].geometry.x = player.geometry.x - 120+i*10;     cuori[i].geometry.y = player.geometry.y - 550;
-    }
-}

@@ -4,7 +4,7 @@ let curr_anim_Lanciatore = [];
 let attack_check = [];
 let enemy_check = [];
 let img_carta;
-let carta;
+let carte = [];
 let vita_lanciatore = [] /*true*/;
 let morte_animazioni_lanciatore = []
 let img_moneta;
@@ -20,6 +20,7 @@ function preload_Lanciatore(s) {
     enemy_check = [];
     vita_lanciatore = [];
     morte_animazioni_lanciatore = [];
+    carte = [];
     img_lanciatore = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Sprite_Lanciatore.PNG", 172, 200);
     img_carta = PP.assets.image.load(s, "assets/immagini/cartapicche.png");
     img_moneta = PP.assets.image.load(s, "assets/immagini/monetamini.png");
@@ -113,16 +114,15 @@ function attack(s) {
     }
     attack_check[i] = false;
 
-    carta = PP.assets.image.add(s, img_carta, lanciatori[i].geometry.x,
-        lanciatori[i].geometry.y - 120,
-        0.5, 0.5);
+    let carta = PP.assets.image.add(s, img_carta, lanciatori[i].geometry.x, lanciatori[i].geometry.y - 120, 0.5, 0.5);
     PP.physics.add(s, carta, PP.physics.type.DYNAMIC);
     PP.physics.set_allow_gravity(carta, false);
     PP.physics.set_rotation(carta, 360);
     PP.physics.set_velocity_x(carta, -600);
+    carte.push(carta);
 
     PP.physics.add_overlap_f(s, player, carta, morte_carta);
-    
+
     for (let g = 0; g < casse.length; g++) {
         PP.physics.add_collider(s, casse[g], carta);
     }
@@ -132,8 +132,9 @@ function attack(s) {
     console.log("attacco");
 
     function distruggi_carte(s, obj1) {
-    PP.assets.destroy(carta);
-}
+        carta_vecchia = carte.shift();
+        PP.assets.destroy(carta_vecchia);
+    }
 
 
 }

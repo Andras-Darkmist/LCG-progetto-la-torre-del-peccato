@@ -34,7 +34,7 @@ function preload_player(s) {
 }
 
 function create_player(s) {
-    player = PP.assets.sprite.add(s, img_player, 500, 100, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 200, 450, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -170,15 +170,17 @@ function salto_si(s, obj1, obj2) {
     // risulta sfasata, questa soluzione non permette quindi di saltare mentre si è sulle casse ma su tutto
     // il resto si
 
-    //if((obj1).geometry.y < (obj2).geometry.y){
-    jump_disable = false;
-    //}
+    for (let i = 0; i < casse.length; i++) {
+        if ((obj2).geometry.y > (obj1).geometry.y || obj2 == casse[i]) {
+            jump_disable = false;
+        }
+    }
 
     // questa parte della funzione permette di spingere la cassa un po' più forte e quindi più lontano quando si dasha
     // sostanzialmente sospende temporaneamente il drag delle casse nel momento in cui avviene la collisione
 
-    for (let i = 0; i < ghigliottine.length; i++) {
-        if (obj2 == casse[i] && eseguendo_dash ==true) {
+    for (let i = 0; i < casse.length; i++) {
+        if (obj2 == casse[i] && eseguendo_dash == true) {
             console.log("sus")
             PP.physics.set_drag_x(casse[i], 0);
             if (player.geometry.flip_x == true) {

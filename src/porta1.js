@@ -2,6 +2,7 @@ let img_porta;
 let porte = [];
 
 function preload_porta (s) {
+    porte = [];
     img_porta = PP.assets.image.load(s, "assets/immagini/porta1.png", 150, 156);
 
 }

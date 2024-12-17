@@ -165,7 +165,7 @@ function create (s) {
     //funzioni richiamate
     create_lettera(s, 7800, 170);
     create_lettera(s, 7000, 170);
-    create_lettera(s, 5400, -1098);
+    create_lettera(s, 5400, -1400);
 
     create_player (s);
     create_cassa (s, 750, 450);

@@ -34,7 +34,7 @@ function preload_player(s) {
 }
 
 function create_player(s) {
-    player = PP.assets.sprite.add(s, img_player, 9000, 100, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 500, 100, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -155,6 +155,10 @@ function player_update(s) {
         player.geometry.flip_x = false;
     }
 
+
+
+    // blocco salto se non si è in collisione con qualcosa
+
     jump_disable = true;
 }
 
@@ -178,10 +182,12 @@ function salto_si(s, obj1, obj2) {
             console.log("sus")
             PP.physics.set_drag_x(casse[i], 0);
             if (player.geometry.flip_x == true) {
+                PP.physics.set_drag_x(casse[i], 0);
                 PP.physics.set_velocity_x(casse[i], -500);
                 PP.timers.add_timer(s, 400, rimetti_drag, false);
             }
             if (player.geometry.flip_x == false) {
+                PP.physics.set_drag_x(casse[i], 0);
                 PP.physics.set_velocity_x(casse[i], 500);
                 PP.timers.add_timer(s, 400, rimetti_drag, false);
             }
@@ -218,14 +224,16 @@ function manage_dash(s) {
                 eseguendo_dash = true;
                 PP.physics.set_velocity_x(player, -player_speed - 800);
                 console.log(player.geometry.x);
+                console.log(player.geometry.y);
                 //console.log(PP.physics.get_velocity_x(player));
 
             }
             else if (player.geometry.flip_x == false) {
                 eseguendo_dash = true;
                 PP.physics.set_velocity_x(player, player_speed + 800);
-                //console.log(player.geometry.x);
-                //console.log(PP.physics.get_velocity_x(player));
+                console.log(player.geometry.x);
+                console.log(player.geometry.y);
+                console.log(PP.physics.get_velocity_x(player));
             }
             move_disable = true;
             PP.physics.set_allow_gravity(player, false);

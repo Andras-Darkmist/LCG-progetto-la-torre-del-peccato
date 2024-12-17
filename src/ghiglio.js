@@ -15,7 +15,7 @@ function preload_ghiglio(s) {
 }
 
 function create_ghiglio(s, x, y) {
-    let ghiglio = PP.assets.image.add(s, img_ghiglio, x, y, 0, 0);
+    let ghiglio = PP.assets.image.add(s, img_ghiglio, x, y, 0.5, 0.5);
     PP.physics.add(s, ghiglio, PP.physics.type.STATIC);
     ghiglio.geometry.body_y = 480;
     ghigliottine.push(ghiglio);
@@ -24,7 +24,7 @@ function create_ghiglio(s, x, y) {
 
     console.log("ses")
     let lama;
-    lama = PP.assets.image.add(s, img_lama, ghigliottine[i].geometry.x + 25, ghigliottine[i].geometry.y - 170, 0, 0);
+    lama = PP.assets.image.add(s, img_lama, ghigliottine[i].geometry.x, ghigliottine[i].geometry.y - 345, 0.5, 0.5);
     lama.geometry.scale_x = 4.5;
     lama.geometry.scale_y = 4.5;
     PP.physics.add(s, lama, PP.physics.type.DYNAMIC);
@@ -35,7 +35,7 @@ function create_ghiglio(s, x, y) {
 
 function update_ghiglio(s) {
     for (let i = 0; i < ghigliottine.length; i++) {
-        if (Math.abs(ghigliottine[i].geometry.x - player.geometry.x) <= 80) {
+        if (Math.abs(ghigliottine[i].geometry.x - player.geometry.x) <= 120) {
             PP.timers.add_timer(s, 600, scatto_ghiglio, false);
             numero_ghiglio.push(i);
             //console.log(numero_ghiglio);

@@ -1,4 +1,12 @@
+let bg;
 let img_background;
+let img_colonne;
+let img_slot_nuove;
+let colonne_davanti;
+let slot_nuove;
+let img_moquette;
+let moquette;
+
 let floor;
 let floor_finale;
 let floor_finale_2;
@@ -19,8 +27,6 @@ let scala_2;
 let scala_3;
 let scala_4;
 let scala_5;
-
-let bg;
 
 let pedana1;
 let pedana2;
@@ -43,29 +49,45 @@ function preload (s) {
     preload_Lanciatore(s);
     preload_slot(s);
 
-    img_background = PP.assets.image.load(s, "Assets/Immagini/Sfondo lvl1 copia.jpg");
+    img_background = PP.assets.image.load(s, "Assets/Immagini/Sfondo lvl1 copia.png");
+    img_slot_nuove = PP.assets.image.load(s, "Assets/Immagini/slot nuove copia.png");
+    img_colonne = PP.assets.image.load(s, "Assets/Immagini/colonne davanti copia.png");
+    img_moquette = PP.assets.image.load(s, "Assets/Immagini/moquette.png");
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma, se si lascia in vita il primo
 // lanciatore e si uccide il secondo quando si esce dall'area di lancio carte crasha tutto, il restart dopo game over non va,
 //  problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
 // da sistemaer il lieve lag della piattaforma mobile fnale rispetto alla pressione pedana, passaggio da sotto pavimento finel lv 1 non sempre va anzi,
-// errore violation quando si è a fine livello e relativo lag pesante, problema funzione salto solo da sopra agli oggetti che con casse non va,  
+// errore violation quando si è a fine livello e relativo lag pesante, problema funzione salto solo da sopra agli oggetti che con casse non va, 
+// problema lame ghigliottine ogni tanto rimanogno giù, problema del dash sulle slot, 
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
     // modo di rendere immateriale la porta, sostituire carta di quadri con picche,
 
 function create (s) {
 
-    bg = PP.assets.tilesprite.add(s, img_background, 0, -30, 2800, 400, 0, 0);
+    bg = PP.assets.tilesprite.add(s, img_background, 0, 0, 2800, 380, 0, 0);
+    bg.tile_geometry.scroll_factor_x = 0;
+    //bg.tile_geometry.scroll_factor_y = 0;
+    slot_nuove = PP.assets.tilesprite.add(s, img_slot_nuove, 0, 390, 2800, 175, 0, 0);
+    slot_nuove.tile_geometry.scroll_factor_x = 0;
+    //slot_nuove.tile_geometry.scroll_factor_y = 0;
+    colonne_davanti = PP.assets.tilesprite.add(s, img_colonne, 0, 0, 2800, 650, 0, 0);
+    colonne_davanti.tile_geometry.scroll_factor_x = 0;
+    //colonne_davanti.tile_geometry.scroll_factor_y = 0;
+    moquette = PP.assets.tilesprite.add(s, img_moquette, 0, 650, 12000, 200, 0, 0);
+    moquette.tile_geometry.scroll_factor_x = 0;
+    //colonne_davanti.tile_geometry.scroll_factor_y = 0;
+
     bg.geometry.scale_x = 1.7;
     bg.geometry.scale_y = 1.7;
-    bg.tile_geometry.scroll_factor_x = 0;
     //bg.tile_geometry.scroll_factor_y = 0;
     //pavimento
 
     create_score(s);
     create_vite(s);
+
     floor = PP.shapes.rectangle_add(s, 640, 635, 19880, 30, "0x000000", 1   );
     PP.physics.add(s, floor, PP.physics.type.STATIC);
 
@@ -143,6 +165,7 @@ function create (s) {
     //funzioni richiamate
     create_lettera(s, 7800, 170);
     create_lettera(s, 7000, 170);
+    create_lettera(s, 5400, -1098);
 
     create_player (s);
     create_cassa (s, 750, 450);
@@ -159,12 +182,12 @@ function create (s) {
     create_piatt (s, 5100, 320);
     create_piatt (s, 5350, -950);
     create_piatt_move (s, 5550, 320);
-    create_piatt_move (s, 5780, -950);
+    create_piatt_move (s, 5900, -950);
     create_piatt_move (s, 11600, 1495);
     //create_piatt_move2 (s, 5780, -450);  potenzialmente da silurare permanentemente
-    create_ghiglio(s, 7950, 170);
-    create_ghiglio(s, 8500, 170);
-    create_ghiglio(s, 8950, 170);
+    create_ghiglio(s, 8025, 380);
+    create_ghiglio(s, 8575, 380);
+    create_ghiglio(s, 9125, 380);
     
     create_Lanciatore(s, 1500, 450);
     create_Lanciatore(s, 4650, 450);
@@ -287,6 +310,9 @@ function create (s) {
 
 function update (s) {
     bg.tile_geometry.x = PP.camera.get_scroll_x(s) * 1/(2+1);
+    slot_nuove.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
+    colonne_davanti.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
+    moquette.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
     //bg.tile_geometry.y = PP.camera.get_scroll_y(s);
 
 

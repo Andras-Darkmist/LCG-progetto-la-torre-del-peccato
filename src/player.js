@@ -6,6 +6,7 @@ let player_speed = 300;
 let jump_init_speed = 350;
 let floor_height = 620;
 let player_dash = 1000;
+let danno_on = false;
 
 move_disable = false;
 dash_disable = false;
@@ -15,6 +16,7 @@ eseguendo_dash = false;
 let curr_anim = "stop"; // Questa variabile contiene l'animazione corrente
 
 let next_anim;
+next_anim = curr_anim;
 
 function configure_player_animations(s) {
     // Configuro le animazioni secondo lo spritesheet
@@ -23,14 +25,15 @@ function configure_player_animations(s) {
     PP.assets.sprite.animation_add(player, "jump_down", 8, 8, 10, 0);
     PP.assets.sprite.animation_add(player, "stop", 0, 0, 5, 0);
     PP.assets.sprite.animation_add(player, "dash", 1, 3, 5, -1);
-    PP.assets.sprite.animation_add(player, "die", 1, 3, 5, -1);
+    PP.assets.sprite.animation_add(player, "Danno", 9, 10, 8, -1);
+    PP.assets.sprite.animation_add(player, "die", 9, 10, 8, -1);
     //PP.assets.sprite.animation_add_list(player, "die", [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 10, 10, 10, 10], 10, 0);
     //PP.assets.sprite.animation_add(player, "dead", 10, 10, 10, -1);
     PP.assets.sprite.animation_play(player, "stop");
 }
 
 function preload_player(s) {
-    img_player = PP.assets.sprite.load_spritesheet(s, "assets/immagini/Elia_spritehseet_1.PNG", 188, 200);
+    img_player = PP.assets.sprite.load_spritesheet(s, "assets/immagini/Elia_spritehseet_1.PNG", 172, 200);
 }
 
 function create_player(s) {
@@ -84,7 +87,7 @@ function player_update(s) {
     // Creo una variabile che conterra' l'animazione futura
     // per poter verificare se cambia dalla attuale
 
-    next_anim = curr_anim;
+    
 
     // MOVIMENTO laterale giocatore
 
@@ -123,10 +126,14 @@ function player_update(s) {
     // verticale
 
     if (PP.physics.get_velocity_y(player) < 0) {
-        next_anim = "jump_up";
+        if (danno_on == false) {
+            next_anim = "jump_up";
+        }
     }
     else if (PP.physics.get_velocity_y(player) > 0) {
-        next_anim = "jump_down";
+        if (danno_on == false) {
+            next_anim = "jump_up";
+        }
     }
 
     if (PP.physics.get_velocity_x(player) < -800) {
@@ -248,7 +255,7 @@ function morte(s) {
     move_disable = true;
     dash_disable = true;
     jump_disable = true;
-
+    danno_on = true;
     PP.physics.set_velocity_x(player, 0);
     PP.physics.set_velocity_y(player, 30);
     PP.assets.sprite.animation_stop(player);
@@ -266,8 +273,9 @@ function game_over(s) {
 let invincibilità = false;
 
 function danno(s) {
+    danno_on = true;
     invincibilità = true;
-    next_anim = "die";
+    next_anim = "Danno";
     console.log("dano subito");
     move_disable = true;
     dash_disable = true;
@@ -279,6 +287,7 @@ function danno(s) {
 }
 
 function fine_danno(s) {
+    danno_on = false;
     invincibilità = false;
     move_disable = false;
     dash_disable = false;

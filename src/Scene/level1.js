@@ -60,7 +60,7 @@ function preload (s) {
 //  problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
 // da sistemaer il lieve lag della piattaforma mobile fnale rispetto alla pressione pedana, passaggio da sotto pavimento finel lv 1 non sempre va anzi,
 // errore violation quando si è a fine livello e relativo lag pesante, problema funzione salto solo da sopra agli oggetti che con casse non va, 
-// problema lame ghigliottine ogni tanto rimanogno giù, problema del dash sulle slot, 
+// problema lame ghigliottine ogni tanto rimanogno giù, problema del dash sulle slot, piattaforme mobili non sono sincronizzate bene
 
 // DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
     // modo di rendere immateriale la porta, sostituire carta di quadri con picche,

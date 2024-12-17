@@ -34,6 +34,10 @@ let pedana3;
 let chiusura_porta_1 = true;
 let chiusura_porta_finale = true;
 
+let overlap_sotto;
+let collider_sopra;
+let overlap_casse_sotto;
+let collider_casse_sopra;
 
 function preload (s) {
     preload_vite (s);
@@ -62,7 +66,7 @@ function preload (s) {
 // errore violation quando si è a fine livello e relativo lag pesante, problema funzione salto solo da sopra agli oggetti che con casse non va, 
 // problema lame ghigliottine ogni tanto rimanogno giù, problema del dash sulle slot, piattaforme mobili non sono sincronizzate bene
 
-// DA INSERIRE: proiettili spostano casse, proiettili lanciatore scompaiono dopo un po' o al contatto
+// DA INSERIRE: proiettili spostano casse, lanciatore alla fine spara anche da più distante,
     // modo di rendere immateriale la porta, sostituire carta di quadri con picche,
 
 function create (s) {
@@ -263,10 +267,14 @@ function create (s) {
         PP.physics.add_collider(s, casse[i], scalino_6);
         PP.physics.add_collider(s, casse[i], scalino_7);
         PP.physics.add_collider(s, casse[i], scalino_8);
+        PP.physics.add_collider(s, casse[i], scalino_9);
         PP.physics.add_collider_f(s, casse[i], pedana2, attiva_piatt_move);
         PP.physics.add_collider_f(s, casse[i], pedana3, apertura_porta_finale);
+
         for (let g = 0; g < casse.length; g++) {
+            if (g != i){
             PP.physics.add_collider(s, casse[g], casse[i]);
+            }
         }
     }
     
@@ -361,18 +369,25 @@ function update (s) {
 
     // if che permette al giocatore di attraversare la piattaforma a fine livello da sotto ma non da sopra
 
-    if (player.geometry.y >= floor_finale_3.geometry.y){
-        PP.physics.add_overlap_f(s, player, floor_finale_3, salto_si);
-        for (let g = 0; g < casse.length; g++) {
-            PP.physics.add_overlap_f(s, casse[g], floor_finale_3, nulla);
+    if (player.geometry.y >= floor_finale_3.geometry.y) {
+            PP.physics.remove_collider_or_overlap(s, collider_sopra)
+            for (let g = 0; g < casse.length; g++) {
+                PP.physics.remove_collider_or_overlap(s, collider_casse_sopra)
         }
     }
     else {
-        PP.physics.add_collider_f(s, player, floor_finale_3, salto_si);
-        for (let g = 0; g < casse.length; g++) {
-            PP.physics.add_collider(s, casse[g], floor_finale_3);
+        if (collider_sopra != PP.physics.add_collider_f(s, player, floor_finale_3, salto_si)) {
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si))
+            PP.physics.add_collider_f(s, player, floor_finale_3, salto_si);
+            collider_sopra = PP.physics.add_collider_f(s, player, floor_finale_3, salto_si);
+            for (let g = 0; g < casse.length; g++) {
+                if (collider_casse_sopra != PP.physics.add_collider(s, casse[g], floor_finale_3)) {
+                    PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si));
+                    PP.physics.add_collider(s, casse[g], floor_finale_3);
+                    collider_casse_sopra = PP.physics.add_collider(s, casse[g], floor_finale_3);
+                }
+            }
         }
-    }
     
     
     // if che permette alle casse di attraversare la piattaforma a fine livello da sotto ma non da sopra
@@ -388,6 +403,7 @@ function update (s) {
         }
     }
 }
+}
 
 function destroy (s) {
     
@@ -399,7 +415,7 @@ function apertura_porta(s, obj1, obj2) {
 
     // implementare funzione per il salto
 
-    if ((player.geometry.x >= (obj2.geometry.x - 100) && player.geometry.x <= (obj2.geometry.x) + 100) || player.geometry.y >= (obj2.geometry.y + 20)){
+    if ((player.geometry.x >= (obj2.geometry.x - 69) && player.geometry.x <= (obj2.geometry.x) + 69) || player.geometry.y >= (obj2.geometry.y + 20)){
         jump_disable = false;
     }
 }

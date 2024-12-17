@@ -6,6 +6,7 @@ let enemy_check = [];
 let img_carta;
 let carta;
 let vita_lanciatore = [] /*true*/;
+let morte_animazioni_lanciatore = []
 let img_moneta;
 let moneta;
 
@@ -17,6 +18,8 @@ function preload_Lanciatore(s) {
     curr_anim_Lanciatore = [];
     attack_check = [];
     enemy_check = [];
+    vita_lanciatore = [];
+    morte_animazioni_lanciatore = [];
     img_lanciatore = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Sprite_Lanciatore.PNG", 172, 200);
     img_carta = PP.assets.image.load(s, "assets/immagini/cartapicche.png");
     img_moneta = PP.assets.image.load(s, "assets/immagini/monetamini.png");
@@ -33,8 +36,10 @@ function configure_Lanciatore_animations(s) {
     for (let i = 0; i < lanciatori.length; i++) {
         PP.assets.sprite.animation_add(lanciatori[i], "Attack", 4, 10, 5, -1);
         PP.assets.sprite.animation_add(lanciatori[i], "Idle", 0, 3, 5, -1);
+        PP.assets.sprite.animation_add(lanciatori[i], "Mortis", 11, 13, 8, -1);
         PP.assets.sprite.animation_play(lanciatori[i], "Idle");
         vita_lanciatore[i] = true;
+        morte_animazioni_lanciatore[i] = false;
         attack_check[i] = false;
         curr_anim_Lanciatore[i] = "Idle";
     }
@@ -44,17 +49,28 @@ function configure_Lanciatore_animations(s) {
 //morte toccando il nemico, uccisione nemico se lo si tocca dashando
 
 function kill_lanciatore(s, obj1, obj2) {
+    let controllo; 
     if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)) {
         console.log("sus")
-        PP.assets.destroy(obj2);
-
-        // questo for per ogni lanciatore in mappa controlla se la collisione è avvenuta con lui, poi dstrugge quello con cui la collisione è effettivamente avventuta
-
         for (g = 0; g < lanciatori.length; g++){
             if (obj2 == lanciatori[g]){
                 vita_lanciatore[g] = false;
+                controllo = g;
             }
         }
+
+        PP.timers.add_timer(s, 500, distruzione, false);
+
+        function distruzione (s) {
+            PP.assets.destroy(obj2);
+            for (g = 0; g < lanciatori.length; g++){
+                if (obj2 == lanciatori[g]){
+                    morte_animazioni_lanciatore[g] = true;
+                }
+            }
+        }
+        // questo for per ogni lanciatore in mappa controlla se la collisione è avvenuta con lui, poi dstrugge quello con cui la collisione è effettivamente avventuta
+
         console.log(vita_lanciatore[i]);
         let x = 1200;
         let y = 600;
@@ -63,7 +79,7 @@ function kill_lanciatore(s, obj1, obj2) {
         PP.physics.set_drag_x(moneta, 7000);
     }
 
-    else if (curr_anim != "die" && invincibilità == false){
+    else if (curr_anim != "die" && invincibilità == false && vita_lanciatore[controllo] == true){
         console.log("sus danno");
         vita_persa (s);
     }
@@ -127,7 +143,7 @@ function update_Lanciatore(s) {
     for (let i = 0; i < lanciatori.length; i++) {
         let next_anim_Lanciatore = curr_anim_Lanciatore[i];
 
-        if (vita_lanciatore[i] != false) {
+        if (morte_animazioni_lanciatore[i] != true) {
             if(attack_check[i] != true){
                 if (Math.abs(lanciatori[i].geometry.x - player.geometry.x) < 500) {
                     next_anim_Lanciatore = "Attack";
@@ -139,11 +155,18 @@ function update_Lanciatore(s) {
                 else {
                     next_anim_Lanciatore = "Idle";
                 }
+
+                
         
-                if (next_anim_Lanciatore != curr_anim_Lanciatore[i]) {
-                    PP.assets.sprite.animation_play(lanciatori[i], next_anim_Lanciatore);
-                    curr_anim_Lanciatore [i] = next_anim_Lanciatore;
+            }
+            if (vita_lanciatore[i] == false)
+                {
+                    console.log("BORTIS");
+                    next_anim_Lanciatore = "Mortis";
                 }
+            if (next_anim_Lanciatore != curr_anim_Lanciatore[i]) {
+                PP.assets.sprite.animation_play(lanciatori[i], next_anim_Lanciatore);
+                curr_anim_Lanciatore [i] = next_anim_Lanciatore;
             }
         }
     

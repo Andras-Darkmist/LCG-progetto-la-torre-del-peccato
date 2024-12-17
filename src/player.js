@@ -178,7 +178,7 @@ function salto_si(s, obj1, obj2) {
     // il resto si
 
     for (let i = 0; i < casse.length; i++) {
-        if ((obj2).geometry.y > (obj1).geometry.y || obj2 == casse[i]) {
+        if ((obj2).geometry.y >= (obj1).geometry.y -1) {
             jump_disable = false;
         }
     }

@@ -317,7 +317,6 @@ function update (s) {
 
 
     update_score(s);
-    update_vite (s);
     player_update(s);
     update_cassa(s);
     update_porta(s);
@@ -362,7 +361,7 @@ function update (s) {
     // if che permette al giocatore di attraversare la piattaforma a fine livello da sotto ma non da sopra
 
     if (player.geometry.y >= floor_finale_3.geometry.y){
-        PP.physics.add_overlap_f(s, player, floor_finale_3, salto_si);
+        //PP.physics.add_overlap_f(s, player, floor_finale_3, salto_si);
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_overlap_f(s, casse[g], floor_finale_3, nulla);
         }

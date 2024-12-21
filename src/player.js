@@ -118,8 +118,8 @@ function player_update(s) {
         if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
             // ... e premo il tasto spazio, allo salto
             PP.physics.set_velocity_y(player, -jump_init_speed);
-            console.log("giocatore", player.geometry.body_y);
-            console.log("cassa", casse[0].geometry.body_y);
+            //console.log("giocatore", player.geometry.body_y);
+            //console.log("cassa", casse[0].geometry.body_y);
         }
     }
 

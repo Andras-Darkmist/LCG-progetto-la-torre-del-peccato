@@ -37,9 +37,11 @@ let chiusura_porta_finale = true;
 let overlap_sotto;
 let collider_sopra;
 let overlap_casse_sotto;
-let collider_casse_sopra;
+let collider_casse_sopra = [];
 
 function preload (s) {
+    collider_casse_sopra = [];
+
     preload_vite (s);
     preload_lettera (s);
     preload_score (s);
@@ -59,11 +61,10 @@ function preload (s) {
     img_moquette = PP.assets.image.load(s, "Assets/Immagini/moquette.png");
 }
 
-// PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma, se si lascia in vita il primo
-// lanciatore e si uccide il secondo quando si esce dall'area di lancio carte crasha tutto, il restart dopo game over non va,
-//  problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
-// da sistemaer il lieve lag della piattaforma mobile fnale rispetto alla pressione pedana, passaggio da sotto pavimento finel lv 1 non sempre va anzi,
-// errore violation quando si è a fine livello e relativo lag pesante, problema funzione salto solo da sopra agli oggetti che con casse non va, 
+// PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
+// problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
+// la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so come,
+// problema funzione salto solo da sopra agli oggetti che con casse non va, 
 // problema lame ghigliottine ogni tanto rimanogno giù, problema del dash sulle slot, piattaforme mobili non sono sincronizzate bene
 
 // DA INSERIRE: proiettili spostano casse, lanciatore alla fine spara anche da più distante,
@@ -369,39 +370,45 @@ function update (s) {
     // if che permette al giocatore di attraversare la piattaforma a fine livello da sotto ma non da sopra
 
     if (player.geometry.y >= floor_finale_3.geometry.y) {
-            PP.physics.remove_collider_or_overlap(s, collider_sopra)
-            for (let g = 0; g < casse.length; g++) {
-                PP.physics.remove_collider_or_overlap(s, collider_casse_sopra)
-        }
+        PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si));
+        collider_sopra = false;/*
+        for (let g = 0; g < casse.length; g++) {
+            PP.physics.remove_collider_or_overlap(s, collider_casse_sopra)
+        }*/
     }
     else {
-        if (collider_sopra != PP.physics.add_collider_f(s, player, floor_finale_3, salto_si)) {
+        if (collider_sopra != true) {
+            console.log("wlawi");
             PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si))
             PP.physics.add_collider_f(s, player, floor_finale_3, salto_si);
-            collider_sopra = PP.physics.add_collider_f(s, player, floor_finale_3, salto_si);
+            collider_sopra = true;/*
             for (let g = 0; g < casse.length; g++) {
                 if (collider_casse_sopra != PP.physics.add_collider(s, casse[g], floor_finale_3)) {
                     PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si));
                     PP.physics.add_collider(s, casse[g], floor_finale_3);
                     collider_casse_sopra = PP.physics.add_collider(s, casse[g], floor_finale_3);
                 }
-            }
-        }
-    
-    
-    // if che permette alle casse di attraversare la piattaforma a fine livello da sotto ma non da sopra
-    
-    for (let g = 0; g < casse.length; g++){
-    if (casse[g].geometry.y >= 610){
-            PP.physics.add_overlap_f(s, casse[g], floor_finale_3, nulla);
-        }
-        else {
-            for (let g = 0; g < casse.length; g++) {
-                PP.physics.add_collider(s, casse[g], floor_finale_3);
-            }
+            }*/
         }
     }
-}
+
+
+    // if che permette alle casse di attraversare la piattaforma a fine livello da sotto ma non da sopra
+    // ora quando la cassa g è sopra il pavimento la corrispondente nell'array collider casse sopra viene settato a true e il collider non viene continuamente ricreato
+    // se il corrispondente valore non è false
+
+    for (let g = 0; g < casse.length; g++) {
+        if (casse[g].geometry.y >= floor_finale_3.geometry.y) {
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], floor_finale_3));
+            collider_casse_sopra[g-1] = false;
+        }
+        else if (collider_casse_sopra[g-1] != true) {
+            console.log("wei");
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], floor_finale_3));
+            PP.physics.add_collider(s, casse[g], floor_finale_3);
+            collider_casse_sopra[g-1] = true;
+        }
+    }
 }
 
 function destroy (s) {

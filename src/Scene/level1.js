@@ -63,7 +63,7 @@ function preload (s) {
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
 // problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
-// la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so come,
+// la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so perché ,
 // problema funzione salto solo da sopra agli oggetti che con casse non va, 
 // problema lame ghigliottine ogni tanto rimanogno giù, problema del dash sulle slot, piattaforme mobili non sono sincronizzate bene
 
@@ -421,7 +421,7 @@ function apertura_porta(s, obj1, obj2) {
 
     // implementare funzione per il salto
 
-    if ((player.geometry.x >= (obj2.geometry.x - 69) && player.geometry.x <= (obj2.geometry.x) + 69) || player.geometry.y >= (obj2.geometry.y + 20)){
+    if ((player.geometry.x >= (obj2.geometry.x - 166) && player.geometry.x <= (obj2.geometry.x) + 166) && player.geometry.y >= (obj2.geometry.y - 20)){
         jump_disable = false;
     }
 }
@@ -431,9 +431,10 @@ function apertura_porta_finale(s, obj1, obj2) {
 
     // implementare funzione per il salto
 
-    if ((player.geometry.x >= (obj2.geometry.x - 100) && player.geometry.x <= (obj2.geometry.x) + 100) || player.geometry.y >= (obj2.geometry.y + 20)){
+    if ((player.geometry.x >= (obj2.geometry.x - 166) && player.geometry.x <= (obj2.geometry.x) + 166) || player.geometry.y >= (obj2.geometry.y - 20)){
         jump_disable = false;
     }
+    console.log(PP.assets.pivot_get_x(player));
 }
 
 function nulla(s){

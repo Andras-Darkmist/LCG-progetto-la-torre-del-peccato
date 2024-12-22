@@ -21,13 +21,14 @@ function preload_piatt_move (s) {
     posizioni_cambio_direz_alto.push(-950); // limite alto seconda piatt
     posizioni_cambio_direz_alto.push(620); // limite alto terza piatt
 
-    posizioni_cambio_direz_basso.push(310); // limite basso prima piatt
+    posizioni_cambio_direz_basso.push(315); // limite basso prima piatt
     posizioni_cambio_direz_basso.push(-315); // limite basso seconda piatt
     posizioni_cambio_direz_basso.push(1695); // limite basso terza piatt
 }
 
 function create_piatt_move(s, x, y) {
     let piatt_move_sing = PP.assets.image.add(s, img_piatt_move1, x, y, 0, 0);
+    piatt_move_sing.geometry.scale_x = 1.5;
     PP.physics.add(s, piatt_move_sing, PP.physics.type.DYNAMIC);
     PP.physics.set_immovable(piatt_move_sing, true);
     PP.physics.set_allow_gravity(piatt_move_sing, false);
@@ -47,12 +48,12 @@ function update_piatt_move(s) {
         if (i != 2) {
             if (piatt_move[i].geometry.y <= posizioni_cambio_direz_alto[i] && PP.physics.get_velocity_y(piatt_move[i]) != 200) {
                 PP.physics.set_velocity_y(piatt_move[i], 0);
-                PP.timers.add_timer(s, 800, inizio_discesa, false);
+                PP.timers.add_timer(s, 1500, inizio_discesa, false);
                 valori_piatt_move.push(i);
             }
             if (piatt_move[i].geometry.y >= posizioni_cambio_direz_basso[i] && PP.physics.get_velocity_y(piatt_move[i]) != -200) {
                 PP.physics.set_velocity_y(piatt_move[i], 0);
-                PP.timers.add_timer(s, 800, inizio_salita, false);
+                PP.timers.add_timer(s, 1500, inizio_salita, false);
                 valori_piatt_move.push(i);
             }
         }

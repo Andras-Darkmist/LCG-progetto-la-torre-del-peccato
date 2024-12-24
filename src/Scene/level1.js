@@ -63,9 +63,9 @@ function preload (s) {
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
 // problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
-// la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so perché ,
+// la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so perché,
 // problema funzione salto solo da sopra agli oggetti che con casse non va, 
-// problema lame ghigliottine ogni tanto rimanogno giù, problema del dash sulle slot, piattaforme mobili non sono sincronizzate bene
+// piattaforme mobili non sono sincronizzate bene
 
 // DA INSERIRE: proiettili spostano casse, lanciatore alla fine spara anche da più distante,
     // modo di rendere immateriale la porta, sostituire carta di quadri con picche,

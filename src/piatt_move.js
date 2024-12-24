@@ -8,6 +8,11 @@ let posizioni_cambio_direz_basso = []; // array in cui mettere i limiti di movim
 
 let blocco_piatt_move = true;
 let verso_lalto;
+let tempo_attesa_ferme = 2000;
+let tempo_attesa_ferma_finale = 800;
+
+let collider_casse_sopra = [];
+let collider_sopra = [];
 
 function preload_piatt_move (s) {
     piatt_move = [];
@@ -42,43 +47,71 @@ function create_piatt_move(s, x, y) {
 
 function update_piatt_move(s) {
 
-    // questi due if funzionano per ogni piattaformache si muove verticalmente, basta aggiungere i suoi limiti di movimento nei 2 array
+    // questi due if funzionano per ogni piattaforma che si muove verticalmente, basta aggiungere i suoi limiti di movimento nei 2 array
 
     for (let i = 0; i < piatt_move.length; i++) {
         if (i != 2) {
             if (piatt_move[i].geometry.y <= posizioni_cambio_direz_alto[i] && PP.physics.get_velocity_y(piatt_move[i]) != 200) {
                 PP.physics.set_velocity_y(piatt_move[i], 0);
-                PP.timers.add_timer(s, 1500, inizio_discesa, false);
+                PP.timers.add_timer(s, tempo_attesa_ferme, inizio_discesa, false);
                 valori_piatt_move.push(i);
             }
             if (piatt_move[i].geometry.y >= posizioni_cambio_direz_basso[i] && PP.physics.get_velocity_y(piatt_move[i]) != -200) {
                 PP.physics.set_velocity_y(piatt_move[i], 0);
-                PP.timers.add_timer(s, 1500, inizio_salita, false);
+                PP.timers.add_timer(s, tempo_attesa_ferme, inizio_salita, false);
                 valori_piatt_move.push(i);
             }
         }
         else if (i == 2 && blocco_piatt_move != true) {
             if (piatt_move[i].geometry.y <= posizioni_cambio_direz_alto[i] && PP.physics.get_velocity_y(piatt_move[i]) != 200) {
                 PP.physics.set_velocity_y(piatt_move[i], 0);
-                PP.timers.add_timer(s, 800, inizio_discesa, false);
+                PP.timers.add_timer(s, tempo_attesa_ferma_finale, inizio_discesa, false);
                 valori_piatt_move.push(i);
             }
             if (piatt_move[i].geometry.y >= posizioni_cambio_direz_basso[i] && PP.physics.get_velocity_y(piatt_move[i]) != -200) {
                 PP.physics.set_velocity_y(piatt_move[i], 0);
-                PP.timers.add_timer(s, 800, inizio_salita, false);
+                PP.timers.add_timer(s, tempo_attesa_ferma_finale, inizio_salita, false);
                 valori_piatt_move.push(i);
             }
             if (i == 2 && blocco_piatt_move == true) {
                 return;
             }
         }
+
+        // qua sotto c sono le cose per far si che il giocatore e le casse possano attraversare le piattaforme mobli da sotto ma non da sopra
+
+        if (player.geometry.y >= piatt_move[i].geometry.y) {
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, piatt_move[i], salto_si));
+            collider_sopra = false;
+        }
+        else {
+            if (collider_sopra != true) {
+                console.log("wlawi");
+                PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, piatt_move[i], salto_si))
+                PP.physics.add_collider_f(s, player, piatt_move[i], salto_si);
+                collider_sopra = true;
+            }
+        }
+
+        for (let g = 0; g < casse.length; g++) {
+            if (casse[g].geometry.y >= piatt_move[i].geometry.y) {
+                PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], piatt_move[i]));
+                collider_casse_sopra[g - 1] = false;
+            }
+            else if (collider_casse_sopra[g - 1] != true) {
+                console.log("wei");
+                PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], piatt_move[i]));
+                PP.physics.add_collider(s, casse[g], piatt_move[i]);
+                collider_casse_sopra[g - 1] = true;
+            }
+        }
     }
 
-    if(blocco_piatt_move == true){
-        if (PP.physics.get_velocity_y(piatt_move[2]) < 0){
+    if (blocco_piatt_move == true) {
+        if (PP.physics.get_velocity_y(piatt_move[2]) < 0) {
             verso_lalto = true;
         }
-        else if (PP.physics.get_velocity_y(piatt_move[2]) > 0){
+        else if (PP.physics.get_velocity_y(piatt_move[2]) > 0) {
             verso_lalto = false;
         }
         PP.physics.set_velocity_y(piatt_move[2], 0);

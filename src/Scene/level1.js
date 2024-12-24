@@ -65,7 +65,7 @@ function preload (s) {
 // problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
 // la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so perché,
 // problema funzione salto solo da sopra agli oggetti che con casse non va, 
-// piattaforme mobili non sono sincronizzate bene
+// piattaforme mobili non sono sincronizzate bene e il sistema per renderle attraversabili da sotto non funziona
 
 // DA INSERIRE: proiettili spostano casse, lanciatore alla fine spara anche da più distante,
     // modo di rendere immateriale la porta, sostituire carta di quadri con picche,
@@ -371,24 +371,13 @@ function update (s) {
 
     if (player.geometry.y >= floor_finale_3.geometry.y) {
         PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si));
-        collider_sopra = false;/*
-        for (let g = 0; g < casse.length; g++) {
-            PP.physics.remove_collider_or_overlap(s, collider_casse_sopra)
-        }*/
+        collider_sopra = false;
     }
     else {
         if (collider_sopra != true) {
-            console.log("wlawi");
             PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si))
             PP.physics.add_collider_f(s, player, floor_finale_3, salto_si);
-            collider_sopra = true;/*
-            for (let g = 0; g < casse.length; g++) {
-                if (collider_casse_sopra != PP.physics.add_collider(s, casse[g], floor_finale_3)) {
-                    PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si));
-                    PP.physics.add_collider(s, casse[g], floor_finale_3);
-                    collider_casse_sopra = PP.physics.add_collider(s, casse[g], floor_finale_3);
-                }
-            }*/
+            collider_sopra = true;
         }
     }
 
@@ -400,13 +389,12 @@ function update (s) {
     for (let g = 0; g < casse.length; g++) {
         if (casse[g].geometry.y >= floor_finale_3.geometry.y) {
             PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], floor_finale_3));
-            collider_casse_sopra[g-1] = false;
+            collider_casse_sopra[g - 1] = false;
         }
-        else if (collider_casse_sopra[g-1] != true) {
-            console.log("wei");
+        else if (collider_casse_sopra[g - 1] != true) {
             PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], floor_finale_3));
             PP.physics.add_collider(s, casse[g], floor_finale_3);
-            collider_casse_sopra[g-1] = true;
+            collider_casse_sopra[g - 1] = true;
         }
     }
 }

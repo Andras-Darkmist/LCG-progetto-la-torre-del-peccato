@@ -4,6 +4,8 @@ let vite_rimanenti = 2;
 PP.game_state.set_variable ("Vite", 3);
 
 function preload_vite (s) {
+    PP.game_state.set_variable ("Vite", 3);
+    vite_rimanenti = 2;
     cuori = [];
     img_cuore = PP.assets.image.load(s, "assets/immagini/carata.jpg", 150, 156);
 }

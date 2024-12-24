@@ -10,6 +10,9 @@ let morte_animazioni_lanciatore = []
 let img_moneta;
 let moneta;
 
+let distanza_atk = 500;
+let distanza_atk_lungo = 1050;
+
 
 // Questa variabile contiene l'animazione corrente
 
@@ -146,7 +149,7 @@ function update_Lanciatore(s) {
 
         if (morte_animazioni_lanciatore[i] != true) {
             if(attack_check[i] != true){
-                if (Math.abs(lanciatori[i].geometry.x - player.geometry.x) < 500 || Math.abs(lanciatori[i].geometry.x - player.geometry.x) < 1050 && i == 2) {
+                if (Math.abs(lanciatori[i].geometry.x - player.geometry.x) < distanza_atk || Math.abs(lanciatori[i].geometry.x - player.geometry.x) < distanza_atk_lungo && i == 2) {
                     next_anim_Lanciatore = "Attack";
                     attack_check [i] = true;
                     PP.timers.add_timer(s, 1400, attack, false);

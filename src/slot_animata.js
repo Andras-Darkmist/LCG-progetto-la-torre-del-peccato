@@ -69,11 +69,11 @@ function kill_slot(s, obj1, obj2) {
             if (slot_spenta[i] == true && eseguendo_dash == true) {
                 console.log("sus")
                 if (player.geometry.flip_x == true) {
-                    PP.physics.set_drag_x(obj2, 0);
+                    PP.physics.set_drag_x(obj2, 1500);
                     PP.physics.set_velocity_x(slot_animate[i], -1000);
                 }
                 if (player.geometry.flip_x == false) {
-                    PP.physics.set_drag_x(obj2, 0);
+                    PP.physics.set_drag_x(obj2, 1500);
                     PP.physics.set_velocity_x(slot_animate[i], 1000);
                 }
             }

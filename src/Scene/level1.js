@@ -22,6 +22,13 @@ let scalino_8;
 let scalino_9;
 let muro_iniziale;
 
+let pavimento1;
+let pavimento2;
+let pavimento2_90;
+let pavimento3;
+let scala1;
+let scala2;
+
 let scala_1;
 let scala_2;
 let scala_3;
@@ -59,6 +66,12 @@ function preload (s) {
     img_slot_nuove = PP.assets.image.load(s, "Assets/Immagini/slot nuove copia.png");
     img_colonne = PP.assets.image.load(s, "Assets/Immagini/colonne davanti copia.png");
     img_moquette = PP.assets.image.load(s, "Assets/Immagini/moquette.png");
+    pavimento1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma_Tavola disegno 1.png");
+    pavimento2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-03.png");
+    pavimento2_90 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-03 - Copia.png");
+    pavimento3 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-02.png");
+    scala1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-05.png");
+    scala2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-04.png");
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
@@ -92,6 +105,69 @@ function create (s) {
 
     create_score(s);
     create_vite(s);
+
+
+    let pavimento_1 = PP.assets.image.add(s, pavimento1, 0, 620, 0, 0);
+    PP.physics.add(s, pavimento_1, PP.physics.type.STATIC);
+    
+    let pavimento_2 = PP.assets.image.add(s, pavimento1, 650, 620, 0, 0);
+    PP.physics.add(s, pavimento_2, PP.physics.type.STATIC);
+    
+    let pavimento_3 = PP.assets.image.add(s, pavimento1, 1300, 620, 0, 0);
+    PP.physics.add(s, pavimento_3, PP.physics.type.STATIC);
+    
+    let pavimento_4 = PP.assets.image.add(s, pavimento1, 1950, 620, 0, 0);
+    PP.physics.add(s, pavimento_4, PP.physics.type.STATIC);
+    
+    let pavimento_5 = PP.assets.image.add(s, pavimento1, 2600, 620, 0, 0);
+    PP.physics.add(s, pavimento_5, PP.physics.type.STATIC);
+    
+    let pavimento_6 = PP.assets.image.add(s, pavimento1, 3250, 620, 0, 0);
+    PP.physics.add(s, pavimento_6, PP.physics.type.STATIC);
+    
+    let pavimento_7 = PP.assets.image.add(s, pavimento1, 3900, 620, 0, 0);
+    PP.physics.add(s, pavimento_7, PP.physics.type.STATIC);
+    
+    let pavimento_8 = PP.assets.image.add(s, pavimento1, 4650, 620, 0, 0);
+    PP.physics.add(s, pavimento_8, PP.physics.type.STATIC);
+    
+    let pavimento_9 = PP.assets.image.add(s, pavimento1, 5300, 620, 0, 0);
+    PP.physics.add(s, pavimento_9, PP.physics.type.STATIC);
+    
+    let pavimento_10 = PP.assets.image.add(s, pavimento1, 5950, 620, 0, 0);
+    PP.physics.add(s, pavimento_10, PP.physics.type.STATIC);
+    
+    let pavimento_11 = PP.assets.image.add(s, pavimento1, 6600, 620, 0, 0);
+    PP.physics.add(s, pavimento_11, PP.physics.type.STATIC);
+    
+    let pavimento_12 = PP.assets.image.add(s, pavimento1, 7250, 620, 0, 0);
+    PP.physics.add(s, pavimento_12, PP.physics.type.STATIC);
+    
+    let pavimento_13 = PP.assets.image.add(s, pavimento1, 7900, 620, 0, 0);
+    PP.physics.add(s, pavimento_13, PP.physics.type.STATIC);
+    
+    let pavimento_14 = PP.assets.image.add(s, pavimento1, 8550, 620, 0, 0);
+    PP.physics.add(s, pavimento_14, PP.physics.type.STATIC);
+    
+    let pavimento_15 = PP.assets.image.add(s, pavimento1, 9200, 620, 0, 0);
+    PP.physics.add(s, pavimento_15, PP.physics.type.STATIC);
+    
+    let pavimento_16 = PP.assets.image.add(s, pavimento1, 9850, 620, 0, 0);
+    PP.physics.add(s, pavimento_16, PP.physics.type.STATIC);
+    
+    let pavimento_17 = PP.assets.image.add(s, pavimento1, 9950, 620, 0, 0);
+    PP.physics.add(s, pavimento_17, PP.physics.type.STATIC);
+    
+    let pavimento_18 = PP.assets.image.add(s, pavimento1, 11200, 620, 0, 0);
+    PP.physics.add(s, pavimento_18, PP.physics.type.STATIC);
+    
+    let pavimento_19 = PP.assets.image.add(s, pavimento1, 11850, 620, 0, 0);
+    PP.physics.add(s, pavimento_19, PP.physics.type.STATIC);
+    
+    let pavimento_20 = PP.assets.image.add(s, pavimento1, 12200, 620, 0, 0);
+    PP.physics.add(s, pavimento_20, PP.physics.type.STATIC);
+
+
 
     floor = PP.shapes.rectangle_add(s, 640, 635, 19880, 30, "0x000000", 1   );
     PP.physics.add(s, floor, PP.physics.type.STATIC);
@@ -209,6 +285,28 @@ function create (s) {
     PP.physics.add_collider_f(s, player, floor, salto_si);
     PP.physics.add_collider_f(s, player, floor_finale, salto_si);
     PP.physics.add_collider_f(s, player, floor_finale_2, salto_si);
+
+    PP.physics.add_collider_f(s, player, pavimento_1, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_2, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_3, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_4, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_5, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_6, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_7, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_8, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_9, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_10, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_11, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_12, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_13, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_14, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_15, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_16, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_17, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_18, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_19, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_20, salto_si);
+
     PP.physics.add_collider_f(s, player, scala_1, salto_si);
     PP.physics.add_collider_f(s, player, scalino_1, salto_si);
     PP.physics.add_collider_f(s, player, scalino_2, salto_si);

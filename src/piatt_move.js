@@ -80,13 +80,12 @@ function update_piatt_move(s) {
 
         // qua sotto c sono le cose per far si che il giocatore e le casse possano attraversare le piattaforme mobli da sotto ma non da sopra
 
-        if (player.geometry.y >= piatt_move[i].geometry.y) {
+        /*if (player.geometry.y >= piatt_move[i].geometry.y) {
             PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, piatt_move[i], salto_si));
             collider_sopra = false;
         }
         else {
             if (collider_sopra != true) {
-                console.log("wlawi");
                 PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, piatt_move[i], salto_si))
                 PP.physics.add_collider_f(s, player, piatt_move[i], salto_si);
                 collider_sopra = true;
@@ -99,13 +98,15 @@ function update_piatt_move(s) {
                 collider_casse_sopra[g - 1] = false;
             }
             else if (collider_casse_sopra[g - 1] != true) {
-                console.log("wei");
                 PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], piatt_move[i]));
                 PP.physics.add_collider(s, casse[g], piatt_move[i]);
                 collider_casse_sopra[g - 1] = true;
             }
-        }
+        }*/
     }
+
+
+    // parte di codice necessaria a far capire alla piattaforma finale da che parte ripartire dopo che si è fermata
 
     if (blocco_piatt_move == true) {
         if (PP.physics.get_velocity_y(piatt_move[2]) < 0) {

@@ -7,10 +7,7 @@ let slot_nuove;
 let img_moquette;
 let moquette;
 
-let floor;
-let floor_finale;
-let floor_finale_2;
-let floor_finale_3;
+let pavimento_19;
 let scalino_1;
 let scalino_2;
 let scalino_3;
@@ -75,9 +72,9 @@ function preload (s) {
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
-// problema con la scomparsa delle carte lanciatore su scalino, animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
-// la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so perché,
-// problema funzione salto solo da sopra agli oggetti che con casse non va, 
+// animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
+// la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so perché,   
+// problema funzione salto solo da sopra agli oggetti che con casse non va,      salto infinito sempre non so perché
 // piattaforme mobili non sono sincronizzate bene e il sistema per renderle attraversabili da sotto non funziona
 
 // DA INSERIRE: proiettili spostano casse, lanciatore alla fine spara anche da più distante,
@@ -106,6 +103,7 @@ function create (s) {
     create_score(s);
     create_vite(s);
 
+    // PAVIMENTO LIVELLO
 
     let pavimento_1 = PP.assets.image.add(s, pavimento1, 0, 620, 0, 0);
     PP.physics.add(s, pavimento_1, PP.physics.type.STATIC);
@@ -158,28 +156,21 @@ function create (s) {
     let pavimento_17 = PP.assets.image.add(s, pavimento1, 9950, 620, 0, 0);
     PP.physics.add(s, pavimento_17, PP.physics.type.STATIC);
     
-    let pavimento_18 = PP.assets.image.add(s, pavimento1, 11200, 620, 0, 0);
+    let pavimento_18 = PP.assets.image.add(s, pavimento3, 11150, 620, 0, 0);
     PP.physics.add(s, pavimento_18, PP.physics.type.STATIC);
+
+    // piattaforma attraversabile
     
-    let pavimento_19 = PP.assets.image.add(s, pavimento1, 11850, 620, 0, 0);
+    pavimento_19 = PP.assets.image.add(s, pavimento1, 11450, 630, 0, 0);
     PP.physics.add(s, pavimento_19, PP.physics.type.STATIC);
     
-    let pavimento_20 = PP.assets.image.add(s, pavimento1, 12200, 620, 0, 0);
+    let pavimento_20 = PP.assets.image.add(s, pavimento1, 12100, 620, 0, 0);
     PP.physics.add(s, pavimento_20, PP.physics.type.STATIC);
 
 
 
-    floor = PP.shapes.rectangle_add(s, 640, 635, 19880, 30, "0x000000", 1   );
-    PP.physics.add(s, floor, PP.physics.type.STATIC);
 
-    floor_finale = PP.shapes.rectangle_add(s, 11300, 635, 280, 30, "0x00f080", 1   );
-    PP.physics.add(s, floor_finale, PP.physics.type.STATIC);
-    
-    floor_finale_2 = PP.shapes.rectangle_add(s, 12280, 635, 560, 30, "0x00f080", 1   );
-    PP.physics.add(s, floor_finale_2, PP.physics.type.STATIC);
-    
-    floor_finale_3 = PP.shapes.rectangle_add(s, 11720, 635, 560, 30, "0xdcf080", 1   );
-    PP.physics.add(s, floor_finale_3, PP.physics.type.STATIC);
+
     
     scalino_1 = PP.shapes.rectangle_add(s, 11190, 713, 30, 185, "0x00f080", 1   );
     PP.physics.add(s, scalino_1, PP.physics.type.STATIC);
@@ -193,7 +184,7 @@ function create (s) {
     scalino_4 = PP.shapes.rectangle_add(s, 10560, 910, 860, 30, "0x00f080", 1   );
     PP.physics.add(s, scalino_4, PP.physics.type.STATIC);
 
-    scalino_5 = PP.shapes.rectangle_add(s, 9490, 950, 30, 750, "0x00f080", 1   );
+    scalino_5 = PP.shapes.rectangle_add(s, 9490, 1050, 30, 750, "0x00f080", 1   );
     PP.physics.add(s, scalino_5, PP.physics.type.STATIC);
     
     scalino_6 = PP.shapes.rectangle_add(s, 9900, 1210, 850, 30, "0x00f080", 1   );
@@ -225,6 +216,8 @@ function create (s) {
     scala_3 = PP.shapes.rectangle_add(s, 9900, 545, 150, 150, "0xfab304", 1);
     PP.physics.add(s, scala_3, PP.physics.type.STATIC);
 
+    //scale fine livello
+
     scala_4 = PP.shapes.rectangle_add(s, 10050, 470, 150, 300, "0xfab304", 1);
     PP.physics.add(s, scala_4, PP.physics.type.STATIC);
     
@@ -239,7 +232,7 @@ function create (s) {
     pedana2 = PP.shapes.rectangle_add(s, 12200, 1513, 150, 40, "0xfbc456", 1);
     PP.physics.add(s, pedana2, PP.physics.type.STATIC);
 
-    pedana3 = PP.shapes.rectangle_add(s, 12200, 637, 150, 40, "0xfbc456", 1);
+    pedana3 = PP.shapes.rectangle_add(s, 12350, 637, 150, 40, "0xfbc456", 1);
     PP.physics.add(s, pedana3, PP.physics.type.STATIC);
 
 
@@ -275,6 +268,8 @@ function create (s) {
     create_Lanciatore(s, 9900, 250);
     create_slot_animata(s, 6600, 620);
 
+
+    
     //collider di tutte le cose
     //player
     
@@ -282,9 +277,6 @@ function create (s) {
     for (let g = 0; g < porte.length; g++) {
         PP.physics.add_collider(s, player, porte[g]);
     }
-    PP.physics.add_collider_f(s, player, floor, salto_si);
-    PP.physics.add_collider_f(s, player, floor_finale, salto_si);
-    PP.physics.add_collider_f(s, player, floor_finale_2, salto_si);
 
     PP.physics.add_collider_f(s, player, pavimento_1, salto_si);
     PP.physics.add_collider_f(s, player, pavimento_2, salto_si);
@@ -304,7 +296,6 @@ function create (s) {
     PP.physics.add_collider_f(s, player, pavimento_16, salto_si);
     PP.physics.add_collider_f(s, player, pavimento_17, salto_si);
     PP.physics.add_collider_f(s, player, pavimento_18, salto_si);
-    PP.physics.add_collider_f(s, player, pavimento_19, salto_si);
     PP.physics.add_collider_f(s, player, pavimento_20, salto_si);
 
     PP.physics.add_collider_f(s, player, scala_1, salto_si);
@@ -358,8 +349,28 @@ function create (s) {
 
     for (let i = 0; i < casse.length; i++) {
         PP.physics.add_collider_f(s, player, casse[i], salto_si);
-        PP.physics.add_collider(s, floor, casse[i]);
-        PP.physics.add_collider(s, floor_finale, casse[i]);
+
+        PP.physics.add_collider_f(s, casse[i], pavimento_1, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_2, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_3, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_4, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_5, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_6, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_7, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_8, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_9, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_10, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_11, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_12, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_13, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_14, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_15, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_16, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_17, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_18, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_19, salto_si);
+        PP.physics.add_collider_f(s, casse[i], pavimento_20, salto_si);
+
         PP.physics.add_collider(s, casse[i], scala_1);
         PP.physics.add_collider(s, casse[i], scalino_2);
         PP.physics.add_collider(s, casse[i], scalino_3);
@@ -394,7 +405,27 @@ function create (s) {
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], slot_animate[i]);
         }
-        PP.physics.add_collider(s, slot_animate[i], floor);
+
+        PP.physics.add_collider(s, slot_animate[i], pavimento_1);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_2);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_3);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_4);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_5);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_6);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_7);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_8);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_9);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_10);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_11);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_12);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_13);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_14);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_15);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_16);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_17);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_18);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_19);
+        PP.physics.add_collider(s, slot_animate[i], pavimento_20);
         posizione_slot.push(i);
     }
     
@@ -405,7 +436,27 @@ function create (s) {
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], lanciatori[i]);
         }
-        PP.physics.add_collider(s, lanciatori[i], floor);
+
+        PP.physics.add_collider(s, lanciatori[i], pavimento_1);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_2);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_3);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_4);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_5);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_6);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_7);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_8);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_9);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_10);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_11);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_12);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_13);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_14);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_15);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_16);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_17);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_18);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_19);
+        PP.physics.add_collider(s, lanciatori[i], pavimento_20);
     }
 
 
@@ -467,14 +518,18 @@ function update (s) {
 
     // if che permette al giocatore di attraversare la piattaforma a fine livello da sotto ma non da sopra
 
-    if (player.geometry.y >= floor_finale_3.geometry.y) {
-        PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si));
-        collider_sopra = false;
+    if (player.geometry.y >= (pavimento_19.geometry.body_y + 1)) {
+        if (collider_sopra != false) {
+            console.log("darettkvsn");
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, pavimento_19, salto_si));
+            collider_sopra = false;
+        }
     }
     else {
+        console.log("lallo");
         if (collider_sopra != true) {
-            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, floor_finale_3, salto_si))
-            PP.physics.add_collider_f(s, player, floor_finale_3, salto_si);
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, pavimento_19, salto_si))
+            PP.physics.add_collider_f(s, player, pavimento_19, salto_si);
             collider_sopra = true;
         }
     }
@@ -484,14 +539,15 @@ function update (s) {
     // ora quando la cassa g è sopra il pavimento la corrispondente nell'array collider casse sopra viene settato a true e il collider non viene continuamente ricreato
     // se il corrispondente valore non è false
 
+
     for (let g = 0; g < casse.length; g++) {
-        if (casse[g].geometry.y >= floor_finale_3.geometry.y) {
-            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], floor_finale_3));
+        if (casse[g].geometry.y >= (pavimento_19.geometry.body_y + 1)) {
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], pavimento_19));
             collider_casse_sopra[g - 1] = false;
         }
         else if (collider_casse_sopra[g - 1] != true) {
-            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], floor_finale_3));
-            PP.physics.add_collider(s, casse[g], floor_finale_3);
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider(s, casse[g], pavimento_19));
+            PP.physics.add_collider(s, casse[g], pavimento_19);
             collider_casse_sopra[g - 1] = true;
         }
     }

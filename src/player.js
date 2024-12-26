@@ -37,7 +37,7 @@ function preload_player(s) {
 }
 
 function create_player(s) {
-    player = PP.assets.sprite.add(s, img_player, 10000, 250, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 9490, 250, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -116,7 +116,7 @@ function player_update(s) {
 
     if (jump_disable == false) {
         if (PP.interactive.kb.is_key_down(s, PP.key_codes.SPACE)) {
-            // ... e premo il tasto spazio, allo salto
+            // ... e premo il tasto spazio, allora salto
             PP.physics.set_velocity_y(player, -jump_init_speed);
             //console.log("giocatore", player.geometry.body_y);
             //console.log("cassa", casse[0].geometry.body_y);
@@ -175,9 +175,6 @@ function player_update(s) {
 
 function salto_si(s, obj1, obj2) {
     // if necessario per impedire che si possa saltare anche toccando il lato degli oggetti
-    //  PROBLEMA - penso per il fatto che il personaggio cade mentre è sulle cassa la posizione y di personaggio e cassa
-    // risulta sfasata, questa soluzione non permette quindi di saltare mentre si è sulle casse ma su tutto
-    // il resto si
     
     /*console.log("giocatore_bosy", player.geometry.body_y);
     console.log("cassa body", casse[0].geometry.body_y);
@@ -185,11 +182,9 @@ function salto_si(s, obj1, obj2) {
     console.log("giocatore", player.geometry.y);
     console.log("cassa", casse[0].geometry.y);*/
 
-    for (let i = 0; i < casse.length; i++) {
         if ((obj2).geometry.body_y >= ((obj1).geometry.body_y - 1)) {
             jump_disable = false;
         }
-    }
 
     // questa parte della funzione permette di spingere la cassa un po' più forte e quindi più lontano quando si dasha
     // sostanzialmente sospende temporaneamente il drag delle casse nel momento in cui avviene la collisione

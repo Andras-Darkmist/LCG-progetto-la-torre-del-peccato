@@ -14,8 +14,8 @@ function create_vite(s) {
     for (let i=0; i<PP.game_state.get_variable("Vite"); i++)
     {
          let cuore = PP.assets.image.add(s, img_cuore, 100 +i*30, 20, 0, 0);
-         cuore.tile_geometry.scroll_factor_x = 0;
-         cuore.tile_geometry.scroll_factor_y = 0;
+         cuore.tile_geometry.scrollactor_x = 0;
+         cuore.tile_geometry.scrollactor_y = 0;
         cuori.push(cuore);
     }
 }
@@ -33,4 +33,3 @@ function vita_persa (s) {
         console.log(PP.game_state.get_variable("Vite"));
     }
 }
-

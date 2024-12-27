@@ -33,3 +33,28 @@ function vita_persa (s) {
         console.log(PP.game_state.get_variable("Vite"));
     }
 }
+
+
+PP.physics.add_collider(s, casse[i], scalino_vert_1);
+PP.physics.add_collider(s, casse[i], scalino_vert_2);
+PP.physics.add_collider(s, casse[i], scalino_vert_3);
+PP.physics.add_collider(s, casse[i], scalino_vert_4);
+PP.physics.add_collider(s, casse[i], scalino_vert_5);
+PP.physics.add_collider(s, casse[i], scalino_vert_6);
+PP.physics.add_collider(s, casse[i], scalino_vert_7);
+PP.physics.add_collider(s, casse[i], scalino_vert_8);
+PP.physics.add_collider(s, casse[i], scalino_orizz_1);
+PP.physics.add_collider(s, casse[i], scalino_orizz_2);
+PP.physics.add_collider(s, casse[i], scalino_orizz_3);
+PP.physics.add_collider(s, casse[i], scalino_orizz_4);
+PP.physics.add_collider(s, casse[i], scalino_orizz_5);
+PP.physics.add_collider(s, casse[i], scalino_orizz_6);
+PP.physics.add_collider(s, casse[i], scalino_orizz_7);
+PP.physics.add_collider(s, casse[i], scalino_orizz_8);
+PP.physics.add_collider(s, casse[i], scalino_orizz_9);
+PP.physics.add_collider(s, casse[i], scalino_orizz_10);
+PP.physics.add_collider(s, casse[i], scalino_orizz_11);
+PP.physics.add_collider(s, casse[i], scalino_orizz_12);
+PP.physics.add_collider(s, casse[i], scalino_orizz_13);
+PP.physics.add_collider(s, casse[i], scalino_orizz_14);
+PP.physics.add_collider(s, casse[i], scalino_orizz_15);

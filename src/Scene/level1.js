@@ -280,7 +280,7 @@ function create (s) {
     //funzioni richiamate
     create_lettera(s, 7800, 170);
     create_lettera(s, 7000, 170);
-    create_lettera(s, 5400, -1400);
+    create_lettera(s, 7100, -1400);
 
     create_player (s);
     create_cassa (s, 750, 450);
@@ -295,9 +295,10 @@ function create (s) {
     create_porta (s, 12600, 320);
 
     create_piatt (s, 5100, 320);
-    create_piatt (s, 5350, -950);
+    create_piatt (s, 5900, -320);
+    create_piatt (s, 6700, -950);
     create_piatt_move (s, 5550, 320);
-    create_piatt_move (s, 5900, -950);
+    create_piatt_move (s, 6350, -955);
     create_piatt_move (s, 11600, 1570);
     //create_piatt_move2 (s, 5780, -450);  potenzialmente da silurare permanentemente
     create_ghiglio(s, 8025, 380);
@@ -600,13 +601,11 @@ function update (s) {
 
     if (player.geometry.y >= (pavimento_19.geometry.body_y + 1)) {
         if (collider_sopra != false) {
-            console.log("darettkvsn");
             PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, pavimento_19, salto_si));
             collider_sopra = false;
         }
     }
     else {
-        console.log("lallo");
         if (collider_sopra != true) {
             PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, player, pavimento_19, salto_si))
             PP.physics.add_collider_f(s, player, pavimento_19, salto_si);

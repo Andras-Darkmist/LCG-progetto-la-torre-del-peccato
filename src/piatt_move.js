@@ -8,7 +8,8 @@ let posizioni_cambio_direz_basso = []; // array in cui mettere i limiti di movim
 
 let blocco_piatt_move = true;
 let verso_lalto;
-let tempo_attesa_ferme = 2000;
+let tempo_attesa_ferme = 2100;
+
 let tempo_attesa_ferma_finale = 800;
 
 let collider_casse_sopra = [];
@@ -23,11 +24,11 @@ function preload_piatt_move (s) {
     img_piatt_move1 = PP.assets.image.load(s, "assets/immagini/piatt_move.png", 150, 156);
 
     posizioni_cambio_direz_alto.push(-315); // limite alto prima piatt
-    posizioni_cambio_direz_alto.push(-950); // limite alto seconda piatt
+    posizioni_cambio_direz_alto.push(-955); // limite alto seconda piatt
     posizioni_cambio_direz_alto.push(620); // limite alto terza piatt
 
     posizioni_cambio_direz_basso.push(315); // limite basso prima piatt
-    posizioni_cambio_direz_basso.push(-315); // limite basso seconda piatt
+    posizioni_cambio_direz_basso.push(-325); // limite basso seconda piatt
     posizioni_cambio_direz_basso.push(1695); // limite basso terza piatt
 }
 
@@ -39,6 +40,8 @@ function create_piatt_move(s, x, y) {
     PP.physics.set_allow_gravity(piatt_move_sing, false);
     PP.physics.set_velocity_y(piatt_move_sing, 0);
     piatt_move.push(piatt_move_sing);
+
+    // timer che blocca periodicamente la piattaforma finale in modo che non si muova se la pedana a presisone non è premuta
 
     if (piatt_move.length == 3) {
         PP.timers.add_timer(s, 1000, bloccamento, true);
@@ -130,6 +133,7 @@ function inizio_salita(s){
 }
 
 function attiva_piatt_move(s, obj1, obj2) {
+    
     blocco_piatt_move = false;
     if (620 > piatt_move[2].geometry.y < 1695 && PP.physics.get_velocity_y(piatt_move[2]) == 0){
         if (verso_lalto == false){

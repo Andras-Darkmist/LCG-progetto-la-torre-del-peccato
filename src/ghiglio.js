@@ -31,7 +31,6 @@ function create_ghiglio(s, x, y) {
 
     let i = (ghigliottine.length) - 1;
 
-    console.log("ses")
     let lama;
     lama = PP.assets.image.add(s, img_lama, ghigliottine[i].geometry.x, ghigliottine[i].geometry.y - 345, 0.5, 0.5);
     lama.geometry.scale_x = 4.5;

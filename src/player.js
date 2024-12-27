@@ -37,7 +37,7 @@ function preload_player(s) {
 }
 
 function create_player(s) {
-    player = PP.assets.sprite.add(s, img_player, 10690, 1490, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 5740, -1090, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -48,10 +48,6 @@ function create_player(s) {
 }
 
 function player_update(s) {
-
-    // per capire le misure del livello
-    //console.log(player.geometry.x)
-    //console.log(player.geometry.y)
 
     //il giocatore inizia ad essere seguito dalla camera
 
@@ -174,17 +170,19 @@ function player_update(s) {
 // FUNZIONE PER IL SALTO IN COLLISIONE
 
 function salto_si(s, obj1, obj2) {
-    // if necessario per impedire che si possa saltare anche toccando il lato degli oggetti
     
+    // if necessario per impedire che si possa saltare anche toccando il lato degli oggetti
+
     /*console.log("giocatore_bosy", player.geometry.body_y);
     console.log("cassa body", casse[0].geometry.body_y);
     
     console.log("giocatore", player.geometry.y);
     console.log("cassa", casse[0].geometry.y);*/
-
+    if (jump_disable != false) {
         if ((obj2).geometry.body_y >= ((obj1).geometry.body_y - 1)) {
             jump_disable = false;
         }
+    }
 
     // questa parte della funzione permette di spingere la cassa un po' più forte e quindi più lontano quando si dasha
     // sostanzialmente sospende temporaneamente il drag delle casse nel momento in cui avviene la collisione

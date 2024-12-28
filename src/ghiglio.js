@@ -6,7 +6,7 @@ let lame = [];
 let blocco_temporaneo_lama = []; // permette di bloccare le lame dopo che si è già attivata in modo che non possa riscendere prima di essere tornata al suo posto
 
 let distanza_scatto = 120;
-let velocità_lama_giu = 600;
+let velocità_lama_giu = 550;
 let velocità_lama_su = -400;
 
 
@@ -15,8 +15,8 @@ function preload_ghiglio(s) {
     numero_ghiglio = [];
     lame = [];
 
-    img_ghiglio = PP.assets.image.load(s, "assets/immagini/ghiglio.png", 150, 156);
-    img_lama = PP.assets.image.load(s, "assets/immagini/carata.jpg");
+    img_ghiglio = PP.assets.image.load(s, "assets/immagini/ghiglio2.PNG", 150, 156);
+    img_lama = PP.assets.image.load(s, "assets/immagini/Lamaghiglio.PNG");
     
     for (let i = 0; i < ghigliottine.length; i++) {
         blocco_temporaneo_lama[i] = false;
@@ -24,22 +24,22 @@ function preload_ghiglio(s) {
 }
 
 function create_ghiglio(s, x, y) {
-    let ghiglio = PP.assets.image.add(s, img_ghiglio, x, y, 0.5, 0.5);
-    PP.physics.add(s, ghiglio, PP.physics.type.STATIC);
-    ghiglio.geometry.body_y = 480;
-    ghigliottine.push(ghiglio);
-
-    let i = (ghigliottine.length) - 1;
-
     let lama;
-    lama = PP.assets.image.add(s, img_lama, ghigliottine[i].geometry.x, ghigliottine[i].geometry.y - 345, 0.5, 0.5);
-    lama.geometry.scale_x = 4.5;
-    lama.geometry.scale_y = 4.5;
+    lama = PP.assets.image.add(s, img_lama, x, y - 245, 0.5, 0.5);
+    //lama.geometry.scale_x = 4.5;
+    //lama.geometry.scale_y = 4.5;
     PP.physics.add(s, lama, PP.physics.type.DYNAMIC);
     PP.physics.set_allow_gravity(lama, false);
     PP.physics.set_immovable(lama, true);
     blocco_temporaneo_lama.push(false);
     lame.push(lama);
+
+    let ghiglio = PP.assets.image.add(s, img_ghiglio, x, y, 0.5, 0.5);
+    PP.physics.add(s, ghiglio, PP.physics.type.STATIC);
+    ghiglio.geometry.body_y = 550;
+    ghigliottine.push(ghiglio);
+
+    let i = (ghigliottine.length) - 1;
 }
 
 function update_ghiglio(s) {
@@ -53,7 +53,7 @@ function update_ghiglio(s) {
             //console.log(numero_ghiglio);
         }
 
-        if (lame[i].geometry.y <= 20 && PP.physics.get_velocity_y(lame[i]) != velocità_lama_giu){
+        if (lame[i].geometry.y <= 153 && PP.physics.get_velocity_y(lame[i]) != velocità_lama_giu){
             blocco_temporaneo_lama[i] = false;
             PP.physics.set_velocity_y(lame[i], 0);
         }

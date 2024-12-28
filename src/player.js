@@ -181,6 +181,7 @@ function salto_si(s, obj1, obj2) {
     if (jump_disable != false) {
         if ((obj2).geometry.body_y >= ((obj1).geometry.body_y - 1)) {
             jump_disable = false;
+            console.log (obj2.geometry.x);
         }
     }
 

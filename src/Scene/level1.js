@@ -301,9 +301,9 @@ function create (s) {
     create_piatt_move (s, 6350, -955);
     create_piatt_move (s, 11600, 1570);
     //create_piatt_move2 (s, 5780, -450);  potenzialmente da silurare permanentemente
-    create_ghiglio(s, 8025, 380);
-    create_ghiglio(s, 8575, 380);
-    create_ghiglio(s, 9125, 380);
+    create_ghiglio(s, 8025, 398);
+    create_ghiglio(s, 8575, 398);
+    create_ghiglio(s, 9125, 398);
     
     create_Lanciatore(s, 1500, 450);
     create_Lanciatore(s, 4650, 450);
@@ -411,26 +411,26 @@ function create (s) {
     for (let i = 0; i < casse.length; i++) {
         PP.physics.add_collider_f(s, player, casse[i], salto_si);
 
-        PP.physics.add_collider_f(s, casse[i], pavimento_1, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_2, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_3, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_4, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_5, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_6, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_7, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_8, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_9, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_10, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_11, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_12, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_13, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_14, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_15, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_16, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_17, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_18, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_19, salto_si);
-        PP.physics.add_collider_f(s, casse[i], pavimento_20, salto_si);
+        PP.physics.add_collider(s, casse[i], pavimento_1);
+        PP.physics.add_collider(s, casse[i], pavimento_2);
+        PP.physics.add_collider(s, casse[i], pavimento_3);
+        PP.physics.add_collider(s, casse[i], pavimento_4);
+        PP.physics.add_collider(s, casse[i], pavimento_5);
+        PP.physics.add_collider(s, casse[i], pavimento_6);
+        PP.physics.add_collider(s, casse[i], pavimento_7);
+        PP.physics.add_collider(s, casse[i], pavimento_8);
+        PP.physics.add_collider(s, casse[i], pavimento_9);
+        PP.physics.add_collider(s, casse[i], pavimento_10);
+        PP.physics.add_collider(s, casse[i], pavimento_11);
+        PP.physics.add_collider(s, casse[i], pavimento_12);
+        PP.physics.add_collider(s, casse[i], pavimento_13);
+        PP.physics.add_collider(s, casse[i], pavimento_14);
+        PP.physics.add_collider(s, casse[i], pavimento_15);
+        PP.physics.add_collider(s, casse[i], pavimento_16);
+        PP.physics.add_collider(s, casse[i], pavimento_17);
+        PP.physics.add_collider(s, casse[i], pavimento_18);
+        PP.physics.add_collider(s, casse[i], pavimento_19);
+        PP.physics.add_collider(s, casse[i], pavimento_20);
 
         PP.physics.add_collider(s, casse[i], scalino_vert_1);
         PP.physics.add_collider(s, casse[i], scalino_vert_2);

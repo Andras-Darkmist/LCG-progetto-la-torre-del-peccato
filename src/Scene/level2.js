@@ -36,11 +36,11 @@ function preload (s) {
     preload_piatt_move_level2 (s);
     preload_piatt_move_orizz (s);
 
-    pavimento1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma_Tavola disegno 1.png");
-    pavimento2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-03.png");
-    pavimento2_90 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-03 - Copia.png");
-    pavimento3 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-02.png");
-    scala1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-05.png");
+    pavimento1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma_Tavola disegno 1V.png");
+    pavimento2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-03V.png");
+    pavimento2_90 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-03 - CopiaV.png");
+    pavimento3 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-02V.png");
+    scala1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-05V.png");
     scala2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-04.png");
     img_background = PP.assets.image.load(s, "Assets/Immagini/natura morta.jpg");
     spine_img = PP.assets.image.load(s, "Assets/Immagini/Spine.PNG");
@@ -141,6 +141,8 @@ function create (s) {
     PP.physics.add(s, floor14, PP.physics.type.STATIC);
     create_lettera(s, 8800, -200);
 
+    let floor19 = PP.assets.image.add(s, pavimento3, 8350, 250, 0, 0);
+    PP.physics.add(s, floor19, PP.physics.type.STATIC);
     let floor15 = PP.assets.image.add(s, pavimento1, 8650, 250, 0, 0);
     PP.physics.add(s, floor15, PP.physics.type.STATIC);
     
@@ -253,7 +255,7 @@ function create (s) {
         PP.physics.add_collider(s, floor16, casse[i]);
         PP.physics.add_collider(s, floor17, casse[i]);
         PP.physics.add_collider(s, floor18, casse[i]);
-
+        PP.physics.add_collider(s, floor19, casse[i]);
 
         for (let g = 0; g < casse.length; g++) {
             PP.physics.add_collider(s, casse[g], casse[i]);
@@ -306,6 +308,7 @@ function create (s) {
         PP.physics.add_collider(s, floor16, casse_generaider1[i]);
         PP.physics.add_collider(s, floor17, casse_generaider1[i]);
         PP.physics.add_collider(s, floor18, casse_generaider1[i]);
+        PP.physics.add_collider(s, floor19, casse_generaider1[i]);
 
         for (let g = 0; g < casse_generaider1.length; g++) {
             PP.physics.add_collider(s, casse_generaider1[g], casse_generaider1[i]);
@@ -329,6 +332,7 @@ function create (s) {
         PP.physics.add_collider(s, floor16, casse_generaider3[i]);
         PP.physics.add_collider(s, floor17, casse_generaider3[i]);
         PP.physics.add_collider(s, floor18, casse_generaider3[i]);
+        PP.physics.add_collider(s, floor19, casse_generaider3[i]);
 
         for (let g = 0; g < casse_generaider3.length; g++) {
             PP.physics.add_collider(s, casse_generaider3[g], casse_generaider3[i]);
@@ -399,6 +403,7 @@ function create (s) {
     PP.physics.add_collider_f(s, player, floor6, salto_si);
     PP.physics.add_collider_f(s, player, floor7, salto_si);
     PP.physics.add_collider_f(s, player, floor8, salto_si);
+    PP.physics.add_collider_f(s, player, floor11, salto_si);
     PP.physics.add_collider_f(s, player, floor12, salto_si);
     PP.physics.add_collider_f(s, player, floor13, salto_si);
     PP.physics.add_collider_f(s, player, floor14, salto_si);
@@ -406,10 +411,12 @@ function create (s) {
     PP.physics.add_collider_f(s, player, floor16, salto_si);
     PP.physics.add_collider_f(s, player, floor17, salto_si);
     PP.physics.add_collider_f(s, player, floor18, salto_si);
+    PP.physics.add_collider_f(s, player, floor19, salto_si);
     PP.physics.add_collider_f(s, player, piatt_move_sing_level2, salto_si);
     
     PP.physics.add_collider_f(s, player, spine1, danno_caduta);
     PP.physics.add_collider_f(s, player, spine2, danno_caduta);
+    PP.physics.add_collider_f(s, player, spine3, danno_caduta);
     function danno_caduta (s) {
         vita_persa(s);
         player.geometry.x = 5300;
@@ -469,6 +476,10 @@ function update (s) {
     update_piatt_move_level2(s);
     update_piatt_move_orizz(s);
     //console.log(move_disable);
+    if (player.geometry.x >= 10000)
+    {
+        PP.camera.start_follow(s, player, -235, 350)
+    }
 }
 
 function destroy (s) {

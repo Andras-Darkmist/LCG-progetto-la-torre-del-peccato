@@ -7,17 +7,17 @@ function preload_generatore2 (s){
 }
 
 function create_generatore2 (s){
-    generatore2 = PP.assets.image.add(s, img_generatore2, 5300, 1200, 0, 0);
+    generatore2 = PP.assets.image.add(s, img_generatore2, 6000, 1200, 0, 0);
     PP.physics.add(s, generatore2, PP.physics.type.DYNAMIC);
     PP.physics.set_immovable(generatore2, true);
     PP.physics.set_allow_gravity(generatore2, false);
 }
 
 function update_generatore2 (s) {
-    if (generatore2.geometry.x <= 5300) {
+    if (generatore2.geometry.x <= 6000) {
         PP.physics.set_velocity_x(generatore2, 500);
     }
-    if (generatore2.geometry.x >= 6000) {
+    if (generatore2.geometry.x >= 6700) {
         PP.physics.set_velocity_x(generatore2, -500);
     }
 }

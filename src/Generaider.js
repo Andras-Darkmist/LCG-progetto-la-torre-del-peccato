@@ -3,11 +3,11 @@ let generatore;
 let timer_gener = false;
 
 function preload_generatore (s){
-    img_generatore = PP.assets.image.load(s, "assets/immagini/porta1.png", 150, 156);
+    img_generatore = PP.assets.image.load(s, "assets/immagini/Generaider.PNG", 150, 156);
 }
 
 function create_generatore (s){
-    generatore = PP.assets.image.add(s, img_generatore, 800, 100, 0, 0);
+    generatore = PP.assets.image.add(s, img_generatore, 800, 130, 0, 0);
     PP.physics.add(s, generatore, PP.physics.type.DYNAMIC);
     PP.physics.set_immovable(generatore, true);
     PP.physics.set_allow_gravity(generatore, false);

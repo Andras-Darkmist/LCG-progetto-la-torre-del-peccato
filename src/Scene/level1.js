@@ -30,10 +30,9 @@ let pedana3;
 let chiusura_porta_1 = true;
 let chiusura_porta_finale = true;
 
-let overlap_sotto;
 let collider_sopra;
-let overlap_casse_sotto;
 let collider_casse_sopra = [];
+let collider_porta1 = true;
 
 function preload (s) {
     collider_casse_sopra = [];
@@ -67,11 +66,13 @@ function preload (s) {
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
 // animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
 // la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so perché,   
-// problema funzione salto solo da sopra agli oggetti che con casse non va,      salto infinito sempre non so perché
+// problema funzione salto solo da sopra agli oggetti che con casse non va
 // piattaforme mobili non sono sincronizzate bene e il sistema per renderle attraversabili da sotto non funziona
 
-// DA INSERIRE: proiettili spostano casse, lanciatore alla fine spara anche da più distante,
-    // modo di rendere immateriale la porta, sostituire carta di quadri con picche,
+// DA INSERIRE: proiettili spostano casse,
+    // drop monete dei nemici,
+    // cambio tra livelli, modificare game over per far ripartire dal secondo livello e non dal primo se ci si muore, menù iniziale placeholder per ora
+    // vereimmagini lettere che ora ono placeholder, da cambiare png porta e portaaperta
 
 function create (s) {
 
@@ -241,23 +242,22 @@ function create (s) {
 
     //prime scale
 
-    scala_1 = PP.shapes.rectangle_add(s, 1850, 470, 150, 300, "0xfab304", 1);
+    let scala_1 = PP.assets.image.add(s, scala1, 1850, 470, 0, 0);
     PP.physics.add(s, scala_1, PP.physics.type.STATIC);
     
-    scala_2 = PP.shapes.rectangle_add(s, 2000, 545, 150, 150, "0xfab304", 1);
+    let scala_2 = PP.assets.image.add(s, scala2, 2000, 320, 0, 0);
     PP.physics.add(s, scala_2, PP.physics.type.STATIC);
-    
-    scala_3 = PP.shapes.rectangle_add(s, 9900, 545, 150, 150, "0xfab304", 1);
-    PP.physics.add(s, scala_3, PP.physics.type.STATIC);
 
     //scale fine livello
+    
+    let scala_3 = PP.assets.image.add(s, scala1, 9900, 470, 0, 0);
+    PP.physics.add(s, scala_3, PP.physics.type.STATIC);
 
-    scala_4 = PP.shapes.rectangle_add(s, 10050, 470, 150, 300, "0xfab304", 1);
+    let scala_4 = PP.assets.image.add(s, scala2, 10050, 320, 0, 0);
     PP.physics.add(s, scala_4, PP.physics.type.STATIC);
     
-    scala_5 = PP.shapes.rectangle_add(s, 10200, 470, 150, 300, "0xfab304", 1);
+    let scala_5 = PP.assets.image.add(s, scala2, 10200, 320, 0, 0);
     PP.physics.add(s, scala_5, PP.physics.type.STATIC);
-
 
     // PEDANE A PRESSIONE
 
@@ -316,6 +316,7 @@ function create (s) {
     //player
     
     PP.physics.add_collider(s, player, muro_iniziale);
+
     for (let g = 0; g < porte.length; g++) {
         PP.physics.add_collider(s, player, porte[g]);
     }
@@ -457,6 +458,7 @@ function create (s) {
         PP.physics.add_collider(s, casse[i], scalino_orizz_15);
 
         PP.physics.add_collider(s, casse[i], scala_1);
+        PP.physics.add_collider_f(s, casse[i], pedana1, apertura_porta);
         PP.physics.add_collider_f(s, casse[i], pedana2, attiva_piatt_move);
         PP.physics.add_collider_f(s, casse[i], pedana3, apertura_porta_finale);
 
@@ -465,9 +467,6 @@ function create (s) {
             PP.physics.add_collider(s, casse[g], casse[i]);
             }
         }
-    }
-    for (let g = 0; g < casse.length; g++) {
-        PP.physics.add_collider_f(s, casse[g], pedana1, apertura_porta);
     }
 
 
@@ -548,6 +547,7 @@ function create (s) {
 }
 
 function update (s) {
+
     bg.tile_geometry.x = PP.camera.get_scroll_x(s) * 1/(2+1);
     slot_nuove.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
     colonne_davanti.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
@@ -562,6 +562,7 @@ function update (s) {
     update_piatt (s);
     update_piatt_move (s);
     update_ghiglio(s);
+    update_lettere(s);
 
     update_Lanciatore(s);
     update_slot_animata(s);
@@ -571,16 +572,19 @@ function update (s) {
     // per chiudere la porta
 
     if(chiusura_porta_1 == false){
-        porte[0].geometry.y = 40;
-        porte[0].geometry.body_y = 40;
+        porte[0].geometry.y = -3000;
+        porte[0].geometry.body_y = -3000;
+        porte_aperte[0].geometry.y = 320;
     }
 
     if(chiusura_porta_1 == true){
         porte[0].geometry.y = 320;
         porte[0].geometry.body_y = 320;
+        porte_aperte[0].geometry.y = -3000;
     }
-
+    
     chiusura_porta_1 = true;
+
 
     // per porta finale
     
@@ -639,10 +643,9 @@ function destroy (s) {
 
 function apertura_porta(s, obj1, obj2) {
     chiusura_porta_1 = false;
-
     // implementare funzione per il salto
 
-    if ((player.geometry.x >= (obj2.geometry.x - 166) && player.geometry.x <= (obj2.geometry.x) + 166) && player.geometry.y >= (obj2.geometry.y - 20)){
+    if (obj1 == player){
         jump_disable = false;
     }
 }
@@ -652,10 +655,9 @@ function apertura_porta_finale(s, obj1, obj2) {
 
     // implementare funzione per il salto
 
-    if ((player.geometry.x >= (obj2.geometry.x - 166) && player.geometry.x <= (obj2.geometry.x) + 166) || player.geometry.y >= (obj2.geometry.y - 20)){
+    if (obj1 == player){
         jump_disable = false;
     }
-    console.log(PP.assets.pivot_get_x(player));
 }
 
 function nulla(s){

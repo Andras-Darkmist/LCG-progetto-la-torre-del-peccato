@@ -54,8 +54,8 @@ function configure_Lanciatore_animations(s) {
 
 function kill_lanciatore(s, obj1, obj2) {
     let controllo; 
-    if (dash_disable == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)) {
-        console.log("sus")
+    if (eseguendo_dash == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)) {
+        //console.log("sus")
         for (g = 0; g < lanciatori.length; g++){
             if (obj2 == lanciatori[g]){
                 vita_lanciatore[g] = false;
@@ -75,7 +75,7 @@ function kill_lanciatore(s, obj1, obj2) {
         }
         // questo for per ogni lanciatore in mappa controlla se la collisione è avvenuta con lui, poi dstrugge quello con cui la collisione è effettivamente avventuta
 
-        console.log(vita_lanciatore[i]);
+        //console.log(vita_lanciatore[i]);
         let x = 1200;
         let y = 600;
         let moneta = PP.assets.image.add(s, img_moneta, (x), (y), 0, 0)
@@ -84,7 +84,7 @@ function kill_lanciatore(s, obj1, obj2) {
     }
 
     else if (curr_anim != "die" && invincibilità == false && vita_lanciatore[controllo] == true){
-        console.log("sus danno");
+        //console.log("sus danno");
         vita_persa (s);
     }
 }
@@ -111,7 +111,6 @@ function morte_carta(s, obj1, obj2) {
 
 function attack(s) {
     i = enemy_check.shift();
-    console.log(i);
     if (vita_lanciatore[i] == false) {
         return
     }
@@ -165,7 +164,6 @@ function update_Lanciatore(s) {
             }
             if (vita_lanciatore[i] == false)
                 {
-                    console.log("BORTIS");
                     next_anim_Lanciatore = "Mortis";
                 }
             if (next_anim_Lanciatore != curr_anim_Lanciatore[i]) {

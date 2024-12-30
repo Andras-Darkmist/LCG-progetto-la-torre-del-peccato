@@ -12,6 +12,7 @@ move_disable = false;
 dash_disable = false;
 jump_disable = false;
 eseguendo_dash = false;
+let invincibilità = false;
 
 let curr_anim = "stop"; // Questa variabile contiene l'animazione corrente
 
@@ -37,7 +38,7 @@ function preload_player(s) {
 }
 
 function create_player(s) {
-    player = PP.assets.sprite.add(s, img_player, 0, 0, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 3000, 500, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -181,7 +182,6 @@ function salto_si(s, obj1, obj2) {
     if (jump_disable != false) {
         if ((obj2).geometry.body_y >= ((obj1).geometry.body_y - 1)) {
             jump_disable = false;
-            console.log (obj2.geometry.x);
         }
     }
 
@@ -190,7 +190,6 @@ function salto_si(s, obj1, obj2) {
 
     for (let i = 0; i < casse.length; i++) {
         if (obj2 == casse[i] && eseguendo_dash == true) {
-            console.log("sus")
             PP.physics.set_drag_x(casse[i], 0);
             if (player.geometry.flip_x == true) {
                 PP.physics.set_drag_x(casse[i], 0);
@@ -273,8 +272,6 @@ function game_over(s) {
     PP.scenes.start("morte");
 }
 
-
-let invincibilità = false;
 
 function danno(s) {
     danno_on = true;

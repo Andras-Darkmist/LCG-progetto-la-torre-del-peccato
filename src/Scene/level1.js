@@ -70,7 +70,7 @@ function preload (s) {
 // piattaforme mobili non sono sincronizzate bene e il sistema per renderle attraversabili da sotto non funziona
 
 // DA INSERIRE: proiettili spostano casse,
-    // modo di rendere immateriale la porta, comparsa lettere alla raccolta, drop monete dei nemici, cambiare scale in gior per il livello con ipng, 
+    // drop monete dei nemici,
     // cambio tra livelli, modificare game over per far ripartire dal secondo livello e non dal primo se ci si muore, menù iniziale placeholder per ora
     // vereimmagini lettere che ora ono placeholder, da cambiare png porta e portaaperta
 
@@ -242,23 +242,22 @@ function create (s) {
 
     //prime scale
 
-    scala_1 = PP.shapes.rectangle_add(s, 1850, 470, 150, 300, "0xfab304", 1);
+    let scala_1 = PP.assets.image.add(s, scala1, 1850, 470, 0, 0);
     PP.physics.add(s, scala_1, PP.physics.type.STATIC);
     
-    scala_2 = PP.shapes.rectangle_add(s, 2000, 545, 150, 150, "0xfab304", 1);
+    let scala_2 = PP.assets.image.add(s, scala2, 2000, 320, 0, 0);
     PP.physics.add(s, scala_2, PP.physics.type.STATIC);
-    
-    scala_3 = PP.shapes.rectangle_add(s, 9900, 545, 150, 150, "0xfab304", 1);
-    PP.physics.add(s, scala_3, PP.physics.type.STATIC);
 
     //scale fine livello
+    
+    let scala_3 = PP.assets.image.add(s, scala1, 9900, 470, 0, 0);
+    PP.physics.add(s, scala_3, PP.physics.type.STATIC);
 
-    scala_4 = PP.shapes.rectangle_add(s, 10050, 470, 150, 300, "0xfab304", 1);
+    let scala_4 = PP.assets.image.add(s, scala2, 10050, 320, 0, 0);
     PP.physics.add(s, scala_4, PP.physics.type.STATIC);
     
-    scala_5 = PP.shapes.rectangle_add(s, 10200, 470, 150, 300, "0xfab304", 1);
+    let scala_5 = PP.assets.image.add(s, scala2, 10200, 320, 0, 0);
     PP.physics.add(s, scala_5, PP.physics.type.STATIC);
-
 
     // PEDANE A PRESSIONE
 

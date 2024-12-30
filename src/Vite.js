@@ -7,13 +7,13 @@ function preload_vite (s) {
     PP.game_state.set_variable ("Vite", 3);
     vite_rimanenti = 2;
     cuori = [];
-    img_cuore = PP.assets.image.load(s, "assets/immagini/carata.jpg", 150, 156);
+    img_cuore = PP.assets.image.load(s, "assets/immagini/Carta_vita.PNG", 150, 156);
 }
 
 function create_vite(s) {
     for (let i=0; i<PP.game_state.get_variable("Vite"); i++)
     {
-         let cuore = PP.assets.image.add(s, img_cuore, 100 +i*30, 20, 0, 0);
+         let cuore = PP.assets.image.add(s, img_cuore, 50 +i*50, 20, 0, 0);
          cuore.tile_geometry.scroll_factor_x = 0;
          cuore.tile_geometry.scroll_factor_y = 0;
         cuori.push(cuore);

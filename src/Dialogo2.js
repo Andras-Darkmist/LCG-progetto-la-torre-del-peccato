@@ -35,7 +35,7 @@ function collision_Dialogo2 (s, Asmodeo, player) {
         PP.physics.set_allow_gravity(player, false);
         lettura_testo_2 = true;
         jump_disable = true;
-        dash_disable = true;c
+        dash_disable = true;
         move_disable = true;
         invincibilità = true;
         next_anim = "stop";
@@ -86,5 +86,4 @@ function update_Dialogo2(s) {
 
 function reenable_testo2 (s) {
     fine_lettura_testo_2 = false;
-    lettura_testo_2 = true;
 }

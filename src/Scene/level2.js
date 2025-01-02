@@ -11,7 +11,7 @@ let scala2;
 let pedana2;
 let pedana3;
 let pedana4;
-
+let pulsante;
 let spine_img;
 
 
@@ -46,6 +46,7 @@ function preload (s) {
     scala2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-04.png");
     img_background = PP.assets.image.load(s, "Assets/Immagini/natura morta.jpg");
     spine_img = PP.assets.image.load(s, "Assets/Immagini/Spine.PNG");
+    pulsante = PP.assets.image.load(s, "Assets/Immagini/Pulsante.PNG");
 }
 
 function create (s) {
@@ -435,15 +436,15 @@ function create (s) {
     PP.physics.add_collider_f(s, player, buco_morte3, danno_caduta2);
     PP.physics.add_collider_f(s, player, buco_morte4, danno_caduta2);
 
-    pedana2 = PP.shapes.rectangle_add(s, 1200, 939, 150, 40, "0xfbc456", 1);
+    pedana2 =  PP.assets.image.add(s, pulsante, 1200, 770+148, 0, 0); 
     PP.physics.add(s, pedana2, PP.physics.type.STATIC);
     PP.physics.add_collider_f(s, player, pedana2, generatore_crea_cassa);
 
-    pedana3 = PP.shapes.rectangle_add(s, 5400, 1665, 150, 40, "0xfbc456", 1);
+    pedana3 =  PP.assets.image.add(s, pulsante, 5400, 1648, 0, 0);
     PP.physics.add(s, pedana3, PP.physics.type.STATIC);
     PP.physics.add_collider_f(s, player, pedana3, generatore_crea_cassa2);
     
-    pedana4 = PP.shapes.rectangle_add(s, 11150, 565, 150, 40, "0xfbc456", 1);
+    pedana4 =  PP.assets.image.add(s, pulsante, 11150, 548, 0, 0); 
     PP.physics.add(s, pedana4, PP.physics.type.STATIC);
     PP.physics.add_collider_f(s, player, pedana4, generatore_crea_cassa3);
     //PP.physics.add_collider(s, player, piatt1);
@@ -470,6 +471,7 @@ function create (s) {
 }
 
 function update (s) {
+    update_lettere (s);
     update_Dialogo2 (s)
     update_score(s);
     player_update(s);

@@ -16,7 +16,9 @@ let spine_img;
 
 
 function preload (s) {
-
+    preload_Asmodeo_ologrammo (s);
+    preload_Dialogo2 (s);
+    
     preload_score (s);
     preload_lettera (s);
     preload_vite(s);
@@ -51,6 +53,9 @@ function create (s) {
     
     //zona iniziale
     PP.assets.image.add(s, img_background, 0, 0, 0, 0);
+
+    create_Asmodeo_ologrammo (s);
+    create_Dialogo2 (s);
 
     floor = PP.assets.image.add(s, pavimento1, 0, 620, 0, 0);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
@@ -199,7 +204,7 @@ function create (s) {
     
     create_player (s);
     //create_piatt (s);
-    create_cassa (s, 300, 200);
+    //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);
     create_cassa_generaider1 (s, 300, 1000);
     create_cassa_generaider1 (s, 300, 1000);
@@ -455,6 +460,7 @@ function create (s) {
 
 
     //nemici
+    PP.physics.add_collider_f(s, Asmodeo_ologrammo, player, collision_Dialogo2);
 
     create_score(s);
     create_vite(s);
@@ -464,7 +470,7 @@ function create (s) {
 }
 
 function update (s) {
-    
+    update_Dialogo2 (s)
     update_score(s);
     player_update(s);
     update_cassa (s);

@@ -37,13 +37,13 @@ function preload_player(s) {
     img_player = PP.assets.sprite.load_spritesheet(s, "assets/immagini/Elia_spritehseet_1.PNG", 172, 200);
 }
 
-function create_player(s) {
-    player = PP.assets.sprite.add(s, img_player, 0, 0, 0.5, 1);
+function create_player(s, x, y) {
+    player = PP.assets.sprite.add(s, img_player, x, y, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
     //disattivo il blocco del movimento creato dalla morte  
-
+    PP.camera.start_follow(s, player, -235, 260);
     move_disable = false;
     dash_disable = false;
 }
@@ -55,10 +55,10 @@ function player_update(s) {
     let pos_y_pla = player.geometry.y - 350;
     let pos_x_pla = player.geometry.x - 645;
 
-    if (player.geometry.x >= 400) {
+    /*if (player.geometry.x >= 400) {
         PP.camera.start_follow(s, player, -235, 260)
-    }
-
+    }*/
+       // PP.camera.start_follow(s, player, -235, 260)
     //prova per sistemare problema della camera
 
     /*if(player.geometry.x >= 400) {
@@ -76,9 +76,9 @@ function player_update(s) {
         }
     }*/
 
-    if (player.geometry.x < 400) {
+    /*if (player.geometry.x < 400) {
         PP.camera.set_follow_offset(s, (pos_x_pla), (pos_y_pla))
-    }
+    }*/
 
 
     // Creo una variabile che conterra' l'animazione futura

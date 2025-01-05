@@ -13,6 +13,8 @@ let pedana3;
 let pedana4;
 let pulsante;
 let spine_img;
+let ILBUCO;
+let ILBUCOscenico;
 
 
 function preload (s) {
@@ -47,6 +49,8 @@ function preload (s) {
     img_background = PP.assets.image.load(s, "Assets/Immagini/natura morta.jpg");
     spine_img = PP.assets.image.load(s, "Assets/Immagini/Spine.PNG");
     pulsante = PP.assets.image.load(s, "Assets/Immagini/Pulsante.PNG");
+    ILBUCO = PP.assets.image.load(s, "Assets/Immagini/Buco senza fonto (oggetto effettivo).PNG");
+    ILBUCOscenico = PP.assets.image.load(s, "Assets/Immagini/Buco senza fondo (overlay).PNG");
 }
 
 function create (s) {
@@ -156,14 +160,10 @@ function create (s) {
     let floor13 = PP.assets.image.add(s, pavimento1, 9300, 250, 0, 0);
     PP.physics.add(s, floor13, PP.physics.type.STATIC);
 
-    let buco_morte = PP.assets.image.add(s, pavimento1, 5800, 1000, 0, 0);
+    let buco_morte = PP.assets.image.add(s, ILBUCO, 5800, 800, 0, 0);
+    buco_morte.geometry.scale_y = 0.5;
     PP.physics.add(s, buco_morte, PP.physics.type.STATIC);
-    let buco_morte2 = PP.assets.image.add(s, pavimento1, 6450, 1000, 0, 0);
-    PP.physics.add(s, buco_morte2, PP.physics.type.STATIC);
-    let buco_morte3 = PP.assets.image.add(s, pavimento1, 7100, 1000, 0, 0);
-    PP.physics.add(s, buco_morte3, PP.physics.type.STATIC);
-    let buco_morte4 = PP.assets.image.add(s, pavimento1, 7750, 1000, 0, 0);
-    PP.physics.add(s, buco_morte4, PP.physics.type.STATIC);
+    
     
     //zona finale
     let scalin11 = PP.assets.image.add(s, pavimento2_90, 9950, 250, 0, 0);
@@ -203,7 +203,7 @@ function create (s) {
     create_generatore2 (s);
     create_generatore3 (s);
     
-    create_player (s);
+    create_player (s, 5200, 0);
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);
@@ -432,9 +432,6 @@ function create (s) {
     }
 
     PP.physics.add_collider_f(s, player, buco_morte, danno_caduta2);
-    PP.physics.add_collider_f(s, player, buco_morte2, danno_caduta2);
-    PP.physics.add_collider_f(s, player, buco_morte3, danno_caduta2);
-    PP.physics.add_collider_f(s, player, buco_morte4, danno_caduta2);
 
     pedana2 =  PP.assets.image.add(s, pulsante, 1200, 770+148, 0, 0); 
     PP.physics.add(s, pedana2, PP.physics.type.STATIC);
@@ -459,7 +456,8 @@ function create (s) {
     //casse
 
 
-
+    let buco_morte_effetto = PP.assets.image.add(s, ILBUCOscenico, 5800, 300, 0, 0);
+    buco_morte_effetto.geometry.scale_y = 0.5;
     //nemici
     PP.physics.add_collider_f(s, Asmodeo_ologrammo, player, collision_Dialogo2);
 
@@ -474,6 +472,7 @@ function update (s) {
     update_lettere (s);
     update_Dialogo2 (s)
     update_score(s);
+    update_score_monete(s);
     player_update(s);
     update_cassa (s);
     update_generatore(s);

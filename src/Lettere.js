@@ -30,15 +30,16 @@ function create_lettera (s, x, y){
 }
 
 function collision_lettera (s, lettera, player) {
-    for (let i = 0; i < casse.length; i++){
+    /*for (let i = 0; i < casse.length; i++){
         if (lettera == Lettere[i]){
             lettera_1 = PP.assets.image.add(s, testo_lettere[i], player.geometry.x + 250, player.geometry.y - 150, 0.5, 0.5);
         }
-    }
+    }*/
     let prev_score = PP.game_state.get_variable("Lettere");
     PP.game_state.set_variable("Lettere", prev_score+1);
     PP.assets.destroy(lettera);
 
+    lettera_1 = PP.assets.image.add(s, testo_lettere[prev_score], player.geometry.x + 250, player.geometry.y - 150, 0.5, 0.5);
     PP.physics.set_velocity_x(player, 0);
     PP.physics.set_velocity_y(player, 0);
     PP.physics.set_allow_gravity(player, false);

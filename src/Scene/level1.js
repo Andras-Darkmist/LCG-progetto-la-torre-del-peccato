@@ -1,4 +1,8 @@
 let bg;
+let sfondott0;
+let sfondott1;
+let sfondott2;
+let sfondott3;
 let img_background;
 let img_colonne;
 let img_slot_nuove;
@@ -31,6 +35,7 @@ let chiusura_porta_1 = true;
 let chiusura_porta_finale = true;
 
 let collider_sopra;
+let collider_Asmodeo = true;
 let collider_casse_sopra = [];
 let collider_porta1 = true;
 
@@ -50,6 +55,9 @@ function preload (s) {
     preload_Lanciatore(s);
     preload_slot(s);
 
+    preload_Asmodeo (s);
+    preload_Dialogo1 (s);
+
     img_background = PP.assets.image.load(s, "Assets/Immagini/Sfondo lvl1 copia.png");
     img_slot_nuove = PP.assets.image.load(s, "Assets/Immagini/slot nuove copia.png");
     img_colonne = PP.assets.image.load(s, "Assets/Immagini/colonne davanti copia.png");
@@ -61,6 +69,10 @@ function preload (s) {
     pavimento3_90 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-02 - Copia.png");
     scala1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-05.png");
     scala2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-04.png");
+    sfondott0 = PP.assets.image.load(s, "Assets/immagini/Livello1-sfondo metallico.png");
+    sfondott1 = PP.assets.image.load(s, "Assets/immagini/Sfondo tutorial 1.png");
+    sfondott2 = PP.assets.image.load(s, "Assets/immagini/Sfondo tutorial 2.png");
+    sfondott3 = PP.assets.image.load(s, "Assets/immagini/Sfondo tutorial 3.png");
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
@@ -75,6 +87,8 @@ function preload (s) {
     // vereimmagini lettere che ora ono placeholder, da cambiare png porta e portaaperta
 
 function create (s) {
+    
+
 
     bg = PP.assets.tilesprite.add(s, img_background, 0, 0, 2800, 380, 0, 0);
     bg.tile_geometry.scroll_factor_x = 0;
@@ -93,9 +107,20 @@ function create (s) {
     bg.geometry.scale_y = 1.7;
     //bg.tile_geometry.scroll_factor_y = 0;
     //pavimento
+    let bgtt0 = PP.assets.image.add(s, sfondott0, -3566, 0, 0, 0);
+    let bgtt1 = PP.assets.image.add(s, sfondott1, -2600, 0, 0, 0);
+    let bgtt2 = PP.assets.image.add(s, sfondott2, -1634, 0, 0, 0);
+    let bgtt3 = PP.assets.image.add(s, sfondott3, -688, 0, 0, 0);
 
-    create_score(s);
-    create_vite(s);
+    let pavimento_01 = PP.assets.image.add(s, pavimento1, -650, 620, 0, 0);
+    PP.physics.add(s, pavimento_01, PP.physics.type.STATIC);
+    let pavimento_02 = PP.assets.image.add(s, pavimento1, -1300, 620, 0, 0);
+    PP.physics.add(s, pavimento_02, PP.physics.type.STATIC);
+    let pavimento_03 = PP.assets.image.add(s, pavimento1, -1950, 620, 0, 0);
+    PP.physics.add(s, pavimento_03, PP.physics.type.STATIC);
+    let pavimento_04 = PP.assets.image.add(s, pavimento1, -2600, 620, 0, 0);
+    PP.physics.add(s, pavimento_04, PP.physics.type.STATIC);
+    
 
     // PAVIMENTO LIVELLO
 
@@ -239,7 +264,7 @@ function create (s) {
 
     //barriera inizio livello
 
-    muro_iniziale = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
+    muro_iniziale = PP.shapes.rectangle_add(s, -2600, 0, 1, 1280, "0x000000", 0);
     PP.physics.add(s, muro_iniziale, PP.physics.type.STATIC);
 
     //prime scale
@@ -284,7 +309,7 @@ function create (s) {
     create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s);
+    create_player (s, -2400, 450);
     create_cassa (s, 750, 450);
     create_cassa (s, 2550, 450);
     create_cassa (s, 4050, 360);
@@ -381,6 +406,10 @@ function create (s) {
     PP.physics.add_collider_f(s, player, pedana2, attiva_piatt_move);
     PP.physics.add_collider_f(s, player, pedana3, apertura_porta_finale);
     
+    PP.physics.add_collider_f(s, player, pavimento_01, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_02, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_03, salto_si);
+    PP.physics.add_collider_f(s, player, pavimento_04, salto_si);
 
     for (let i = 0; i < ghigliottine.length; i++) {
         PP.physics.add_collider_f(s, player, ghigliottine[i], salto_si);
@@ -544,9 +573,15 @@ function create (s) {
 
 
 
-    
+    create_score(s);
+    create_vite(s);
+
+    create_Asmodeo(s);
+    create_Dialogo1(s);
     configure_player_animations(s);
     configure_Lanciatore_animations(s);
+
+    PP.physics.add_collider_f(s, Asmodeo, player, collision_Dialogo1);
 }
 
 function update (s) {
@@ -573,6 +608,8 @@ function update (s) {
 
     manage_dash(s);
 
+    update_Dialogo1(s);
+    
     // per chiudere la porta
 
     if(chiusura_porta_1 == false){
@@ -621,6 +658,24 @@ function update (s) {
         }
     }
 
+    /*if (fine_lettura_testo_1 == false)
+    {
+        if (collider_Asmodeo != false) {
+            console.log("NON puoi passare");
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, Asmodeo, player, collision_Dialogo1))
+            PP.physics.add_collider_f(s, Asmodeo, player, collision_Dialogo1);
+            collider_Asmodeo = true;
+            
+        }    
+    }
+
+    else {
+        if (collider_Asmodeo !=true) {
+            console.log("puoi passare");
+            PP.physics.remove_collider_or_overlap(s, PP.physics.add_collider_f(s, Asmodeo, player, collision_Dialogo1));
+            collider_Asmodeo = false;
+        }
+    } */
 
     // if che permette alle casse di attraversare la piattaforma a fine livello da sotto ma non da sopra
     // ora quando la cassa g è sopra il pavimento la corrispondente nell'array collider casse sopra viene settato a true e il collider non viene continuamente ricreato

@@ -45,7 +45,7 @@ function create_player(s, x, y) {
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
     //disattivo il blocco del movimento creato dalla morte  
-    PP.camera.start_follow(s, player, -235, 260);
+    PP.camera.start_follow(s, player, -235, 230);
     move_disable = false;
     dash_disable = false;
 }

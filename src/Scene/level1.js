@@ -3,6 +3,7 @@ let sfondott0;
 let sfondott1;
 let sfondott2;
 let sfondott3;
+let transzionett;
 let img_background;
 let img_colonne;
 let img_slot_nuove;
@@ -76,6 +77,7 @@ function preload (s) {
     sfondott1 = PP.assets.image.load(s, "Assets/immagini/Sfondo tutorial 1.png");
     sfondott2 = PP.assets.image.load(s, "Assets/immagini/Sfondo tutorial 2.png");
     sfondott3 = PP.assets.image.load(s, "Assets/immagini/Sfondo tutorial 3.png");
+    transzionett = PP.assets.image.load(s, "Assets/immagini/Cambio zona.PNG");
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
@@ -339,6 +341,8 @@ function create (s) {
     create_Lanciatore(s, 9900, 250);
     create_slot_animata(s, 6600, 620);
 
+    let muro1 = PP.assets.image.add(s, transzionett, 130, 0, 0, 0);
+    
 
     
     //collider di tutte le cose

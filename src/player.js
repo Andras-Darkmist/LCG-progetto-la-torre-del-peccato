@@ -266,10 +266,16 @@ function morte(s) {
     console.log(next_anim);
     PP.assets.sprite.animation_play(player, next_anim);
     PP.timers.add_timer(s, 1000, game_over, false);
+    console.log(casse.lenght);
 }
 
 function game_over(s) {
-    PP.scenes.start("morte");
+    if (livello[0] == 1){
+        PP.scenes.start("morte");
+    }
+    else if (livello[0] == 2){
+        PP.scenes.start("morte2");
+    }
 }
 
 

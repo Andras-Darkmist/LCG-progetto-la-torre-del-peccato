@@ -39,6 +39,9 @@ let collider_Asmodeo = true;
 let collider_casse_sopra = [];
 let collider_porta1 = true;
 
+let livello = [];
+livello.push(1);
+
 function preload (s) {
     collider_casse_sopra = [];
 
@@ -76,15 +79,14 @@ function preload (s) {
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
-// animazione lanciatore è scoordinata rispetto a lancio effettivo carta, 
-// la pedana porta finale lv1 non permette di saltare quando ci si è sopra non so perché,   
-// problema funzione salto solo da sopra agli oggetti che con casse non va
-// piattaforme mobili non sono sincronizzate bene e il sistema per renderle attraversabili da sotto non funziona
+// animazione lanciatore è scoordinata rispetto a lancio effettivo carta,
+// problema funzione salto solo da sopra aagli oggetti permette di saltare anche quando si tocca la parte laterale superiore di questi
 
 // DA INSERIRE: proiettili spostano casse,
     // drop monete dei nemici,
-    // cambio tra livelli, modificare game over per far ripartire dal secondo livello e non dal primo se ci si muore, menù iniziale placeholder per ora
-    // vereimmagini lettere che ora ono placeholder, da cambiare png porta e portaaperta
+    // cambio tra livelli, modificare game over per far ripartire dal secondo livello se ci si muore, menù iniziale placeholder per ora
+    // vere immagini lettere che ora sono placeholder, da cambiare png porta e porta aperta
+    // sfondo livello 2 di luigi
 
 function create (s) {
     
@@ -717,10 +719,6 @@ function apertura_porta_finale(s, obj1, obj2) {
     if (obj1 == player){
         jump_disable = false;
     }
-}
-
-function nulla(s){
-    return;
 }
 
 function next_level (s) {

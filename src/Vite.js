@@ -20,14 +20,13 @@ function create_vite(s) {
     }
 }
 
-function vita_persa (s) {
+function vita_persa(s) {
     PP.assets.destroy(cuori[vite_rimanenti]);
     danno(s);
-    vite_rimanenti --;
+    vite_rimanenti--;
     let prev_score = PP.game_state.get_variable("Vite");
-    PP.game_state.set_variable("Vite", prev_score-1);
-    if (PP.game_state.get_variable("Vite")<=0)
-    {
+    PP.game_state.set_variable("Vite", prev_score - 1);
+    if (PP.game_state.get_variable("Vite") <= 0) {
         PP.assets.destroy(cuori[0]);
         morte(s);
         console.log(PP.game_state.get_variable("Vite"));

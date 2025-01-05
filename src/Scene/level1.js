@@ -74,6 +74,7 @@ function preload (s) {
     // drop monete dei nemici,
     // cambio tra livelli, modificare game over per far ripartire dal secondo livello se ci si muore, menù iniziale placeholder per ora
     // vere immagini lettere che ora sono placeholder, da cambiare png porta e porta aperta
+    // sfondo livello 2 di luigi
 
 function create (s) {
 

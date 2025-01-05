@@ -28,6 +28,18 @@ function create (s) {
         null,
         0.5,
         -2);
+
+        PP.shapes.text_styled_add(s, 
+            PP.game.config.canvas_width / 2,
+            PP.game.config.canvas_height / 4,
+            "Premi C per tornare al menù",
+            40,
+            "Helvetica",
+            "normal",
+            "0xFFFFFF",
+            null,
+            0.5,
+            -2);
 }
 
 function update (s) {
@@ -36,6 +48,11 @@ function update (s) {
         //riavvia la partita
         console.log("sus");
         PP.scenes.start("level2");
+        if(PP.interactive.kb.is_key_down(s, PP.key_codes.C)) {
+            //riavvia la partita
+            console.log("sus");
+            PP.scenes.start("Main_Menu");
+        }
     }
 }
 

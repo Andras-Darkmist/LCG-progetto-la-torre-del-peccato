@@ -12,7 +12,7 @@ function preload_piatt_move_orizz (s) {
     posizioni_cambio_direz_sinistra = [];
     posizioni_cambio_direz_destra = [];
     
-    img_piatt_move_orizz = PP.assets.image.load(s, "assets/immagini/Piattaforme/Piattaforma-02.png", 150, 156);
+    img_piatt_move_orizz = PP.assets.image.load(s, "assets/immagini/piatt_move_level2.png", 150, 156);
 
     posizioni_cambio_direz_sinistra.push(5950); // limite alto prima piatt
     posizioni_cambio_direz_destra.push(6750); // limite alto seconda piatt

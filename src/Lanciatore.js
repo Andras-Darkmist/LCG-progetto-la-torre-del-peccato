@@ -1,6 +1,7 @@
 let img_lanciatore;
 let lanciatori = [];
 let curr_anim_Lanciatore = [];
+let punti_lanciatori = [];
 let attack_check = [];
 let enemy_check = [];
 let img_carta;
@@ -34,6 +35,8 @@ function create_Lanciatore(s, x, y) {
     PP.physics.add(s, lanciatore, PP.physics.type.DYNAMIC);
     PP.physics.set_drag_x(lanciatore, 7000);
     lanciatori.push(lanciatore);
+    let monete_lanciatore = 1;
+    punti_lanciatori.push(monete_lanciatore);
 }
 
 function configure_Lanciatore_animations(s) {
@@ -54,6 +57,7 @@ function configure_Lanciatore_animations(s) {
 
 function kill_lanciatore(s, obj1, obj2) {
     let controllo; 
+    //let moneta_persa = true;
     if (eseguendo_dash == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800)) {
         //console.log("sus")
         for (g = 0; g < lanciatori.length; g++){
@@ -63,24 +67,37 @@ function kill_lanciatore(s, obj1, obj2) {
             }
         }
 
+        /*if (moneta_persa == true) {
+            let prev_score = PP.game_state.get_variable("Monete");
+            PP.game_state.set_variable("Monete", prev_score+1);
+            moneta_persa = false;
+        }*/
+
         PP.timers.add_timer(s, 500, distruzione, false);
 
         function distruzione (s) {
+            /*let prev_score = PP.game_state.get_variable("Monete");
+            PP.game_state.set_variable("Monete", prev_score+1);*/
             PP.assets.destroy(obj2);
+            
             for (g = 0; g < lanciatori.length; g++){
                 if (obj2 == lanciatori[g]){
                     morte_animazioni_lanciatore[g] = true;
+                    punteggio (s, g);
                 }
             }
         }
         // questo for per ogni lanciatore in mappa controlla se la collisione è avvenuta con lui, poi dstrugge quello con cui la collisione è effettivamente avventuta
 
         //console.log(vita_lanciatore[i]);
-        let x = 1200;
-        let y = 600;
+        /*let x = obj2.geometry.x;
+        let y = obj2.geometry.y - 60;
         let moneta = PP.assets.image.add(s, img_moneta, (x), (y), 0, 0)
-        PP.physics.add(s, moneta, PP.physics.type.DYNAMIC);
-        PP.physics.set_drag_x(moneta, 7000);
+        PP.physics.add(s, moneta, PP.physics.type.STATIC);
+        PP.physics.add_collider_f(s, obj1, moneta, distruzione_moneta);
+        function distruzione_moneta (s) {
+            PP.assets.destroy(moneta);
+        }*/
     }
 
     else if (curr_anim != "die" && invincibilità == false && vita_lanciatore[controllo] == true){
@@ -89,6 +106,20 @@ function kill_lanciatore(s, obj1, obj2) {
     }
 }
 
+function punteggio (s, a) {
+    for (m = 0; m < punti_lanciatori.length; m++){
+        if (punti_lanciatori[a] == punti_lanciatori[m]){
+            if (punti_lanciatori[a] == 1)
+            {
+                console.log("Lanciatore speso");
+                console.log(a);
+                punti_lanciatori[a] = 0;
+                let prev_score = PP.game_state.get_variable("Monete");
+                PP.game_state.set_variable("Monete", prev_score+1);
+            }
+        }
+    }
+}
 //funzione che innesca la schermata di game over
 
 

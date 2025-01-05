@@ -38,7 +38,7 @@ function preload_player(s) {
 }
 
 function create_player(s) {
-    player = PP.assets.sprite.add(s, img_player, 12000, 500, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, 5620, 1500, 0.5, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -266,10 +266,16 @@ function morte(s) {
     console.log(next_anim);
     PP.assets.sprite.animation_play(player, next_anim);
     PP.timers.add_timer(s, 1000, game_over, false);
+    console.log(casse.lenght);
 }
 
 function game_over(s) {
-    PP.scenes.start("morte");
+    if (livello[0] == 1){
+        PP.scenes.start("morte");
+    }
+    else if (livello[0] == 2){
+        PP.scenes.start("morte2");
+    }
 }
 
 

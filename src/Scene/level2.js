@@ -14,6 +14,9 @@ let pedana4;
 
 let spine_img;
 
+let livello = [];
+livello.push(2);
+
 
 function preload (s) {
 
@@ -119,7 +122,7 @@ function create (s) {
     */
     create_piatt_move_level2 (s, 4880, 200);
     
-    //zona pozzo senza fonto
+    //zona pozzo senza fondo
     let scalin7 = PP.assets.image.add(s, pavimento2_90, 5100, 400, 0, 0);
     PP.physics.add(s, scalin7, PP.physics.type.STATIC);
     let scalin8 = PP.assets.image.add(s, pavimento2_90, 5100, 250, 0, 0);
@@ -417,6 +420,7 @@ function create (s) {
     PP.physics.add_collider_f(s, player, spine1, danno_caduta);
     PP.physics.add_collider_f(s, player, spine2, danno_caduta);
     PP.physics.add_collider_f(s, player, spine3, danno_caduta);
+
     function danno_caduta (s) {
         vita_persa(s);
         player.geometry.x = 5300;

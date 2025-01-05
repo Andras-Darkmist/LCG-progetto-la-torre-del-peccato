@@ -224,6 +224,8 @@ function create (s) {
     
     let scalino_orizz_15 = PP.assets.image.add(s, pavimento2, 12390, 1570, 0, 0);
     PP.physics.add(s, scalino_orizz_15, PP.physics.type.STATIC);
+    let scalino_orizz_16 = PP.assets.image.add(s, pavimento2, 12740, 620, 0, 0);
+    PP.physics.add(s, scalino_orizz_16, PP.physics.type.STATIC);
     
     let scalino_vert_6 = PP.assets.image.add(s, pavimento3_90, 12490, 1270, 0, 0);
     PP.physics.add(s, scalino_vert_6, PP.physics.type.STATIC);
@@ -367,6 +369,7 @@ function create (s) {
     PP.physics.add_collider_f(s, player, scalino_orizz_13, salto_si);
     PP.physics.add_collider_f(s, player, scalino_orizz_14, salto_si);
     PP.physics.add_collider_f(s, player, scalino_orizz_15, salto_si);
+    PP.physics.add_collider_f(s, player, scalino_orizz_16, next_level);
 
 
     PP.physics.add_collider_f(s, player, scala_1, salto_si);
@@ -664,5 +667,8 @@ function nulla(s){
     return;
 }
 
+function next_level (s) {
+    PP.scenes.start("level2");
+}
 
 PP.scenes.add("level1", preload, create, update, destroy);

@@ -19,14 +19,14 @@ function create (s){
     pulsante_storia = PP.assets.image.add(s, storia, 65, 520, 0, 0);
     pulsante_gioco = PP.assets.image.add(s, gioco, 65+400, 520, 0, 0);
     pulsante_crediti = PP.assets.image.add(s, crediti, 65+800, 520, 0, 0);
-
+    PP.interactive.mouse.add(pulsante_storia, "pointerdown", goto_storia);
+    PP.interactive.mouse.add(pulsante_crediti, "pointerdown", goto_crediti);
+    PP.interactive.mouse.add(pulsante_gioco, "pointerdown", goto_gioco);
    
 }
 
 function update (s) {
-    PP.interactive.mouse.add(pulsante_storia, "pointerdown", goto_storia);
-    PP.interactive.mouse.add(pulsante_crediti, "pointerdown", goto_crediti);
-    PP.interactive.mouse.add(pulsante_gioco, "pointerdown", goto_gioco);
+    
 }
 
 function goto_storia (s){
@@ -38,7 +38,7 @@ function goto_crediti (s){
 }
 
 function goto_gioco (s){
-    PP.scenes.start("level");
+    PP.scenes.start("level1");
 }
 
 function destroy (s) {

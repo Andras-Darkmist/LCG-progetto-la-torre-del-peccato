@@ -2,7 +2,7 @@ let crediti;
 let sfondo_crediti;
 
 function preload (s) {
-    crediti = PP.assets.image.add(s, "assets/immagini/mainmenu/Crediti.png");
+    crediti = PP.assets.image.load(s, "assets/immagini/mainmenu/Crediti.png");
 }
 
 function create (s) {

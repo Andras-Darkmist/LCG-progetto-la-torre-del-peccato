@@ -21,15 +21,17 @@ function create (s) {
 }
 
 function seleziona_tavole(s) {
+    console.log(numero_tavola);
     tavola_attiva = PP.assets.image.add(s, tavole[numero_tavola], 0, 0, 0, 0);
 }
 
 function update(s){
     if (timer_lettura_tavola == false) {
     if (PP.interactive.kb.is_key_down(s, PP.key_codes.C)) {
-        if (numero_tavola >= 3)
+        if (numero_tavola >= 2)
         {
             PP.scenes.start("Main_Menu");
+            return;
         }
         PP.assets.destroy(tavola_attiva);
         numero_tavola ++;

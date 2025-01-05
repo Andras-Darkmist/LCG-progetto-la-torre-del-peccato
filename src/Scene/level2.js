@@ -16,7 +16,7 @@ let spine_img;
 let ILBUCO;
 let ILBUCOscenico;
 
-let livello = [];
+
 livello.push(2);
 
 

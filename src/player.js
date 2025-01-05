@@ -19,6 +19,8 @@ let curr_anim = "stop"; // Questa variabile contiene l'animazione corrente
 let next_anim;
 next_anim = curr_anim;
 
+let livello = [];
+
 function configure_player_animations(s) {
     // Configuro le animazioni secondo lo spritesheet
     PP.assets.sprite.animation_add(player, "run", 4, 7, 5, -1);    // Lista di frame, a 10 fps, inifito

@@ -39,7 +39,7 @@ let collider_Asmodeo = true;
 let collider_casse_sopra = [];
 let collider_porta1 = true;
 
-let livello = [];
+
 livello.push(1);
 
 function preload (s) {
@@ -632,8 +632,8 @@ function update (s) {
     // per porta finale
     
     if(chiusura_porta_finale == false){
-        porte[1].geometry.y = 40;
-        porte[1].geometry.body_y = 40;
+        porte[1].geometry.y = 0;
+        porte[1].geometry.body_y = 0;
     }
 
     if(chiusura_porta_finale == true){

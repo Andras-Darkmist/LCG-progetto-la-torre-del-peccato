@@ -18,6 +18,8 @@ function preload_lettera (s) {
     lettera_1_img = PP.assets.image.load(s, "assets/immagini/lettera 1.jpg", 150, 150);
     lettera_2_img = PP.assets.image.load(s, "assets/immagini/img26.jpg", 150, 150);
     lettera_3_img = PP.assets.image.load(s, "assets/immagini/arca.jpg", 150, 150);
+    lettera_4_img = PP.assets.image.load(s, "assets/immagini/arca.jpg", 150, 150);
+    lettera_5_img = PP.assets.image.load(s, "assets/immagini/arca.jpg", 150, 150);
 }
 
 function create_lettera (s, x, y){
@@ -27,6 +29,8 @@ function create_lettera (s, x, y){
     testo_lettere.push(lettera_1_img);
     testo_lettere.push(lettera_2_img);
     testo_lettere.push(lettera_3_img);
+    testo_lettere.push(lettera_4_img);
+    testo_lettere.push(lettera_5_img);
 }
 
 function collision_lettera (s, lettera, player) {

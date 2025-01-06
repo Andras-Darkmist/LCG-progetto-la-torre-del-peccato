@@ -3,6 +3,7 @@ let dialogo1_1_img;
 let dialogo1_2_img;
 let dialogo1_3_img;
 let dialogo1_4_img;
+let dialogo1_5_img;
 let Dialogo1_testo;
 let Dialogo1 = [];
 let contatore_dialogo1 = 0;
@@ -17,6 +18,7 @@ function preload_Dialogo1 (s) {
     dialogo1_2_img = PP.assets.image.load(s, "assets/immagini/Dialoghi livello 1/Dialogo_Asmodeo2.png", 150, 150);
     dialogo1_3_img = PP.assets.image.load(s, "assets/immagini/Dialoghi livello 1/Dialogo_Asmodeo3.png", 150, 150);
     dialogo1_4_img = PP.assets.image.load(s, "assets/immagini/Dialoghi livello 1/Dialogo_Asmodeo4.png", 150, 150);
+    dialogo1_5_img = PP.assets.image.load(s, "assets/immagini/Dialoghi livello 1/Dialogo_Asmodeo5.png", 150, 150);
 }
 
 function create_Dialogo1 (s){
@@ -24,6 +26,7 @@ function create_Dialogo1 (s){
     Dialogo1.push(dialogo1_2_img);
     Dialogo1.push(dialogo1_3_img);
     Dialogo1.push(dialogo1_4_img);
+    Dialogo1.push(dialogo1_5_img);
 }
 
 function collision_Dialogo1 (s, Asmodeo, player) {
@@ -60,7 +63,7 @@ function update_Dialogo1(s) {
     if (lettura_testo_1 == true) {
         if (timer_dialogo1 == false) {
             if (PP.interactive.kb.is_key_down(s, PP.key_codes.C)) {
-                if (contatore_dialogo1 >= 4) {
+                if (contatore_dialogo1 >= 5) {
                     console.log("deino")
                     jump_disable = false;
                     dash_disable = false;

@@ -12,6 +12,10 @@ let slot_nuove;
 let img_moquette;
 let moquette;
 
+let ascensore1;
+let ascensore2;
+let ascensoremuro;
+
 let pavimento_19;
 let muro_iniziale;
 
@@ -78,6 +82,9 @@ function preload (s) {
     sfondott2 = PP.assets.image.load(s, "Assets/immagini/Sfondo tutorial 2.png");
     sfondott3 = PP.assets.image.load(s, "Assets/immagini/Sfondo tutorial 3.png");
     transzionett = PP.assets.image.load(s, "Assets/immagini/Cambio zona.PNG");
+    ascensore1 = PP.assets.image.load(s, "Assets/immagini/Ascensore1.PNG");
+    ascensore2 = PP.assets.image.load(s, "Assets/immagini/Ascensore2.PNG");
+    ascensoremuro = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
 }
 
 // PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
@@ -115,6 +122,8 @@ function create (s) {
     let bgtt1 = PP.assets.image.add(s, sfondott1, -2600, 0, 0, 0);
     let bgtt2 = PP.assets.image.add(s, sfondott2, -1634, 0, 0, 0);
     let bgtt3 = PP.assets.image.add(s, sfondott3, -688, 0, 0, 0);
+
+    let ascensore_2 = PP.assets.image.add(s, ascensore2, 12555, -150, 0, 0);
 
     let pavimento_01 = PP.assets.image.add(s, pavimento1, -650, 620, 0, 0);
     PP.physics.add(s, pavimento_01, PP.physics.type.STATIC);
@@ -307,6 +316,8 @@ function create (s) {
     pedana3 = PP.shapes.rectangle_add(s, 12350, 637, 150, 40, "0xfbc456", 1);
     PP.physics.add(s, pedana3, PP.physics.type.STATIC);
 
+    
+    
 
     //funzioni richiamate
     create_lettera(s, 100, 170);
@@ -314,7 +325,8 @@ function create (s) {
     create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s, -2400, 450);
+    //create_player (s, -2400, 450);
+    create_player (s, 12000, 450);
     create_cassa (s, 750, 450);
     create_cassa (s, 2550, 450);
     create_cassa (s, 4050, 360);
@@ -579,7 +591,8 @@ function create (s) {
     }
 
 
-
+    let ascensore_1 = PP.assets.image.add(s, ascensore1, 12555, -150, 0, 0);
+    let ascensore_muro = PP.assets.image.add(s, ascensoremuro, 12755, -150, 0, 0);
     create_score(s);
     create_vite(s);
 

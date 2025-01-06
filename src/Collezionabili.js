@@ -9,14 +9,14 @@ PP.game_state.set_variable ("Monete", 0);
 
 function preload_score (s) {
     img_lettera = PP.assets.image.load(s, "assets/immagini/Lettera.PNG", 150, 156);
-    img_monete = PP.assets.image.load(s, "assets/immagini/Lettera.PNG", 150, 156);
+    img_monete = PP.assets.image.load(s, "assets/immagini/Fiches.PNG", 150, 156);
 }
 
 function create_score(s) {
     txt_lettere = PP.shapes.text_styled_add(s, 1200, 20, "0", 50, "Helvetica", "normal", "0x000000", null, 0, 0);
-    lettera = PP.assets.image.add(s, img_lettera, 1200 - 80, 20, 0, 0);
+    lettera = PP.assets.image.add(s, img_lettera, 1120, 20, 0, 0);
     txt_monete = PP.shapes.text_styled_add(s, 1000, 20, "0", 50, "Helvetica", "normal", "0x000000", null, 0, 0);
-    monete_conto = PP.assets.image.add(s, img_lettera, 1000 - 80, 20, 0, 0);
+    monete_conto = PP.assets.image.add(s, img_monete, 950, 20, 0, 0);
     lettera.tile_geometry.scroll_factor_x = 0;
     lettera.tile_geometry.scroll_factor_y = 0;
     txt_lettere.tile_geometry.scroll_factor_x = 0;

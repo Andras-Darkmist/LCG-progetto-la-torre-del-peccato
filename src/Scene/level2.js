@@ -1,4 +1,16 @@
 let img_background;
+
+let bg1;
+let bg2;
+let bg3;
+let bg0;
+let bg02;
+
+let sfondo21;
+let sfondo22;
+let sfondo23;
+let sfondo20;
+
 let floor;
 let barr_1;
 let platform1;
@@ -54,14 +66,33 @@ function preload (s) {
     pulsante = PP.assets.image.load(s, "Assets/Immagini/Pulsante.PNG");
     ILBUCO = PP.assets.image.load(s, "Assets/Immagini/Buco senza fonto (oggetto effettivo).PNG");
     ILBUCOscenico = PP.assets.image.load(s, "Assets/Immagini/Buco senza fondo (overlay).PNG");
+    sfondo21 = PP.assets.image.load(s, "Assets/Immagini/Sfondo livello 2 - 1.png");
+    sfondo22 = PP.assets.image.load(s, "Assets/Immagini/Sfondo livello 2 - 2.png");
+    sfondo23 = PP.assets.image.load(s, "Assets/Immagini/Sfondo livello 2 - 3.png");
+    sfondo20 = PP.assets.image.load(s, "Assets/Immagini/Sfondo livello 2 - sotto temporaneo.png");
 }
 
 function create (s) {
 
     
     //zona iniziale
-    PP.assets.image.add(s, img_background, 0, 0, 0, 0);
+   
 
+    
+    
+    bg3 = PP.assets.tilesprite.add(s, sfondo23, 50, -140, 1178, 800, 0, 0);
+    bg3.tile_geometry.scroll_factor_x = 0;
+    bg2 = PP.assets.tilesprite.add(s, sfondo22, 0, -140, 0, 0, 0, 0);
+    bg2.tile_geometry.scroll_factor_x = 0;
+    bg1 = PP.assets.tilesprite.add(s, sfondo21, 0, -140, 0, 0, 0, 0);
+    bg1.tile_geometry.scroll_factor_x = 0;
+    bg0 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+800, 0, 0, 0, 0);
+    bg0.tile_geometry.scroll_factor_x = 0;
+    bg02 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+1200, 0, 0, 0, 0);
+    bg02.tile_geometry.scroll_factor_x = 0;
+
+    let muro_iniziale = PP.shapes.rectangle_add(s, -2600, 0, 1, 1280, "0x000000", 0);
+    PP.physics.add(s, muro_iniziale, PP.physics.type.STATIC);
     create_Asmodeo_ologrammo (s);
     create_Dialogo2 (s);
 
@@ -206,7 +237,7 @@ function create (s) {
     create_generatore2 (s);
     create_generatore3 (s);
     
-    create_player (s, 5200, 0);
+    create_player (s, 50, 200);
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);
@@ -386,6 +417,7 @@ function create (s) {
         PP.physics.add_overlap_f(s, Lettere[g], player, collision_lettera);
     }
 
+    PP.physics.add_collider(s, player, muro_iniziale);
     PP.physics.add_collider_f(s, player, floor, salto_si);
     PP.physics.add_collider(s, player, scalin);
     PP.physics.add_collider_f(s, player, scalin2, salto_si);
@@ -473,6 +505,12 @@ function create (s) {
 }
 
 function update (s) {
+    bg1.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
+    bg3.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.9;
+    bg2.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
+    bg0.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
+    bg02.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
+    
     update_lettere (s);
     update_Dialogo2 (s)
     update_score(s);

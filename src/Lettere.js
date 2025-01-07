@@ -15,8 +15,8 @@ function preload_lettera (s) {
 
     // ovviamente da cambiare le immagini delle lettere che ora sono placeholder
 
-    lettera_1_img = PP.assets.image.load(s, "assets/immagini/lettera 1.jpg", 150, 150);
-    lettera_2_img = PP.assets.image.load(s, "assets/immagini/img26.jpg", 150, 150);
+    lettera_1_img = PP.assets.image.load(s, "assets/immagini/Lettera1.png", 150, 150);
+    lettera_2_img = PP.assets.image.load(s, "assets/immagini/Lettera 2.png", 150, 150);
     lettera_3_img = PP.assets.image.load(s, "assets/immagini/arca.jpg", 150, 150);
     lettera_4_img = PP.assets.image.load(s, "assets/immagini/arca.jpg", 150, 150);
     lettera_5_img = PP.assets.image.load(s, "assets/immagini/arca.jpg", 150, 150);

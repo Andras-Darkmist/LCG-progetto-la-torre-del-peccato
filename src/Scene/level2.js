@@ -11,6 +11,10 @@ let sfondo22;
 let sfondo23;
 let sfondo20;
 
+let ascensore1_2;
+let ascensore2_2;
+let ascensoremuro_2;
+
 let floor;
 let barr_1;
 let platform1;
@@ -70,6 +74,9 @@ function preload (s) {
     sfondo22 = PP.assets.image.load(s, "Assets/Immagini/Sfondo livello 2 - 2.png");
     sfondo23 = PP.assets.image.load(s, "Assets/Immagini/Sfondo livello 2 - 3.png");
     sfondo20 = PP.assets.image.load(s, "Assets/Immagini/Sfondo livello 2 - sotto temporaneo.png");
+    ascensore1_2 = PP.assets.image.load(s, "Assets/immagini/Ascensore1.PNG");
+    ascensore2_2 = PP.assets.image.load(s, "Assets/immagini/Ascensore2.PNG");
+    ascensoremuro_2 = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
 }
 
 function create (s) {
@@ -91,10 +98,16 @@ function create (s) {
     bg02 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+1200, 0, 0, 0, 0);
     bg02.tile_geometry.scroll_factor_x = 0;
 
-    let muro_iniziale = PP.shapes.rectangle_add(s, -2600, 0, 1, 1280, "0x000000", 0);
-    PP.physics.add(s, muro_iniziale, PP.physics.type.STATIC);
+    //let muro_iniziale = PP.shapes.rectangle_add(s, -1000, -1000, 1, 1280, "0x000000", 0);
+    //PP.physics.add(s, muro_iniziale, PP.physics.type.STATIC);
     create_Asmodeo_ologrammo (s);
     create_Dialogo2 (s);
+
+    let ascensore_2 = PP.assets.image.add(s, ascensore2_2, -650, -150, 0, 0);
+    ascensore_2.geometry.flip_x = true;
+
+    let floor_0 = PP.assets.image.add(s, pavimento1, -650, 620, 0, 0);
+    PP.physics.add(s, floor_0, PP.physics.type.STATIC);
 
     floor = PP.assets.image.add(s, pavimento1, 0, 620, 0, 0);
     PP.physics.add(s, floor, PP.physics.type.STATIC);
@@ -221,8 +234,8 @@ function create (s) {
     let scalin16 = PP.assets.image.add(s, pavimento2_90, 11900, -50, 0, 0);
     PP.physics.add(s, scalin16, PP.physics.type.STATIC);
 
-    barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
-    PP.physics.add(s, barr_1, PP.physics.type.STATIC);
+    //barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
+    //PP.physics.add(s, barr_1, PP.physics.type.STATIC);
 
     platform1 = PP.shapes.rectangle_add(s, 640, 200, 400, 19, "0xFA0000", 1);
     PP.physics.add(s, platform1, PP.physics.type.STATIC);
@@ -237,7 +250,7 @@ function create (s) {
     create_generatore2 (s);
     create_generatore3 (s);
     
-    create_player (s, 50, 200);
+    create_player (s, -530, 600);
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);
@@ -257,7 +270,7 @@ function create (s) {
     //collider di tutte le cose
     //player
     
-    PP.physics.add_collider(s, player, barr_1);
+    //PP.physics.add_collider(s, player, barr_1);
     PP.physics.add_collider(s, player, platform1);
     
     for (let i = 0; i < casse.length; i++) {
@@ -417,7 +430,7 @@ function create (s) {
         PP.physics.add_overlap_f(s, Lettere[g], player, collision_lettera);
     }
 
-    PP.physics.add_collider(s, player, muro_iniziale);
+    PP.physics.add_collider_f(s, player, floor_0, salto_si);
     PP.physics.add_collider_f(s, player, floor, salto_si);
     PP.physics.add_collider(s, player, scalin);
     PP.physics.add_collider_f(s, player, scalin2, salto_si);
@@ -497,6 +510,13 @@ function create (s) {
     //nemici
     PP.physics.add_collider_f(s, Asmodeo_ologrammo, player, collision_Dialogo2);
 
+    let ascensore_1 = PP.assets.image.add(s, ascensore1_2, -650, -150, 0, 0);
+    ascensore_1.geometry.flip_x = true;
+    let ascensore_muro = PP.assets.image.add(s, ascensoremuro_2, -1050, -150, 0, 0);
+    ascensore_muro.geometry.flip_x = true;
+    PP.physics.add(s, ascensore_muro, PP.physics.type.STATIC);
+    PP.physics.add_collider(s, player, ascensore_muro);
+    
     create_score(s);
     create_vite(s);
 

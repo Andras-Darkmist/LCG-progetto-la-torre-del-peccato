@@ -254,8 +254,8 @@ function create (s) {
     create_generatore2 (s);
     create_generatore3 (s);
     
-    //create_player (s, -530, 600);
-    create_player (s, 11900, -100);
+    create_player (s, -530, 600);
+    //create_player (s, 11900, -100);
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);

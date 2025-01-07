@@ -106,6 +106,8 @@ function create (s) {
     let ascensore_2 = PP.assets.image.add(s, ascensore2_2, -650, -150, 0, 0);
     ascensore_2.geometry.flip_x = true;
 
+    let ascensore_2_final = PP.assets.image.add(s, ascensore2_2, 11950, -820, 0, 0);
+
     let floor_0 = PP.assets.image.add(s, pavimento1, -650, 620, 0, 0);
     PP.physics.add(s, floor_0, PP.physics.type.STATIC);
 
@@ -233,6 +235,8 @@ function create (s) {
     PP.physics.add(s, scalin15, PP.physics.type.STATIC);
     let scalin16 = PP.assets.image.add(s, pavimento2_90, 11900, -50, 0, 0);
     PP.physics.add(s, scalin16, PP.physics.type.STATIC);
+    let floor20 = PP.assets.image.add(s, pavimento1, 11900, -50, 0, 0);
+    PP.physics.add(s, floor20, PP.physics.type.STATIC);
 
     //barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
     //PP.physics.add(s, barr_1, PP.physics.type.STATIC);
@@ -250,7 +254,8 @@ function create (s) {
     create_generatore2 (s);
     create_generatore3 (s);
     
-    create_player (s, -530, 600);
+    //create_player (s, -530, 600);
+    create_player (s, 11900, -100);
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);
@@ -466,6 +471,7 @@ function create (s) {
     PP.physics.add_collider_f(s, player, floor17, salto_si);
     PP.physics.add_collider_f(s, player, floor18, salto_si);
     PP.physics.add_collider_f(s, player, floor19, salto_si);
+    PP.physics.add_collider_f(s, player, floor20, salto_si);
     PP.physics.add_collider_f(s, player, piatt_move_sing_level2, salto_si);
     
     PP.physics.add_collider_f(s, player, spine1, danno_caduta);
@@ -517,6 +523,11 @@ function create (s) {
     PP.physics.add(s, ascensore_muro, PP.physics.type.STATIC);
     PP.physics.add_collider(s, player, ascensore_muro);
     
+    let ascensore_1_final = PP.assets.image.add(s, ascensore1_2, 11950, -820, 0, 0);
+    let ascensore_muro_final = PP.assets.image.add(s, ascensoremuro_2, 12150, -820, 0, 0);
+    //PP.physics.add(s, ascensore_muro_final, PP.physics.type.STATIC);
+    //PP.physics.add_collider(s, player, ascensore_muro_final);
+  
     create_score(s);
     create_vite(s);
 

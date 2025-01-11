@@ -87,15 +87,15 @@ function create (s) {
 
     
     
-    bg3 = PP.assets.tilesprite.add(s, sfondo23, 50, -140, 1178, 800, 0, 0);
+    bg3 = PP.assets.tilesprite.add(s, sfondo23, 0, -140, 0, 0, 0, 0);
     bg3.tile_geometry.scroll_factor_x = 0;
     bg2 = PP.assets.tilesprite.add(s, sfondo22, 0, -140, 0, 0, 0, 0);
     bg2.tile_geometry.scroll_factor_x = 0;
     bg1 = PP.assets.tilesprite.add(s, sfondo21, 0, -140, 0, 0, 0, 0);
     bg1.tile_geometry.scroll_factor_x = 0;
-    bg0 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+800, 0, 0, 0, 0);
+    bg0 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+800, 1280, 0, 0, 0);
     bg0.tile_geometry.scroll_factor_x = 0;
-    bg02 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+1200, 0, 0, 0, 0);
+    bg02 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+1200, 1280, 0, 0, 0);
     bg02.tile_geometry.scroll_factor_x = 0;
 
     //let muro_iniziale = PP.shapes.rectangle_add(s, -1000, -1000, 1, 1280, "0x000000", 0);
@@ -254,8 +254,8 @@ function create (s) {
     create_generatore2 (s);
     create_generatore3 (s);
     
-    create_player (s, -530, 600);
-    //create_player (s, 11900, -100);
+    //create_player (s, -530, 600);
+    create_player (s, 8000, -100);
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);

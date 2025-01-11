@@ -123,6 +123,8 @@ function create (s) {
     let bgtt2 = PP.assets.image.add(s, sfondott2, -1634, 0, 0, 0);
     let bgtt3 = PP.assets.image.add(s, sfondott3, -688, 0, 0, 0);
 
+    //let bgtt0 = PP.assets.image.add(s, sfondott0, -588, 0, 0, 0);
+
     let ascensore_2 = PP.assets.image.add(s, ascensore2, 12555, -150, 0, 0);
 
     let pavimento_01 = PP.assets.image.add(s, pavimento1, -650, 620, 0, 0);

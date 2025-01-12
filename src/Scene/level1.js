@@ -73,7 +73,7 @@ function preload (s) {
     preload_Dialogo1 (s);
 
     img_background = PP.assets.image.load(s, "Assets/Immagini/carta parati.png");
-    img_slot_nuove = PP.assets.image.load(s, "Assets/Immagini/slot nuove copia.png");
+    img_slot_nuove = PP.assets.image.load(s, "Assets/Immagini/slot nuove copia 2.png");
     img_colonne = PP.assets.image.load(s, "Assets/Immagini/colonne davanti copia.png");
     img_lampa = PP.assets.image.load(s, "Assets/Immagini/lampadari.png");
     img_pavi_prosp = PP.assets.image.load(s, "Assets/Immagini/moquette prospettica.png"); 
@@ -112,29 +112,25 @@ function create (s) {
     
 
     bg = PP.assets.tilesprite.add(s, img_background, 0, 30, 2800, 380, 0, 0);
-    bg.tile_geometry.scroll_factor_x = 1.2;
-    //bg.tile_geometry.scroll_factor_y = 0;
-    
-    pavi_prosp = PP.assets.tilesprite.add(s, img_pavi_prosp, -2000, 550, 20000, 100, 0, 0);
-    pavi_prosp.tile_geometry.scroll_factor_x = 1.3;
+    bg.tile_geometry.scroll_factor_x = 0.1;
     
     volte_dietro = PP.assets.tilesprite.add(s, img_volte, -2000, 100, 20000, 453, 0, 0);
-    volte_dietro.tile_geometry.scroll_factor_x = 1.2;
+    volte_dietro.tile_geometry.scroll_factor_x = 0.1;
     
     lampadari = PP.assets.tilesprite.add(s, img_lampa, -2000, 40, 20000, 93, 0, 0);
-    lampadari.tile_geometry.scroll_factor_x = 1.3;
+    lampadari.tile_geometry.scroll_factor_x = 0.2;
 
-    slot_nuove = PP.assets.tilesprite.add(s, img_slot_nuove, 0, 390, 2800, 175, 0, 0);
-    slot_nuove.tile_geometry.scroll_factor_x = 0;
-    //slot_nuove.tile_geometry.scroll_factor_y = 0;
-
-    colonne_davanti = PP.assets.tilesprite.add(s, img_colonne, 0, 0, 2800, 650, 0, 0);
-    colonne_davanti.tile_geometry.scroll_factor_x = 0;
-    //colonne_davanti.tile_geometry.scroll_factor_y = 0;
+    pavi_prosp = PP.assets.tilesprite.add(s, img_pavi_prosp, -2000, 550, 20000, 100, 0, 0);
+    pavi_prosp.tile_geometry.scroll_factor_x = 0.4;
+    
+    slot_nuove = PP.assets.tilesprite.add(s, img_slot_nuove, 0, 450, 12800, 140, 0, 0);
+    slot_nuove.tile_geometry.scroll_factor_x = 0.4;
 
     moquette = PP.assets.tilesprite.add(s, img_moquette, 0, 650, 12000, 200, 0, 0);
     moquette.tile_geometry.scroll_factor_x = 0;
-    //colonne_davanti.tile_geometry.scroll_factor_y = 0;
+
+    colonne_davanti = PP.assets.tilesprite.add(s, img_colonne, 0, 0, 2800, 650, 0, 0);
+    colonne_davanti.tile_geometry.scroll_factor_x = 0;
 
     bg.geometry.scale_x = 1.7;
     bg.geometry.scale_y = 1.7;
@@ -182,31 +178,31 @@ function create (s) {
     let pavimento_7 = PP.assets.image.add(s, pavimento1, 3900, 620, 0, 0);
     PP.physics.add(s, pavimento_7, PP.physics.type.STATIC);
     
-    let pavimento_8 = PP.assets.image.add(s, pavimento1, 4650, 620, 0, 0);
+    let pavimento_8 = PP.assets.image.add(s, pavimento1, 4550, 620, 0, 0);
     PP.physics.add(s, pavimento_8, PP.physics.type.STATIC);
     
-    let pavimento_9 = PP.assets.image.add(s, pavimento1, 5300, 620, 0, 0);
+    let pavimento_9 = PP.assets.image.add(s, pavimento1, 5200, 620, 0, 0);
     PP.physics.add(s, pavimento_9, PP.physics.type.STATIC);
     
-    let pavimento_10 = PP.assets.image.add(s, pavimento1, 5950, 620, 0, 0);
+    let pavimento_10 = PP.assets.image.add(s, pavimento1, 5750, 620, 0, 0);
     PP.physics.add(s, pavimento_10, PP.physics.type.STATIC);
     
-    let pavimento_11 = PP.assets.image.add(s, pavimento1, 6600, 620, 0, 0);
+    let pavimento_11 = PP.assets.image.add(s, pavimento1, 6400, 620, 0, 0);
     PP.physics.add(s, pavimento_11, PP.physics.type.STATIC);
     
-    let pavimento_12 = PP.assets.image.add(s, pavimento1, 7250, 620, 0, 0);
+    let pavimento_12 = PP.assets.image.add(s, pavimento1, 7050, 620, 0, 0);
     PP.physics.add(s, pavimento_12, PP.physics.type.STATIC);
     
-    let pavimento_13 = PP.assets.image.add(s, pavimento1, 7900, 620, 0, 0);
+    let pavimento_13 = PP.assets.image.add(s, pavimento1, 7700, 620, 0, 0);
     PP.physics.add(s, pavimento_13, PP.physics.type.STATIC);
     
-    let pavimento_14 = PP.assets.image.add(s, pavimento1, 8550, 620, 0, 0);
+    let pavimento_14 = PP.assets.image.add(s, pavimento1, 8350, 620, 0, 0);
     PP.physics.add(s, pavimento_14, PP.physics.type.STATIC);
     
-    let pavimento_15 = PP.assets.image.add(s, pavimento1, 9200, 620, 0, 0);
+    let pavimento_15 = PP.assets.image.add(s, pavimento1, 9000, 620, 0, 0);
     PP.physics.add(s, pavimento_15, PP.physics.type.STATIC);
     
-    let pavimento_16 = PP.assets.image.add(s, pavimento1, 9850, 620, 0, 0);
+    let pavimento_16 = PP.assets.image.add(s, pavimento1, 9650, 620, 0, 0);
     PP.physics.add(s, pavimento_16, PP.physics.type.STATIC);
     
     let pavimento_17 = PP.assets.image.add(s, pavimento1, 9950, 620, 0, 0);

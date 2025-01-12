@@ -198,6 +198,7 @@ function create (s) {
 
     let floor14 = PP.assets.image.add(s, pavimento1, 8600, -100, 0, 0);
     PP.physics.add(s, floor14, PP.physics.type.STATIC);
+
     create_lettera(s, 8800, -200);
 
     let floor19 = PP.assets.image.add(s, pavimento3, 8350, 250, 0, 0);

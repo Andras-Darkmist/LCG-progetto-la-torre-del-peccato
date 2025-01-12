@@ -6,11 +6,17 @@ let sfondott3;
 let transzionett;
 let img_background;
 let img_colonne;
+let img_volte;
+let volte_dietro;
 let img_slot_nuove;
 let colonne_davanti;
 let slot_nuove;
 let img_moquette;
 let moquette;
+let img_lampa;
+let lampadari;
+let img_pavi_prosp;
+let pavi_prosp;
 
 let ascensore1;
 let ascensore2;
@@ -66,9 +72,14 @@ function preload (s) {
     preload_Asmodeo (s);
     preload_Dialogo1 (s);
 
-    img_background = PP.assets.image.load(s, "Assets/Immagini/Sfondo lvl1 copia.png");
+    img_background = PP.assets.image.load(s, "Assets/Immagini/carta parati.png");
     img_slot_nuove = PP.assets.image.load(s, "Assets/Immagini/slot nuove copia.png");
     img_colonne = PP.assets.image.load(s, "Assets/Immagini/colonne davanti copia.png");
+    img_lampa = PP.assets.image.load(s, "Assets/Immagini/lampadari.png");
+    img_pavi_prosp = PP.assets.image.load(s, "Assets/Immagini/moquette prospettica.png"); 
+
+    img_volte = PP.assets.image.load(s, "Assets/Immagini/volta dietro.png");
+
     img_moquette = PP.assets.image.load(s, "Assets/Immagini/moquette.png");
     pavimento1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma_Tavola disegno 1.png");
     pavimento2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-03.png");
@@ -100,16 +111,27 @@ function preload (s) {
 function create (s) {
     
 
-
-    bg = PP.assets.tilesprite.add(s, img_background, 0, 0, 2800, 380, 0, 0);
-    bg.tile_geometry.scroll_factor_x = 0;
+    bg = PP.assets.tilesprite.add(s, img_background, 0, 30, 2800, 380, 0, 0);
+    bg.tile_geometry.scroll_factor_x = 1.2;
     //bg.tile_geometry.scroll_factor_y = 0;
+    
+    pavi_prosp = PP.assets.tilesprite.add(s, img_pavi_prosp, -2000, 550, 20000, 100, 0, 0);
+    pavi_prosp.tile_geometry.scroll_factor_x = 1.3;
+    
+    volte_dietro = PP.assets.tilesprite.add(s, img_volte, -2000, 100, 20000, 453, 0, 0);
+    volte_dietro.tile_geometry.scroll_factor_x = 1.2;
+    
+    lampadari = PP.assets.tilesprite.add(s, img_lampa, -2000, 40, 20000, 93, 0, 0);
+    lampadari.tile_geometry.scroll_factor_x = 1.3;
+
     slot_nuove = PP.assets.tilesprite.add(s, img_slot_nuove, 0, 390, 2800, 175, 0, 0);
     slot_nuove.tile_geometry.scroll_factor_x = 0;
     //slot_nuove.tile_geometry.scroll_factor_y = 0;
+
     colonne_davanti = PP.assets.tilesprite.add(s, img_colonne, 0, 0, 2800, 650, 0, 0);
     colonne_davanti.tile_geometry.scroll_factor_x = 0;
     //colonne_davanti.tile_geometry.scroll_factor_y = 0;
+
     moquette = PP.assets.tilesprite.add(s, img_moquette, 0, 650, 12000, 200, 0, 0);
     moquette.tile_geometry.scroll_factor_x = 0;
     //colonne_davanti.tile_geometry.scroll_factor_y = 0;
@@ -195,7 +217,7 @@ function create (s) {
 
     // piattaforma attraversabile
     
-    pavimento_19 = PP.assets.image.add(s, pavimento1, 11450, 630, 0, 0);
+    pavimento_19 = PP.assets.image.add(s, pavimento1, 11450, 620, 0, 0);
     PP.physics.add(s, pavimento_19, PP.physics.type.STATIC);
     
     let pavimento_20 = PP.assets.image.add(s, pavimento1, 12100, 620, 0, 0);
@@ -284,21 +306,21 @@ function create (s) {
 
     //prime scale
 
-    let scala_1 = PP.assets.image.add(s, scala1, 1850, 470, 0, 0);
+    let scala_1 = PP.assets.image.add(s, scala1, 1850, 620, 0, 1);
     PP.physics.add(s, scala_1, PP.physics.type.STATIC);
     
-    let scala_2 = PP.assets.image.add(s, scala2, 2000, 320, 0, 0);
+    let scala_2 = PP.assets.image.add(s, scala2, 2000, 620, 0, 1);
     PP.physics.add(s, scala_2, PP.physics.type.STATIC);
 
     //scale fine livello
     
-    let scala_3 = PP.assets.image.add(s, scala1, 9900, 470, 0, 0);
+    let scala_3 = PP.assets.image.add(s, scala1, 9900, 620, 0, 1);
     PP.physics.add(s, scala_3, PP.physics.type.STATIC);
 
-    let scala_4 = PP.assets.image.add(s, scala2, 10050, 320, 0, 0);
+    let scala_4 = PP.assets.image.add(s, scala2, 10050, 620, 0, 1);
     PP.physics.add(s, scala_4, PP.physics.type.STATIC);
     
-    let scala_5 = PP.assets.image.add(s, scala2, 10200, 320, 0, 0);
+    let scala_5 = PP.assets.image.add(s, scala2, 10200, 620, 0, 1);
     PP.physics.add(s, scala_5, PP.physics.type.STATIC);
 
     // PEDANE A PRESSIONE
@@ -327,7 +349,7 @@ function create (s) {
     create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s, 6000, 450);
+    create_player (s, 200, 610);
     
     create_cassa (s, 750, 450);
     create_cassa (s, 2550, 450);

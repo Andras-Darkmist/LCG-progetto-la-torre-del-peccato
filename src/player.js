@@ -293,6 +293,12 @@ function danno(s) {
     PP.physics.set_velocity_y(player, -300);
     PP.assets.sprite.animation_stop(player);
     PP.timers.add_timer(s,1000, fine_danno, false);
+    let prev_score = PP.game_state.get_variable("Monete");
+        if (prev_score > 0)
+        {
+            PP.game_state.set_variable("Monete", prev_score-1);
+        }
+    
 }
 
 function fine_danno(s) {

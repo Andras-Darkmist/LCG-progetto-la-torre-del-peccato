@@ -17,14 +17,17 @@ function preload_slot(s) {
     inermità_slot = [];
     slot_spenta = [];
 
-    img_slot = PP.assets.image.load(s, "Assets/Immagini/slot-giusta.png", 154, 200);
+    img_slot = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Slot_Animata_Spritesheet.PNG", 87, 150);
 }
 
 function create_slot_animata(s, x, y){
-    let slot_animata = PP.assets.image.add(s, img_slot, x, y, 0.5, 1);
+    let slot_animata = PP.assets.sprite.add(s, img_slot, x, y, 0.5, 1);
     PP.physics.add(s, slot_animata, PP.physics.type.DYNAMIC);
     //PP.timers.add_timer(s, 5000, cambio_direz, true);
     PP.physics.set_velocity_x(slot_animata, 200);
+    PP.assets.sprite.animation_add(slot_animata, "Move", 0, 4, 5, -1);
+    PP.assets.sprite.animation_add(slot_animata, "Die", 5, 5, 1, -1);
+    PP.assets.sprite.animation_play(slot_animata, "Move");
     slot_spenta.push(false);
     slot_animate.push(slot_animata);
     verso_dx = true;
@@ -64,6 +67,7 @@ function kill_slot(s, obj1, obj2) {
                 PP.physics.set_velocity_x(obj2, 0);
                 PP.physics.set_drag_x(obj2, 7000);
                 i = posizione_slot.shift();
+                PP.assets.sprite.animation_play(slot_animate[i], "Die");
                 slot_spenta[i] = true;
             }
             if (slot_spenta[i] == true && eseguendo_dash == true) {
@@ -82,7 +86,9 @@ function kill_slot(s, obj1, obj2) {
                 vita_persa(s);
             }
             else {
-                return;
+                if ((obj2).geometry.body_y >= ((obj1).geometry.body_y - 1)) {
+                    jump_disable = false;
+                }
             }
         }
         return;

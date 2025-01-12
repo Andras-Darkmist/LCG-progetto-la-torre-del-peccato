@@ -198,6 +198,7 @@ function create (s) {
 
     let floor14 = PP.assets.image.add(s, pavimento1, 8600, -100, 0, 0);
     PP.physics.add(s, floor14, PP.physics.type.STATIC);
+
     create_lettera(s, 8800, -200);
 
     let floor19 = PP.assets.image.add(s, pavimento3, 8350, 250, 0, 0);
@@ -255,7 +256,7 @@ function create (s) {
     create_generatore3 (s);
     
     //create_player (s, -530, 600);
-    create_player (s, 11900, -100);
+    create_player (s, 200, 450);
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);

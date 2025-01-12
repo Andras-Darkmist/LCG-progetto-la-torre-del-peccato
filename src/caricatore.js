@@ -10,27 +10,32 @@ let vite_char = [];
 let curr_anim_caricatore = "Base";
 let next_anim_caricatore = curr_anim_caricatore;
 
-
+let Nome_boss;
+let ultima_guardia;
 
 function preload_caricatore(s) {
     img_enemy_3 = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Sprite Caricatore.PNG", 258, 260);
-    img_vita_char = PP.assets.image.load(s, "Assets/Immagini/piattaforme/Piattaforma-03.png")
+    img_vita_char = PP.assets.image.load(s, "Assets/Immagini/Barra_vita_caricatore.PNG");
+    Nome_boss = PP.assets.image.load(s, "assets/immagini/Nome boss.png");
 }
 
 function create_caricatore(s) {
-    caricatore = PP.assets.sprite.add(s, img_enemy_3, 480, 200, 0.5, 1);
+    caricatore = PP.assets.sprite.add(s, img_enemy_3, 650, 620, 0.5, 1);
     PP.physics.add(s, caricatore, PP.physics.type.DYNAMIC);
     PP.physics.set_allow_gravity(caricatore, false);
     caricatore_vita = 3;
-    caricatore.geometry.scale_x = 1.3;
-    caricatore.geometry.scale_y = 1.3;
+    caricatore.geometry.scale_x = 1;
+    caricatore.geometry.scale_y = 1;
     for (let i=0; i<caricatore_vita; i++)
         {
-             let cuore = PP.assets.image.add(s, img_vita_char, 400+i*170, 680, 0, 0);
+             let cuore = PP.assets.image.add(s, img_vita_char, 380+i*170, 650, 0, 0);
              cuore.tile_geometry.scroll_factor_x = 0;
              cuore.tile_geometry.scroll_factor_y = 0;
             vite_char.push(cuore);
         }
+    ultima_guardia = PP.assets.image.add(s, Nome_boss, 400, 600, 0, 0);
+    ultima_guardia.tile_geometry.scroll_factor_x = 0;
+    ultima_guardia.tile_geometry.scroll_factor_y = 0;
 }
 
 function load_animazioni_caricatore(s){
@@ -98,7 +103,7 @@ function update_caricatore(s) {
 function danno_caricatore (s, obj1, obj2) {
     if (danno_reaload == true) {
         danno_reaload = false;
-        PP.timers.add_timer(s, 1000, reload_danno, false);
+        PP.timers.add_timer(s, 1200, reload_danno, false);
         if (eseguendo_dash == true && (PP.physics.get_velocity_x(player) >= 800 || PP.physics.get_velocity_x(player) <= -800) && vulnerabile == true)
             {
                 caricatore_vita --;
@@ -108,6 +113,9 @@ function danno_caricatore (s, obj1, obj2) {
                 {
                     PP.assets.destroy (obj2);
                     morte_animazioni_caricatore = true;
+                    PP.assets.destroy (ultima_guardia);
+                    let prev_score = PP.game_state.get_variable("Monete");
+                    PP.game_state.set_variable("Monete", prev_score+10);
                 }
             }
         else if (eseguendo_dash == true){

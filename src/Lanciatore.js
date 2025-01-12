@@ -115,7 +115,7 @@ function punteggio (s, a) {
                 console.log(a);
                 punti_lanciatori[a] = 0;
                 let prev_score = PP.game_state.get_variable("Monete");
-                PP.game_state.set_variable("Monete", prev_score+1);
+                PP.game_state.set_variable("Monete", prev_score+5);
             }
         }
     }

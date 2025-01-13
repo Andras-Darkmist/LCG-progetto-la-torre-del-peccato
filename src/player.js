@@ -40,7 +40,7 @@ function preload_player(s) {
 }
 
 function create_player(s, x, y) {
-    player = PP.assets.sprite.add(s, img_player, x, y, 0.5, 1);
+    player = PP.assets.sprite.add(s, img_player, x, y, 0, 1);
     // Aggiungiamo il giocatore alla fisica come entità dinamica
     PP.physics.add(s, player, PP.physics.type.DYNAMIC);
 
@@ -182,7 +182,7 @@ function salto_si(s, obj1, obj2) {
     console.log("giocatore", player.geometry.y);
     console.log("cassa", casse[0].geometry.y);*/
     if (jump_disable != false) {
-        if ((obj2).geometry.body_y >= ((obj1).geometry.body_y - 1)) {
+        if ((obj2).geometry.y >= ((obj1).geometry.y - 1)) {
             jump_disable = false;
         }
     }

@@ -1,10 +1,15 @@
+let sfondo_mortis0;
 
 
 function preload (s) {
+    sfondo_mortis0 = PP.assets.image.load (s, "assets/immagini/mainmenu/gameover.png");  
 }
 
 function create (s) {
-    
+    let mortis = PP.assets.image.add (s, sfondo_mortis0, 0, 0, 0, 0);
+    mortis.geometry.scale_x = 2;
+    mortis.geometry.scale_y = 2;
+    /*
     PP.shapes.text_styled_add(s, 
         PP.game.config.canvas_width / 2,
         PP.game.config.canvas_height / 2,
@@ -39,7 +44,7 @@ function create (s) {
             "0xFFFFFF",
             null,
             0.5,
-            -2);
+            -2); */
 }
 
 function update (s) {

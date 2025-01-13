@@ -349,7 +349,7 @@ function create (s) {
     create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s, 200, 610);
+    create_player (s, -2130, 600);
     
     create_cassa (s, 750, 450);
     create_cassa (s, 2550, 450);

@@ -75,6 +75,7 @@ function update_Dialogo1(s) {
                     PP.physics.set_allow_gravity(player, true);
                     PP.assets.destroy(Dialogo1_testo);
                     PP.timers.add_timer(s, 10000, reenable_testo1, false);
+                    Asmodeo.geometry.body_y = 8000;
                     return;
                 }
                 PP.assets.destroy(Dialogo1_testo);
@@ -88,4 +89,5 @@ function update_Dialogo1(s) {
 
 function reenable_testo1 (s) {
     fine_lettura_testo_1 = false;
+    Asmodeo.geometry.body_y = 520;
 }

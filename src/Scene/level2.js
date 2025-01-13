@@ -19,6 +19,7 @@ let floor;
 let barr_1;
 let platform1;
 let pavimento1;
+let pavimento1_90;
 let pavimento2;
 let pavimento2_90;
 let pavimento3;
@@ -60,6 +61,8 @@ function preload (s) {
     preload_piatt_move_orizz (s);
 
     pavimento1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma_Tavola disegno 1V.png");
+    pavimento1_90 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma_Tavola disegno 1V - Copia.png");
+
     pavimento2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-03V.png");
     pavimento2_90 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-03 - CopiaV.png");
     pavimento3 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-02V.png");
@@ -147,12 +150,20 @@ function create (s) {
     let floor7 = PP.assets.image.add(s, pavimento1, 4100, 620, 0, 0);
     PP.physics.add(s, floor7, PP.physics.type.STATIC);
 
+    let scalin7_1 = PP.assets.image.add(s, pavimento1_90, 4750, 620, 0, 0);
+    PP.physics.add(s, scalin7_1, PP.physics.type.STATIC);
+    let scalin7_2 = PP.assets.image.add(s, pavimento1_90, 4750, 1270, 0, 0);
+    PP.physics.add(s, scalin7_2, PP.physics.type.STATIC);
+
     let scalin6 = PP.assets.image.add(s, scala1, 3000, 470, 0, 0);
     PP.physics.add(s, scalin6, PP.physics.type.STATIC);
     
     // zona sotterranea
     let floor8 = PP.assets.image.add(s, pavimento1, 5100, 1650, 0, 0);
     PP.physics.add(s, floor8, PP.physics.type.STATIC);
+
+    let floor8_1 = PP.assets.image.add(s, pavimento1, 4450, 1650, 0, 0);
+    PP.physics.add(s, floor8_1, PP.physics.type.STATIC);
 
     let spine1 = PP.assets.image.add(s, spine_img, 5800, 1700, 0, 0);
     PP.physics.add(s, spine1, PP.physics.type.STATIC);
@@ -181,7 +192,7 @@ function create (s) {
     //zona pozzo senza fondo
     let scalin7 = PP.assets.image.add(s, pavimento2_90, 5100, 400, 0, 0);
     PP.physics.add(s, scalin7, PP.physics.type.STATIC);
-    let scalin8 = PP.assets.image.add(s, pavimento2_90, 5100, 250, 0, 0);
+    let scalin8 = PP.assets.image.add(s, pavimento1_90, 5100, 250, 0, 0);
     PP.physics.add(s, scalin8, PP.physics.type.STATIC);
 
     let floor12 = PP.assets.image.add(s, pavimento1, 5100, 250, 0, 0);
@@ -189,7 +200,7 @@ function create (s) {
     
     let scalin9= PP.assets.image.add(s, pavimento2_90, 5750, 253, 0, 0);
     PP.physics.add(s, scalin9, PP.physics.type.STATIC);
-    let scalin10 = PP.assets.image.add(s, pavimento2_90, 5750, 400, 0, 0);
+    let scalin10 = PP.assets.image.add(s, pavimento1_90, 5750, 400, 0, 0);
     PP.physics.add(s, scalin10, PP.physics.type.STATIC);
 
     create_piatt_move_orizz (s,5950, 200);
@@ -256,7 +267,7 @@ function create (s) {
     create_generatore3 (s);
     
     //create_player (s, -530, 600);
-    create_player (s, 8000, -100);
+    create_player (s, -550, 620);
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);
@@ -445,6 +456,8 @@ function create (s) {
     PP.physics.add_collider(s, player, scalin5);
     PP.physics.add_collider(s, player, scalin6);
     PP.physics.add_collider(s, player, scalin7);
+    PP.physics.add_collider(s, player, scalin7_1);
+    PP.physics.add_collider(s, player, scalin7_2);
     PP.physics.add_collider(s, player, scalin8);
     PP.physics.add_collider(s, player, scalin9);
     PP.physics.add_collider(s, player, scalin10);
@@ -463,6 +476,7 @@ function create (s) {
     PP.physics.add_collider_f(s, player, floor6, salto_si);
     PP.physics.add_collider_f(s, player, floor7, salto_si);
     PP.physics.add_collider_f(s, player, floor8, salto_si);
+    PP.physics.add_collider_f(s, player, floor8_1, salto_si);
     PP.physics.add_collider_f(s, player, floor11, salto_si);
     PP.physics.add_collider_f(s, player, floor12, salto_si);
     PP.physics.add_collider_f(s, player, floor13, salto_si);
@@ -472,7 +486,7 @@ function create (s) {
     PP.physics.add_collider_f(s, player, floor17, salto_si);
     PP.physics.add_collider_f(s, player, floor18, salto_si);
     PP.physics.add_collider_f(s, player, floor19, salto_si);
-    PP.physics.add_collider_f(s, player, floor20, salto_si);
+    PP.physics.add_collider_f(s, player, floor20, next_level2);
     PP.physics.add_collider_f(s, player, piatt_move_sing_level2, salto_si);
     
     PP.physics.add_collider_f(s, player, spine1, danno_caduta);
@@ -538,10 +552,10 @@ function create (s) {
 
 function update (s) {
     bg1.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
-    bg3.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.9;
-    bg2.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
-    bg0.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
-    bg02.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
+    bg3.tile_geometry.x = PP.camera.get_scroll_x(s) * 1;
+    bg2.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.9;
+    bg0.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.9;
+    bg02.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.9;
     
     update_lettere (s);
     update_Dialogo2 (s)
@@ -563,8 +577,15 @@ function update (s) {
     }
 }
 
+
+
 function destroy (s) {
     
 }
+
+function next_level2 (s) {
+    PP.scenes.start("level3");
+}
+
 
 PP.scenes.add("level2", preload, create, update, destroy);

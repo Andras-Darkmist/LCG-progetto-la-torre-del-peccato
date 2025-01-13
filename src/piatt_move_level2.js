@@ -30,6 +30,10 @@ function update_piatt_move_level2 (s) {
             PP.physics.set_velocity_y(piatt_move_sing_level2, 0);
             PP.timers.add_timer(s, 500, inizio_salita_level2, false);
         }
+        if (piatt_move_sing_level2.geometry.y < 1600 && piatt_move_sing_level2.geometry.y > 200 && PP.physics.get_velocity_y(piatt_move_sing_level2)==0)
+        {
+            PP.physics.set_velocity_y(piatt_move_sing_level2, -200);
+        }
     }
     
     /*

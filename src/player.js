@@ -274,9 +274,15 @@ function morte(s) {
 function game_over(s) {
     if (livello[0] == 1){
         PP.scenes.start("morte");
+        return;
     }
-    else if (livello[0] == 2){
+    if (livello[0] == 2){
         PP.scenes.start("morte2");
+        return;
+    }
+    if (livello[0] == 3){
+        PP.scenes.start("morte3");
+        return;
     }
 }
 

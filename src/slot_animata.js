@@ -69,6 +69,8 @@ function kill_slot(s, obj1, obj2) {
                 i = posizione_slot.shift();
                 PP.assets.sprite.animation_play(slot_animate[i], "Die");
                 slot_spenta[i] = true;
+                let prev_score = PP.game_state.get_variable("Monete");
+                    PP.game_state.set_variable("Monete", prev_score+3);
             }
             if (slot_spenta[i] == true && eseguendo_dash == true) {
                 console.log("sus")

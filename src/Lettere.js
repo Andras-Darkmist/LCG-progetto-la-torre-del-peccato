@@ -17,9 +17,9 @@ function preload_lettera (s) {
 
     lettera_1_img = PP.assets.image.load(s, "assets/immagini/Lettera1.png", 150, 150);
     lettera_2_img = PP.assets.image.load(s, "assets/immagini/Lettera 2.png", 150, 150);
-    lettera_3_img = PP.assets.image.load(s, "assets/immagini/arca.jpg", 150, 150);
-    lettera_4_img = PP.assets.image.load(s, "assets/immagini/arca.jpg", 150, 150);
-    lettera_5_img = PP.assets.image.load(s, "assets/immagini/arca.jpg", 150, 150);
+    lettera_3_img = PP.assets.image.load(s, "assets/immagini/Lettera 3.png", 150, 150);
+    lettera_4_img = PP.assets.image.load(s, "assets/immagini/lettera5.png", 150, 150);
+    lettera_5_img = PP.assets.image.load(s, "assets/immagini/lettera6.png", 150, 150);
 }
 
 function create_lettera (s, x, y){
@@ -44,6 +44,8 @@ function collision_lettera (s, lettera, player) {
     PP.assets.destroy(lettera);
 
     lettera_1 = PP.assets.image.add(s, testo_lettere[prev_score], player.geometry.x + 250, player.geometry.y - 150, 0.5, 0.5);
+    lettera_1.geometry.scale_y = 0.8;
+    lettera_1.geometry.scale_x = 0.8;
     PP.physics.set_velocity_x(player, 0);
     PP.physics.set_velocity_y(player, 0);
     PP.physics.set_allow_gravity(player, false);

@@ -39,6 +39,20 @@ function update(s){
         timer_lettura_tavola = true;
         PP.timers.add_timer(s, 800, riattiva_tavole, false);
     }
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.M)) {
+        if (numero_tavola >= 2)
+        {
+            PP.scenes.start("Main_Menu");
+            return;
+        }
+    }
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.G)) {
+        if (numero_tavola >= 2)
+        {
+            PP.scenes.start("level1");
+            return;
+        }
+    }
 }
 }
 

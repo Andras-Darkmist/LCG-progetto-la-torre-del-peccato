@@ -347,7 +347,7 @@ function create (s) {
     //funzioni richiamate
     create_lettera(s, 100, 170);
     create_lettera(s, 7800, 170);
-    create_lettera(s, 7000, 170);
+    //create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
     create_player (s, -2130, 600);

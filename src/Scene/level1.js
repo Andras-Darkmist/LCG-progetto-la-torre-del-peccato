@@ -127,7 +127,7 @@ function create (s) {
     pavi_prosp.tile_geometry.scroll_factor_x = 0.4;
     
     slot_nuove = PP.assets.tilesprite.add(s, img_slot_nuove, 0, 485, 12800, 90, 0, 0);
-    slot_nuove.tile_geometry.scroll_factor_x = 0.4;
+    slot_nuove.tile_geometry.scroll_factor_x = 0;
 
     moquette = PP.assets.tilesprite.add(s, img_moquette, 0, 650, 12000, 172, 0, 0);
     moquette.tile_geometry.scroll_factor_x = 0.1;
@@ -644,12 +644,12 @@ function create (s) {
 
 function update (s) {
 
-    bg.tile_geometry.x = PP.camera.get_scroll_x(s) * 1/(2+1);
-    bg_sopra.tile_geometry.x = PP.camera.get_scroll_x(s) * 1/(2+1);
-    slot_nuove.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
-    colonne_davanti.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
-    colonne_davanti_sopra.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
-    moquette.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
+    //bg.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.1; 
+    //bg_sopra.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.1;
+    slot_nuove.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.4;
+    colonne_davanti.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
+    colonne_davanti_sopra.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
+    moquette.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8
     //bg.tile_geometry.y = PP.camera.get_scroll_y(s);
 
 

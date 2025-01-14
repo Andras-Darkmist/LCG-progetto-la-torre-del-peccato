@@ -147,6 +147,26 @@ function create (s) {
     //pavimento
 
     let bgtt0 = PP.assets.image.add(s, sfondott0, -3566, 0, 0, 0);
+    
+    let bgtt0_2 = PP.assets.image.add(s, sfondott0, 0, 0, 0, 0);
+    
+    let bgtt0_3 = PP.assets.image.add(s, sfondott0, 1200, 0, 0, 0);
+    
+    let bgtt0_4 = PP.assets.image.add(s, sfondott0, 2400, 0, 0, 0);
+    
+    let bgtt0_2_sopra = PP.assets.image.add(s, sfondott0, -715, -800, 0, 0);
+    
+    let bgtt0_3_sopra = PP.assets.image.add(s, sfondott0, 0, -800, 0, 0);
+    
+    let bgtt0_4_sopra = PP.assets.image.add(s, sfondott0, 1200, -800, 0, 0);
+    
+    let bgtt0_5_sopra = PP.assets.image.add(s, sfondott0, 2400, -800, 0, 0);
+    
+    let bgtt0_sopra = PP.assets.image.add(s, sfondott0, -1660, -800, 0, 0);
+    
+    let bgtt0_meno1_sopra = PP.assets.image.add(s, sfondott0, -2625, -800, 0, 0);
+    
+    let bgtt0_meno2_sopra = PP.assets.image.add(s, sfondott0, -3570, -800, 0, 0);
 
     let bgtt1 = PP.assets.image.add(s, sfondott1, -2600, 0, 0, 0);
 
@@ -392,7 +412,7 @@ function create (s) {
     create_Lanciatore(s, 9900, 250);
     create_slot_animata(s, 6600, 620);
 
-    let muro1 = PP.assets.image.add(s, transzionett, 130, 0, 0, 0);
+    let muro1 = PP.assets.image.add(s, transzionett, 3590, 0, 0, 0);
     
 
     

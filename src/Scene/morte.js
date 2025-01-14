@@ -6,6 +6,8 @@ function preload (s) {
 }
 
 function create (s) {
+    PP.game_state.set_variable("Monete", 0);
+    PP.game_state.set_variable("Lettere", 0);
     let mortis = PP.assets.image.add (s, sfondo_mortis0, 0, 0, 0, 0);
     mortis.geometry.scale_x = 2;
     mortis.geometry.scale_y = 2;
@@ -49,13 +51,13 @@ function create (s) {
 
 function update (s) {
     
-    if(PP.interactive.kb.is_key_down(s, PP.key_codes.Q)) {
+    if(PP.interactive.kb.is_key_down(s, PP.key_codes.C)) {
         //riavvia la partita
         console.log("sus");
         PP.scenes.start("level1");
     }
 
-    if(PP.interactive.kb.is_key_down(s, PP.key_codes.C)) {
+    if(PP.interactive.kb.is_key_down(s, PP.key_codes.M)) {
         //riavvia la partita
         console.log("sus");
         PP.scenes.start("Main_Menu");

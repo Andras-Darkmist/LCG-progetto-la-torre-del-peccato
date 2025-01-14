@@ -2,7 +2,6 @@ let img_pavimento;
 let img_muro;
 
 
-
 let img_bg3;
 
 let ascensore1_3;
@@ -29,6 +28,9 @@ function preload (s){
 }
 
 function create (s){
+    PP.game_state.set_variable("Monete_checkpoint", PP.game_state.get_variable("Monete"));
+    PP.game_state.set_variable("Lettere_checkpoint", PP.game_state.get_variable("Lettere"));
+
     PP.game_state.set_variable("Monete", 5);
     let bg = PP.assets.image.add (s, img_bg3, -20, -200, 0, 0);
     let bg_2 = PP.assets.image.add (s, img_bg3, 1180, -200, 0, 0);
@@ -96,12 +98,12 @@ function update (s){
 }
 
 function goto_final(s) {
-    if (PP.game_state.get_variable("Lettere") >= 6 && condizione_finale3 == true ) {
+    if (PP.game_state.get_variable("Lettere") >= 5 && condizione_finale3 == true ) {
         PP.scenes.start("Finale3");
         return;
     }
 
-    if (PP.game_state.get_variable("Lettere") >= 6 && condizione_finale3 == false ) {
+    if (PP.game_state.get_variable("Lettere") >= 5 && condizione_finale3 == false ) {
         PP.scenes.start("Finale2");
         return;
     }

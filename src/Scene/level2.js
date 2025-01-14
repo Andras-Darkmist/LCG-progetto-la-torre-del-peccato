@@ -34,6 +34,11 @@ let ILBUCO;
 let ILBUCOscenico;
 
 
+
+  //score_attuale2_1 = PP.game_state.get_variable("Monete");
+    //score_attuale2_2 = PP.game_state.get_variable("Lettere");
+    
+
 livello.push(2);
 
 
@@ -84,11 +89,13 @@ function preload (s) {
 
 function create (s) {
 
+    PP.game_state.set_variable("Monete_checkpoint", PP.game_state.get_variable("Monete"));
+    PP.game_state.set_variable("Lettere_checkpoint", PP.game_state.get_variable("Lettere"));
+    
     
     //zona iniziale
    
-
-    
+  
     
     bg3 = PP.assets.tilesprite.add(s, sfondo23, 0, -140, 0, 0, 0, 0);
     bg3.tile_geometry.scroll_factor_x = 0;

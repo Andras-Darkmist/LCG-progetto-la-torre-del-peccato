@@ -7,6 +7,8 @@ function preload (s) {
 }
 
 function create (s) {
+    PP.game_state.set_variable("Monete", PP.game_state.get_variable("Monete_checkpoint"));
+    PP.game_state.set_variable("Lettere", PP.game_state.get_variable("Lettere_checkpoint"));
     let mortis = PP.assets.image.add (s, sfondo_mortis2, 0, 0, 0, 0);
     mortis.geometry.scale_x = 2;
     mortis.geometry.scale_y = 2;    
@@ -51,11 +53,11 @@ function create (s) {
 
 function update (s) {
     
-    if(PP.interactive.kb.is_key_down(s, PP.key_codes.Q)) {
+    if(PP.interactive.kb.is_key_down(s, PP.key_codes.C)) {
         //riavvia la partita
         console.log("sus");
         PP.scenes.start("level3");
-        if(PP.interactive.kb.is_key_down(s, PP.key_codes.C)) {
+        if(PP.interactive.kb.is_key_down(s, PP.key_codes.M)) {
             //riavvia la partita
             console.log("sus");
             PP.scenes.start("Main_Menu");

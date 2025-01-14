@@ -1,4 +1,5 @@
 let bg;
+let bg_sopra;
 let sfondott0;
 let sfondott1;
 let sfondott2;
@@ -10,6 +11,7 @@ let img_volte;
 let volte_dietro;
 let img_slot_nuove;
 let colonne_davanti;
+let colonne_davanti_sopra;
 let slot_nuove;
 let img_moquette;
 let moquette;
@@ -113,6 +115,8 @@ function create (s) {
 
     bg = PP.assets.tilesprite.add(s, img_background, 0, 30, 2800, 380, 0, 0);
     bg.tile_geometry.scroll_factor_x = 0.1;
+    bg_sopra = PP.assets.tilesprite.add(s, img_background, 0, -600, 2800, 380, 0, 0);
+    bg_sopra.tile_geometry.scroll_factor_x = 0.1;
     
     volte_dietro = PP.assets.tilesprite.add(s, img_volte, -2000, 100, 20000, 453, 0, 0);
     volte_dietro.tile_geometry.scroll_factor_x = 0.1;
@@ -132,8 +136,14 @@ function create (s) {
     colonne_davanti = PP.assets.tilesprite.add(s, img_colonne, 0, 0, 2800, 650, 0, 0);
     colonne_davanti.tile_geometry.scroll_factor_x = 0;
 
+    colonne_davanti_sopra = PP.assets.tilesprite.add(s, img_colonne, 0, -650, 2800, 650, 0, 0);
+    colonne_davanti_sopra.tile_geometry.scroll_factor_x = 0;
+
+
     bg.geometry.scale_x = 1.7;
     bg.geometry.scale_y = 1.7;
+    bg_sopra.geometry.scale_x = 1.7;
+    bg_sopra.geometry.scale_y = 1.7;
     //bg.tile_geometry.scroll_factor_y = 0;
     //pavimento
     let bgtt0 = PP.assets.image.add(s, sfondott0, -3566, 0, 0, 0);
@@ -632,8 +642,10 @@ function create (s) {
 function update (s) {
 
     bg.tile_geometry.x = PP.camera.get_scroll_x(s) * 1/(2+1);
+    bg_sopra.tile_geometry.x = PP.camera.get_scroll_x(s) * 1/(2+1);
     slot_nuove.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
     colonne_davanti.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
+    colonne_davanti_sopra.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
     moquette.tile_geometry.x = PP.camera.get_scroll_x(s) * 1.1;
     //bg.tile_geometry.y = PP.camera.get_scroll_y(s);
 
@@ -675,8 +687,8 @@ function update (s) {
     // per porta finale
     
     if(chiusura_porta_finale == false){
-        porte[1].geometry.y = 0;
-        porte[1].geometry.body_y = 0;
+        porte[1].geometry.y = -50;
+        porte[1].geometry.body_y = -50;
     }
 
     if(chiusura_porta_finale == true){

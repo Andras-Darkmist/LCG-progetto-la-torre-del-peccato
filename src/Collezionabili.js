@@ -7,6 +7,10 @@ let monete_conto;
 PP.game_state.set_variable ("Lettere", 0);
 PP.game_state.set_variable ("Monete", 0);
 
+PP.game_state.set_variable ("Lettere_checkpoint", 0);
+PP.game_state.set_variable ("Monete_checkpoint", 0);
+
+
 function preload_score (s) {
     img_lettera = PP.assets.image.load(s, "assets/immagini/Lettera.PNG", 150, 156);
     img_monete = PP.assets.image.load(s, "assets/immagini/Fiches.PNG", 150, 156);

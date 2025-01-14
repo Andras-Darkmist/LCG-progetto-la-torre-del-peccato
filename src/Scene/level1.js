@@ -100,14 +100,13 @@ function preload (s) {
     ascensoremuro = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
 }
 
-// PROBLEMI PER ORA: specie di caduta continua mentre si è sulla cassa, le casse si compenetrano, HUD ferma,
+// PROBLEMI PER ORA: HUD ferma,
 // animazione lanciatore è scoordinata rispetto a lancio effettivo carta,
-// problema funzione salto solo da sopra aagli oggetti permette di saltare anche quando si tocca la parte laterale superiore di questi
+// 
 
 // DA INSERIRE: proiettili spostano casse,
-    // drop monete dei nemici,
-    // cambio tra livelli, modificare game over per far ripartire dal secondo livello se ci si muore, menù iniziale placeholder per ora
-    // vere immagini lettere che ora sono placeholder, da cambiare png porta e porta aperta
+    // menù iniziale placeholder per ora
+    // da cambiare png porta e porta aperta
     // sfondo livello 2 di luigi
 
 function create (s) {

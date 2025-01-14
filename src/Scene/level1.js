@@ -145,9 +145,13 @@ function create (s) {
     bg_sopra.geometry.scale_y = 1.7;
     //bg.tile_geometry.scroll_factor_y = 0;
     //pavimento
+
     let bgtt0 = PP.assets.image.add(s, sfondott0, -3566, 0, 0, 0);
+
     let bgtt1 = PP.assets.image.add(s, sfondott1, -2600, 0, 0, 0);
+
     let bgtt2 = PP.assets.image.add(s, sfondott2, -1634, 0, 0, 0);
+    
     let bgtt3 = PP.assets.image.add(s, sfondott3, -688, 0, 0, 0);
 
     //let bgtt0 = PP.assets.image.add(s, sfondott0, -588, 0, 0, 0);

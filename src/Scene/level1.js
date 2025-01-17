@@ -52,6 +52,8 @@ let collider_Asmodeo = true;
 let collider_casse_sopra = [];
 let collider_porta1 = true;
 
+let cartello_porta;
+let cartello_sotterraneo;
 
 livello.push(1);
 
@@ -98,6 +100,9 @@ function preload (s) {
     ascensore1 = PP.assets.image.load(s, "Assets/immagini/Ascensore1.PNG");
     ascensore2 = PP.assets.image.load(s, "Assets/immagini/Ascensore2.PNG");
     ascensoremuro = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
+
+    cartello_porta = PP.assets.image.load(s, "assets/immagini/Cartello - pedana.png");
+    cartello_sotterraneo = PP.assets.image.load(s, "assets/immagini/Cartello - sotterraneo.png");
 }
 
 // PROBLEMI PER ORA: HUD ferma,
@@ -239,6 +244,7 @@ function create (s) {
     
     let pavimento_15 = PP.assets.image.add(s, pavimento1, 9000, 620, 0, 0);
     PP.physics.add(s, pavimento_15, PP.physics.type.STATIC);
+
     
     let pavimento_16 = PP.assets.image.add(s, pavimento1, 9650, 620, 0, 0);
     PP.physics.add(s, pavimento_16, PP.physics.type.STATIC);
@@ -257,6 +263,7 @@ function create (s) {
     let pavimento_20 = PP.assets.image.add(s, pavimento1, 12100, 620, 0, 0);
     PP.physics.add(s, pavimento_20, PP.physics.type.STATIC);
 
+    let cartello_2 = PP.assets.image.add(s, cartello_sotterraneo, 11150, 620, 0, 1);
 
     // scalini e stanza sotterranea fine livello fine livello
 
@@ -360,7 +367,8 @@ function create (s) {
     // PEDANE A PRESSIONE
 
     // porta tutorial
-    
+    let cartello_1 = PP.assets.image.add(s, cartello_porta, 2700, 620, 0, 1);
+
     pedana1 = PP.shapes.rectangle_add(s, 3000, 639, 150, 40, "0xfbc456", 1);
     PP.physics.add(s, pedana1, PP.physics.type.STATIC);
 

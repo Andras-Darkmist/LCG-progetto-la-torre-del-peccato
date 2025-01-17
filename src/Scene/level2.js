@@ -33,7 +33,7 @@ let spine_img;
 let ILBUCO;
 let ILBUCOscenico;
 
-
+let cartello_attenzione;
 
   //score_attuale2_1 = PP.game_state.get_variable("Monete");
     //score_attuale2_2 = PP.game_state.get_variable("Lettere");
@@ -85,6 +85,7 @@ function preload (s) {
     ascensore1_2 = PP.assets.image.load(s, "Assets/immagini/Ascensore1.PNG");
     ascensore2_2 = PP.assets.image.load(s, "Assets/immagini/Ascensore2.PNG");
     ascensoremuro_2 = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
+    cartello_attenzione = PP.assets.image.load (s, "Assets/immagini/Cartello - caduta.png")
 }
 
 function create (s) {
@@ -204,7 +205,9 @@ function create (s) {
 
     let floor12 = PP.assets.image.add(s, pavimento1, 5100, 250, 0, 0);
     PP.physics.add(s, floor12, PP.physics.type.STATIC);
-    
+
+    let cartello_3 = PP.assets.image.add(s, cartello_attenzione, 5650, 250, 0, 1);
+
     let scalin9= PP.assets.image.add(s, pavimento2_90, 5750, 253, 0, 0);
     PP.physics.add(s, scalin9, PP.physics.type.STATIC);
     let scalin10 = PP.assets.image.add(s, pavimento1_90, 5750, 400, 0, 0);

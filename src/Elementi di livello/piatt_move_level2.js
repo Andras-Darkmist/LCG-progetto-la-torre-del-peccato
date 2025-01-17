@@ -6,7 +6,7 @@ let valori_piatt_move = [];
 let vicinanza = [];*/
 
 function preload_piatt_move_level2 (s) {
-    img_piatt_move_level2 = PP.assets.image.load(s, "assets/immagini/piatt_move_level2.png", 150, 156);
+    img_piatt_move_level2 = PP.assets.image.load(s, "assets/immagini/piatt_move_level2_V1.png", 150, 156);
 
 }
 

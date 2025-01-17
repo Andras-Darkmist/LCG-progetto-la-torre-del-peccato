@@ -28,7 +28,7 @@ function create_Dialogo2 (s){
 }
 
 function collision_Dialogo2 (s, Asmodeo, player) {
-    if (fine_lettura_testo_2 == false && lettura_testo_2 == false) {
+    if (lettura_testo_2 == false && fine_lettura_testo_2 == false) {
         PP.physics.set_velocity_x(player, 0);
         PP.physics.set_velocity_y(player, 0);
         PP.physics.set_allow_gravity(player, false);

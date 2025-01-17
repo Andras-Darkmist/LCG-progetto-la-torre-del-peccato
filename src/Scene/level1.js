@@ -392,7 +392,7 @@ function create (s) {
 
     create_player (s, -2130, 600);
     
-    create_cassa (s, 750, 450);
+    create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);
     create_cassa (s, 4050, 360);
     create_cassa (s, 5400, 60);

@@ -218,7 +218,7 @@ function rimetti_drag(s) {
 //funzioni per il dash
 
 function dash_reset(s) {
-    if (lettura_testo_1 == false && fine_lettura_testo_2==false)
+    if (lettura_testo_1 == false && lettura_testo_2 == false)
     {   
         PP.physics.set_velocity_x(player, 0);
         PP.physics.set_allow_gravity(player, true);

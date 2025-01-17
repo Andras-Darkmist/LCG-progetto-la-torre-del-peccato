@@ -117,7 +117,7 @@ function create (s) {
     let ascensore_2 = PP.assets.image.add(s, ascensore2_2, -650, -150, 0, 0);
     ascensore_2.geometry.flip_x = true;
 
-    let ascensore_2_final = PP.assets.image.add(s, ascensore2_2, 11950, -820, 0, 0);
+    let ascensore_2_final = PP.assets.image.add(s, ascensore2_2, 11950, -670, 0, 0);
 
     let floor_0 = PP.assets.image.add(s, pavimento1, -650, 620, 0, 0);
     PP.physics.add(s, floor_0, PP.physics.type.STATIC);
@@ -217,7 +217,7 @@ function create (s) {
     create_cassa (s, 6050, 50);
     create_piatt_move_orizz (s,7850, 200);
 
-    let floor14 = PP.assets.image.add(s, pavimento1, 8600, -100, 0, 0);
+    let floor14 = PP.assets.image.add(s, pavimento1, 8600, -50, 0, 0);
     PP.physics.add(s, floor14, PP.physics.type.STATIC);
 
     create_lettera(s, 8800, -200);
@@ -255,9 +255,7 @@ function create (s) {
     PP.physics.add(s, scalin14, PP.physics.type.STATIC);
     let scalin15 = PP.assets.image.add(s, pavimento2_90, 11900, 100, 0, 0);
     PP.physics.add(s, scalin15, PP.physics.type.STATIC);
-    let scalin16 = PP.assets.image.add(s, pavimento2_90, 11900, -50, 0, 0);
-    PP.physics.add(s, scalin16, PP.physics.type.STATIC);
-    let floor20 = PP.assets.image.add(s, pavimento1, 11900, -50, 0, 0);
+    let floor20 = PP.assets.image.add(s, pavimento1, 11900, 100, 0, 0);
     PP.physics.add(s, floor20, PP.physics.type.STATIC);
 
     //barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
@@ -317,7 +315,6 @@ function create (s) {
         PP.physics.add_collider(s, scalin13, casse[i]);
         PP.physics.add_collider(s, scalin14, casse[i]);
         PP.physics.add_collider(s, scalin15, casse[i]);
-        PP.physics.add_collider(s, scalin16, casse[i]);
         PP.physics.add_collider(s, floor2, casse[i]);
         PP.physics.add_collider(s, floor3, casse[i]);
         PP.physics.add_collider(s, floor4, casse[i]);
@@ -476,7 +473,6 @@ function create (s) {
     PP.physics.add_collider(s, player, scalin13);
     PP.physics.add_collider(s, player, scalin14);
     PP.physics.add_collider(s, player, scalin15);
-    PP.physics.add_collider(s, player, scalin16);
     PP.physics.add_collider_f(s, player, scalin6, salto_si);
     PP.physics.add_collider_f(s, player, floor2, salto_si);
     PP.physics.add_collider_f(s, player, floor3, salto_si);
@@ -548,8 +544,8 @@ function create (s) {
     PP.physics.add(s, ascensore_muro, PP.physics.type.STATIC);
     PP.physics.add_collider(s, player, ascensore_muro);
     
-    let ascensore_1_final = PP.assets.image.add(s, ascensore1_2, 11950, -820, 0, 0);
-    let ascensore_muro_final = PP.assets.image.add(s, ascensoremuro_2, 12150, -820, 0, 0);
+    let ascensore_1_final = PP.assets.image.add(s, ascensore1_2, 11950, -670, 0, 0);
+    let ascensore_muro_final = PP.assets.image.add(s, ascensoremuro_2, 12150, -670, 0, 0);
     //PP.physics.add(s, ascensore_muro_final, PP.physics.type.STATIC);
     //PP.physics.add_collider(s, player, ascensore_muro_final);
   

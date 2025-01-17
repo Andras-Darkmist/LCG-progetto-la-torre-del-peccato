@@ -105,12 +105,11 @@ function preload (s) {
     cartello_sotterraneo = PP.assets.image.load(s, "assets/immagini/Cartello - sotterraneo.png");
 }
 
-// PROBLEMI PER ORA: HUD ferma,
-// animazione lanciatore è scoordinata rispetto a lancio effettivo carta,
+// PROBLEMI PER ORA:
+// sistemare timer piattaforma finale
 // 
 
-// DA INSERIRE: proiettili spostano casse,
-    // menù iniziale placeholder per ora
+// DA INSERIRE:
     // da cambiare png porta e porta aperta
     // sfondo livello 2 di luigi
 

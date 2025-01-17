@@ -10,7 +10,7 @@ function create (s) {
 }
 
 function update(s){
-    if (PP.interactive.kb.is_key_down(s, PP.key_codes.C)) {
+    if (PP.interactive.kb.is_key_down(s, PP.key_codes.M)) {
         PP.scenes.start("Main_Menu");
     }
 }

@@ -52,8 +52,6 @@ let collider_Asmodeo = true;
 let collider_casse_sopra = [];
 let collider_porta1 = true;
 
-let cartello_porta;
-let cartello_sotterraneo;
 
 livello.push(1);
 
@@ -100,16 +98,14 @@ function preload (s) {
     ascensore1 = PP.assets.image.load(s, "Assets/immagini/Ascensore1.PNG");
     ascensore2 = PP.assets.image.load(s, "Assets/immagini/Ascensore2.PNG");
     ascensoremuro = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
-
-    cartello_porta = PP.assets.image.load(s, "assets/immagini/Cartello - pedana.png");
-    cartello_sotterraneo = PP.assets.image.load(s, "assets/immagini/Cartello - sotterraneo.png");
 }
 
-// PROBLEMI PER ORA:
-// sistemare timer piattaforma finale
+// PROBLEMI PER ORA: HUD ferma,
+// animazione lanciatore è scoordinata rispetto a lancio effettivo carta,
 // 
 
-// DA INSERIRE:
+// DA INSERIRE: proiettili spostano casse,
+    // menù iniziale placeholder per ora
     // da cambiare png porta e porta aperta
     // sfondo livello 2 di luigi
 
@@ -180,7 +176,7 @@ function create (s) {
 
     //let bgtt0 = PP.assets.image.add(s, sfondott0, -588, 0, 0, 0);
 
-    let ascensore_2 = PP.assets.image.add(s, ascensore2, 12555, -150, 0, 0);
+    let ascensore_2 = PP.assets.image.add(s, ascensore2, 12655, -150, 0, 0);
 
     // PAVIMENTO INTRO
 
@@ -243,7 +239,6 @@ function create (s) {
     
     let pavimento_15 = PP.assets.image.add(s, pavimento1, 9000, 620, 0, 0);
     PP.physics.add(s, pavimento_15, PP.physics.type.STATIC);
-
     
     let pavimento_16 = PP.assets.image.add(s, pavimento1, 9650, 620, 0, 0);
     PP.physics.add(s, pavimento_16, PP.physics.type.STATIC);
@@ -262,7 +257,6 @@ function create (s) {
     let pavimento_20 = PP.assets.image.add(s, pavimento1, 12100, 620, 0, 0);
     PP.physics.add(s, pavimento_20, PP.physics.type.STATIC);
 
-    let cartello_2 = PP.assets.image.add(s, cartello_sotterraneo, 11150, 620, 0, 1);
 
     // scalini e stanza sotterranea fine livello fine livello
 
@@ -366,8 +360,7 @@ function create (s) {
     // PEDANE A PRESSIONE
 
     // porta tutorial
-    let cartello_1 = PP.assets.image.add(s, cartello_porta, 2700, 620, 0, 1);
-
+    
     pedana1 = PP.shapes.rectangle_add(s, 3000, 639, 150, 40, "0xfbc456", 1);
     PP.physics.add(s, pedana1, PP.physics.type.STATIC);
 
@@ -390,18 +383,18 @@ function create (s) {
     //create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s, -2130, 600);
+    create_player (s, 10830, 620);
     
     create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);
     create_cassa (s, 4050, 360);
     create_cassa (s, 5400, 60);
     //create_cassa (s, 7350, 60);
-    create_cassa (s, 11050, 950);
-    create_cassa (s, 11090, 780);
+    create_cassa (s, 11170, 950);
+    create_cassa (s, 11170, 780);
 
     create_porta (s, 3450, 320);
-    create_porta (s, 12600, 320);
+    create_porta (s, 12700, 320);
 
     create_piatt (s, 5100, 320);
     create_piatt (s, 5900, -320);
@@ -656,8 +649,8 @@ function create (s) {
     }
 
 
-    let ascensore_1 = PP.assets.image.add(s, ascensore1, 12555, -150, 0, 0);
-    let ascensore_muro = PP.assets.image.add(s, ascensoremuro, 12755, -150, 0, 0);
+    let ascensore_1 = PP.assets.image.add(s, ascensore1, 12655, -150, 0, 0);
+    let ascensore_muro = PP.assets.image.add(s, ascensoremuro, 12855, -150, 0, 0);
     create_score(s);
     create_vite(s);
 
@@ -779,6 +772,35 @@ function update (s) {
             PP.physics.add_collider(s, casse[g], pavimento_19);
             collider_casse_sopra[g - 1] = true;
         }
+    }
+
+
+
+    // IF PER LE CASSE
+
+    // prima cassa porta tutorial
+
+    if (casse[1].geometry.x <= 2260 || casse[1].geometry.x >= 3160){
+        PP.physics.set_velocity_x(casse[1], 0);
+        PP.physics.set_velocity_y(casse[1], 0);
+        casse[1].geometry.x = 2550
+        casse[1].geometry.y = 250
+    }
+
+    // casse enigma finale
+
+    if (casse[4].geometry.x <= 10500 || casse[4].geometry.x >= 12300 && casse[4].geometry.y >= 700 || casse[4].geometry.y <= 700 && casse[4].geometry.x >= 12450){
+        PP.physics.set_velocity_x(casse[4], 0);
+        PP.physics.set_velocity_y(casse[4], 0);
+        casse[4].geometry.x = 11070
+        casse[4].geometry.y = 950
+    }
+    
+    if (casse[5].geometry.x <= 10500 || casse[5].geometry.x >= 12300 && casse[5].geometry.y >= 700 || casse[5].geometry.y <= 700 && casse[5].geometry.x >= 12450){
+        PP.physics.set_velocity_x(casse[5], 0);
+        PP.physics.set_velocity_y(casse[5], 0);
+        casse[5].geometry.x = 11070
+        casse[5].geometry.y = 780
     }
 }
 

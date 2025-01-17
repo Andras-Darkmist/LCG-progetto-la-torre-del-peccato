@@ -218,10 +218,14 @@ function rimetti_drag(s) {
 //funzioni per il dash
 
 function dash_reset(s) {
-    PP.physics.set_velocity_x(player, 0);
-    PP.physics.set_allow_gravity(player, true);
-    move_disable = false;
-    eseguendo_dash = false;
+    if (lettura_testo_1 == false && fine_lettura_testo_2==false)
+    {   
+        PP.physics.set_velocity_x(player, 0);
+        PP.physics.set_allow_gravity(player, true);
+        move_disable = false;
+        eseguendo_dash = false;
+    }
+
 }
 
 function reenable_dash(s) {

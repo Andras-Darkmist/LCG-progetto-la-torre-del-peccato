@@ -28,8 +28,7 @@ function create_Dialogo2 (s){
 }
 
 function collision_Dialogo2 (s, Asmodeo, player) {
-    if (fine_lettura_testo_2 == false) {
-        scrivi_dialogue2 (s);
+    if (fine_lettura_testo_2 == false && lettura_testo_2 == false) {
         PP.physics.set_velocity_x(player, 0);
         PP.physics.set_velocity_y(player, 0);
         PP.physics.set_allow_gravity(player, false);
@@ -39,6 +38,7 @@ function collision_Dialogo2 (s, Asmodeo, player) {
         move_disable = true;
         invincibilità = true;
         next_anim = "stop";
+        scrivi_dialogue2 (s);
     }
 }
 

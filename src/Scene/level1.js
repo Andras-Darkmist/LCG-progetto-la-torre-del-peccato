@@ -4,6 +4,8 @@ let sfondott0;
 let sfondott1;
 let sfondott2;
 let sfondott3;
+let sfondo_sgabuzzino;
+let sfondo_sgabuzzino_1;
 let transzionett;
 let img_background;
 let img_colonne;
@@ -98,6 +100,8 @@ function preload (s) {
     ascensore1 = PP.assets.image.load(s, "Assets/immagini/Ascensore1.PNG");
     ascensore2 = PP.assets.image.load(s, "Assets/immagini/Ascensore2.PNG");
     ascensoremuro = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
+    sfondo_sgabuzzino = PP.assets.image.load(s, "Assets/immagini/sotterraneo lvl1.png")
+    sfondo_sgabuzzino_1 = PP.assets.image.load(s, "Assets/immagini/sotterraneo lvl1_1.png")
 }
 
 // PROBLEMI PER ORA: HUD ferma,
@@ -174,6 +178,10 @@ function create (s) {
     
     let bgtt3 = PP.assets.image.add(s, sfondott3, -688, 0, 0, 0);
 
+    let sgabuzzino = PP.assets.image.add(s,sfondo_sgabuzzino, 11150, 620, 0, 0);
+    let sgabuzzino_1 = PP.assets.image.add(s,sfondo_sgabuzzino_1, 11150, 620, 1, 0);
+
+    
     //let bgtt0 = PP.assets.image.add(s, sfondott0, -588, 0, 0, 0);
 
     let ascensore_2 = PP.assets.image.add(s, ascensore2, 12655, -150, 0, 0);
@@ -383,7 +391,8 @@ function create (s) {
     //create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s, 10830, 620);
+    create_player (s, 10000, 620);
+    //create_player (s, -3500, 620)
     
     create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);

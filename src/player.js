@@ -120,6 +120,12 @@ function player_update(s) {
             //console.log("giocatore", player.geometry.body_y);
             //console.log("cassa", casse[0].geometry.body_y);
         }
+        if (PP.interactive.kb.is_key_down(s, PP.key_codes.DOWN)){
+            PP.camera.start_follow(s, player, -235, -230);
+        }
+        else {
+            PP.camera.start_follow(s, player, -235, 230);
+        }
     }
 
 

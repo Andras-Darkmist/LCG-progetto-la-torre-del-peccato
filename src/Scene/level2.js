@@ -107,10 +107,11 @@ function create (s) {
     bg1 = PP.assets.tilesprite.add(s, sfondo21, 0, -140, 0, 0, 0, 0);
     bg1.tile_geometry.scroll_factor_x = 0;
 
-    bg0 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+800, 1280, 0, 0, 0);
+    bg0 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+800, 0, 0, 0, 0);
     bg0.tile_geometry.scroll_factor_x = 0;
 
-    bg02 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+1200, 1280, 0, 0, 0);
+    bg02 = PP.assets.tilesprite.add(s, sfondo20, 0, -140+1600, 0, 0, 0, 0);
+    bg02.geometry.scale_y=1.05
     bg02.tile_geometry.scroll_factor_x = 0;
 
     //let muro_iniziale = PP.shapes.rectangle_add(s, -1000, -1000, 1, 1280, "0x000000", 0);
@@ -162,6 +163,11 @@ function create (s) {
     let floor7 = PP.assets.image.add(s, pavimento1, 4100, 620, 0, 0);
     PP.physics.add(s, floor7, PP.physics.type.STATIC);
 
+ 
+    
+    // zona sotterranea
+
+    /*
     let scalin7_1 = PP.assets.image.add(s, pavimento1_90, 4750, 620, 0, 0);
     PP.physics.add(s, scalin7_1, PP.physics.type.STATIC);
 
@@ -170,8 +176,6 @@ function create (s) {
 
     let scalin6 = PP.assets.image.add(s, scala1, 3000, 470, 0, 0);
     PP.physics.add(s, scalin6, PP.physics.type.STATIC);
-    
-    // zona sotterranea
 
     let floor8 = PP.assets.image.add(s, pavimento1, 5100, 1650, 0, 0);
     PP.physics.add(s, floor8, PP.physics.type.STATIC);
@@ -206,13 +210,77 @@ function create (s) {
     let floor113 = PP.assets.image.add(s, pavimento1_90, 7750, 400, 0, 0);
     PP.physics.add(s, floor113, PP.physics.type.STATIC);
 
-    create_lettera(s, 7300, 1500);
+    create_lettera(s, 7300, 1500);*/
+    let scalin7_1 = PP.assets.image.add(s, pavimento1_90, 5100, 620, 0, 0);
+    PP.physics.add(s, scalin7_1, PP.physics.type.STATIC);
+
+    let scalin7_2 = PP.assets.image.add(s, pavimento1_90, 5100, 1270, 0, 0);
+    PP.physics.add(s, scalin7_2, PP.physics.type.STATIC);
+
+    let scalin6 = PP.assets.image.add(s, scala1, 3000, 470, 0, 0);
+    PP.physics.add(s, scalin6, PP.physics.type.STATIC);
+
+    let floor8 = PP.assets.image.add(s, pavimento1, 5100-2200, 1650+500, 0, 0);
+    PP.physics.add(s, floor8, PP.physics.type.STATIC);
+    let floor8_4 = PP.assets.image.add(s, pavimento1, 5100-2850, 1650+500, 0, 0);
+    PP.physics.add(s, floor8_4, PP.physics.type.STATIC);
+    
+
+    let pavimentino_8 = PP.assets.image.add(s, pavimento2, 3000 - 150, 1650+230, 0, 0); 
+    PP.physics.add(s, pavimentino_8, PP.physics.type.STATIC);
+
+    let blocco_8= PP.assets.image.add(s, scala1, 5100-2600, 1650+370, 0, 0);
+    PP.physics.add(s, blocco_8, PP.physics.type.STATIC);
+
+    let floor8_1 = PP.assets.image.add(s, pavimento1, 4450, 1650, 0, 0);
+    PP.physics.add(s, floor8_1, PP.physics.type.STATIC);
+    
+
+    let floor8_2 = PP.assets.image.add(s, pavimento1, 3800, 1650+50, 0, 0);
+    PP.physics.add(s, floor8_2, PP.physics.type.STATIC);
+    let floor8_3 = PP.assets.image.add(s, pavimento1, 3150, 1650+130, 0, 0);
+    PP.physics.add(s, floor8_3, PP.physics.type.STATIC);
+
+    let spine1 = PP.assets.image.add(s, spine_img, 5800-2200, 1700+500, 0, 0);
+    PP.physics.add(s, spine1, PP.physics.type.STATIC);
+
+    let spine2 = PP.assets.image.add(s, spine_img, 6054-2200, 1700+500, 0, 0);
+    PP.physics.add(s, spine2, PP.physics.type.STATIC);
+    
+    let spine3 = PP.assets.image.add(s, spine_img, 6302-2200, 1700+500, 0, 0);
+    PP.physics.add(s, spine3, PP.physics.type.STATIC);
+    
+    let spine4 = PP.assets.image.add(s, spine_img, 6556-2200, 1700+500, 0, 0);
+    PP.physics.add(s, spine4, PP.physics.type.STATIC);
+
+    let floor9 = PP.assets.image.add(s, pavimento1, 5800-2200, 1794+500, 0, 0);
+    PP.physics.add(s, floor9, PP.physics.type.STATIC);
+    let floor9_1 = PP.assets.image.add(s, pavimento1, 6450-2200, 1794+500, 0, 0);
+    PP.physics.add(s, floor9_1, PP.physics.type.STATIC);
+
+    let floor10 = PP.assets.image.add(s, pavimento1, 6750-2200, 1650+500, 0, 0);
+    PP.physics.add(s, floor10, PP.physics.type.STATIC);
+
+    let floor11 = PP.assets.image.add(s, pavimento1, 7100-2200, 1650+500, 0, 0);
+    PP.physics.add(s, floor11, PP.physics.type.STATIC);
+
+    let floor112 = PP.assets.image.add(s, pavimento1_90, 2450, 1050+500, 0, 0);
+    PP.physics.add(s, floor112, PP.physics.type.STATIC);
+    
+    let floor113 = PP.assets.image.add(s, pavimento1_90, 2450, 400+500, 0, 0);
+    PP.physics.add(s, floor113, PP.physics.type.STATIC);
+    let floor114 = PP.assets.image.add(s, pavimento1_90, 5100, 1050+500, 0, 0);
+    PP.physics.add(s, floor114, PP.physics.type.STATIC);
+
+    create_lettera(s, 7300-2300, 1500+250);
+
     /*
     for (let i = 0; i < Lettere.length; i++) {
         PP.physics.add_overlap_f(s, Lettere[i], player, collision_lettera);
     }
     */
     create_piatt_move_level2 (s, 4880, 200);
+    pedana3 =  PP.assets.image.add(s, pulsante, 5400-2100, 1648+500, 0, 0);
     
     //zona pozzo senza fondo
 
@@ -303,7 +371,7 @@ function create (s) {
     create_generatore3 (s);
     
     //create_player (s, -530, 600);
-    create_player (s, 7100, 1650);
+    create_player (s, 4900, 1650);
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);
@@ -351,6 +419,7 @@ function create (s) {
         PP.physics.add_collider(s, floor7, casse[i]);
         PP.physics.add_collider(s, floor8, casse[i]);
         PP.physics.add_collider(s, floor9, casse[i]);
+        PP.physics.add_collider(s, floor9_1, casse[i]);
         PP.physics.add_collider(s, floor10, casse[i]);
         PP.physics.add_collider(s, floor11, casse[i]);
         PP.physics.add_collider(s, floor12, casse[i]);
@@ -404,6 +473,7 @@ function create (s) {
         PP.physics.add_collider(s, floor7, casse_generaider1[i]);
         PP.physics.add_collider(s, floor8, casse_generaider1[i]);
         PP.physics.add_collider(s, floor9, casse_generaider1[i]);
+        PP.physics.add_collider(s, floor9_1, casse_generaider1[i]);
         PP.physics.add_collider(s, floor10, casse_generaider1[i]);
         PP.physics.add_collider(s, floor11, casse_generaider1[i]);
         PP.physics.add_collider(s, floor12, casse_generaider1[i]);
@@ -459,6 +529,7 @@ function create (s) {
         PP.physics.add_collider(s, floor7, casse_generaider2[i]);
         PP.physics.add_collider(s, floor8, casse_generaider2[i]);
         PP.physics.add_collider(s, floor9, casse_generaider2[i]);
+        PP.physics.add_collider(s, floor9_1, casse_generaider2[i]);
         PP.physics.add_collider(s, floor10, casse_generaider2[i]);
         PP.physics.add_collider(s, floor11, casse_generaider2[i]);
 
@@ -501,6 +572,9 @@ function create (s) {
     PP.physics.add_collider(s, player, scalin13);
     PP.physics.add_collider(s, player, scalin14);
     PP.physics.add_collider(s, player, scalin15);
+    PP.physics.add_collider(s, player, floor112);
+    PP.physics.add_collider(s, player, floor113);
+    PP.physics.add_collider(s, player, floor114);
     PP.physics.add_collider_f(s, player, scalin6, salto_si);
     PP.physics.add_collider_f(s, player, floor2, salto_si);
     PP.physics.add_collider_f(s, player, floor3, salto_si);
@@ -511,6 +585,11 @@ function create (s) {
     PP.physics.add_collider_f(s, player, floor7, salto_si);
     PP.physics.add_collider_f(s, player, floor8, salto_si);
     PP.physics.add_collider_f(s, player, floor8_1, salto_si);
+    PP.physics.add_collider_f(s, player, floor8_2, salto_si);
+    PP.physics.add_collider_f(s, player, pavimentino_8, salto_si);
+    PP.physics.add_collider_f(s, player, floor8_4, salto_si);
+    PP.physics.add_collider_f(s, player, floor8_3, salto_si);
+    PP.physics.add_collider_f(s, player, blocco_8, salto_si);
     PP.physics.add_collider_f(s, player, floor10, salto_si);
     PP.physics.add_collider_f(s, player, floor11, salto_si);
     PP.physics.add_collider_f(s, player, floor12, salto_si);
@@ -530,8 +609,8 @@ function create (s) {
 
     function danno_caduta (s) {
         vita_persa(s);
-        player.geometry.x = 5300;
-        player.geometry.y = 1400;
+        player.geometry.x = 4500;
+        player.geometry.y = 1600;
         PP.physics.set_velocity_y(player, 0);
         PP.physics.set_velocity_x(player, 0);
     }
@@ -542,9 +621,10 @@ function create (s) {
     PP.physics.add(s, pedana2, PP.physics.type.STATIC);
     PP.physics.add_collider_f(s, player, pedana2, generatore_crea_cassa);
 
-    pedana3 =  PP.assets.image.add(s, pulsante, 5400, 1648, 0, 0);
     PP.physics.add(s, pedana3, PP.physics.type.STATIC);
     PP.physics.add_collider_f(s, player, pedana3, generatore_crea_cassa2);
+    
+    
     
     pedana4 =  PP.assets.image.add(s, pulsante, 11150, 548, 0, 0); 
     PP.physics.add(s, pedana4, PP.physics.type.STATIC);

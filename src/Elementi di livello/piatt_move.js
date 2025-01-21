@@ -37,18 +37,7 @@ function preload_piatt_move (s) {
 }
 
 function create_piatt_move(s, x, y) {
-    if (piatt_move.lenght == 2) {
-        let piatt_move_sing = PP.assets.image.add(s, img_piatt_move1_2, x, y, 0, 0);
-        piatt_move_sing.geometry.scale_x = 1.5;
-        PP.physics.add(s, piatt_move_sing, PP.physics.type.DYNAMIC);
-        PP.physics.set_immovable(piatt_move_sing, true);
-        PP.physics.set_allow_gravity(piatt_move_sing, false);
-        PP.physics.set_velocity_y(piatt_move_sing, 0);
-        piatt_move.push(piatt_move_sing);
-        PP.timers.add_timer(s, 1000, bloccamento, true);
-        return;
-    }
-    let piatt_move_sing = PP.assets.image.add(s, img_piatt_move1, x, y, 0, 0);
+    piatt_move_sing = PP.assets.image.add(s, img_piatt_move1, x, y, 0, 0);
     piatt_move_sing.geometry.scale_x = 1.5;
     PP.physics.add(s, piatt_move_sing, PP.physics.type.DYNAMIC);
     PP.physics.set_immovable(piatt_move_sing, true);
@@ -59,6 +48,18 @@ function create_piatt_move(s, x, y) {
     // timer che blocca periodicamente la piattaforma finale in modo che non si muova se la pedana a presisone non è premuta
 
 
+}
+
+function create_piatt_move_extra (s, x, y) {
+    let piatt_move_sing = PP.assets.image.add(s, img_piatt_move1_2, x, y, 0, 0);
+    piatt_move_sing.geometry.scale_x = 1.5;
+    PP.physics.add(s, piatt_move_sing, PP.physics.type.DYNAMIC);
+    PP.physics.set_immovable(piatt_move_sing, true);
+    PP.physics.set_allow_gravity(piatt_move_sing, false);
+    PP.physics.set_velocity_y(piatt_move_sing, 0);
+    piatt_move.push(piatt_move_sing);
+    PP.timers.add_timer(s, 1000, bloccamento, true);
+    return;
 }
 
 function update_piatt_move(s) {

@@ -21,6 +21,7 @@ let img_lampa;
 let lampadari;
 let img_pavi_prosp;
 let pavi_prosp;
+let pulsante_1;
 
 let ascensore1;
 let ascensore2;
@@ -54,6 +55,8 @@ let collider_Asmodeo = true;
 let collider_casse_sopra = [];
 let collider_porta1 = true;
 
+let cartello_sgabuzzino;
+let cartello_pedana;
 
 livello.push(1);
 
@@ -102,6 +105,10 @@ function preload (s) {
     ascensoremuro = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
     sfondo_sgabuzzino = PP.assets.image.load(s, "Assets/immagini/sotterraneo lvl1.png")
     sfondo_sgabuzzino_1 = PP.assets.image.load(s, "Assets/immagini/sotterraneo lvl1_1.png")
+
+    cartello_sgabuzzino = PP.assets.image.load (s, "Assets/immagini/Cartello - sotterraneo.png")
+    cartello_pedana = PP.assets.image.load (s, "Assets/immagini/Cartello - pedana.png")
+    pulsante_1 = PP.assets.image.load (s, "Assets/immagini/pressureplate lvl1.png")
 }
 
 // PROBLEMI PER ORA: HUD ferma,
@@ -258,7 +265,8 @@ function create (s) {
     PP.physics.add(s, pavimento_18, PP.physics.type.STATIC);
 
     // piattaforma attraversabile
-    
+    let cartello2 = PP.assets.image.add (s, cartello_sgabuzzino, 11100, 620, 0, 1);
+
     pavimento_19 = PP.assets.image.add(s, pavimento1, 11450, 620, 0, 0);
     PP.physics.add(s, pavimento_19, PP.physics.type.STATIC);
     
@@ -369,17 +377,19 @@ function create (s) {
 
     // porta tutorial
     
-    pedana1 = PP.shapes.rectangle_add(s, 3000, 639, 150, 40, "0xfbc456", 1);
+    let cartello1 = PP.assets.image.add (s, cartello_pedana, 2800, 620, 0, 0);
+
+    pedana1 = PP.assets. image.add(s, pulsante_1, 3000, 618, 0, 0,);
     PP.physics.add(s, pedana1, PP.physics.type.STATIC);
 
     // piattaforma sotterranea fine livello
     
-    pedana2 = PP.shapes.rectangle_add(s, 12200, 1588, 150, 40, "0xfbc456", 1);
+    pedana2 = PP.assets.image.add(s, pulsante_1, 12200, 1588-20, 0, 0);
     PP.physics.add(s, pedana2, PP.physics.type.STATIC);
 
     // porta finale
 
-    pedana3 = PP.shapes.rectangle_add(s, 12350, 637, 150, 40, "0xfbc456", 1);
+    pedana3 = PP.assets.image.add(s, pulsante_1, 12350, 618, 0, 0);
     PP.physics.add(s, pedana3, PP.physics.type.STATIC);
 
     
@@ -410,7 +420,7 @@ function create (s) {
     create_piatt (s, 6700, -950);
     create_piatt_move (s, 5550, 320);
     create_piatt_move (s, 6350, -955);
-    create_piatt_move (s, 11600, 1570);
+    create_piatt_move_extra (s, 11600, 1570);
     //create_piatt_move2 (s, 5780, -450);  potenzialmente da silurare permanentemente
     create_ghiglio(s, 8025, 398);
     create_ghiglio(s, 8575, 398);

@@ -17,7 +17,7 @@ function create_cassa (s, x, y){
 
 function update_cassa(s) {
     for (let i = 0; i < casse.length; i++) {
-        if (casse[i].geometry.y > altezza_cassa[i] + 420) {
+        if (casse[i].geometry.y > altezza_cassa[i] + 650) {
             casse[i].geometry.y = altezza_cassa[i];
         }
     }

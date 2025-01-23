@@ -404,7 +404,7 @@ function create (s) {
     //create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s, 3600, 620);
+    create_player (s, 12000, 620);
     
     create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);
@@ -833,6 +833,17 @@ function update (s) {
         PP.physics.set_velocity_y(casse[5], 0);
         casse[5].geometry.x = 11070
         casse[5].geometry.y = 780
+    }
+
+    if (Math.abs(casse[5].geometry.x - casse[4].geometry.x) < 70 && Math.abs(casse[5].geometry.y - casse[4].geometry.y) < 70){
+        PP.physics.set_velocity_x(casse[5], 0);
+        PP.physics.set_velocity_y(casse[5], 0);
+        casse[5].geometry.x = 11070
+        casse[5].geometry.y = 780
+        PP.physics.set_velocity_x(casse[4], 0);
+        PP.physics.set_velocity_y(casse[4], 0);
+        casse[4].geometry.x = 11070
+        casse[4].geometry.y = 950
     }
 }
 

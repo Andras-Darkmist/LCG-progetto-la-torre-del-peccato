@@ -31,7 +31,7 @@ function create (s){
     PP.game_state.set_variable("Monete_checkpoint", PP.game_state.get_variable("Monete"));
     PP.game_state.set_variable("Lettere_checkpoint", PP.game_state.get_variable("Lettere"));
 
-    PP.game_state.set_variable("Monete", 5);
+    
     let bg = PP.assets.image.add (s, img_bg3, -20, -200, 0, 0);
     let bg_2 = PP.assets.image.add (s, img_bg3, 1180, -200, 0, 0);
     let bg_3 = PP.assets.image.add (s, img_bg3, 1180+1200, -200, 0, 0);

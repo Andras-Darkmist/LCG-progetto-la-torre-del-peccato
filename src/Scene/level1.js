@@ -377,7 +377,7 @@ function create (s) {
 
     // porta tutorial
     
-    let cartello1 = PP.assets.image.add (s, cartello_pedana, 2800, 620, 0, 0);
+    let cartello1 = PP.assets.image.add (s, cartello_pedana, 2800, 620, 0, 1);
 
     pedana1 = PP.assets. image.add(s, pulsante_1, 3000, 618, 0, 0,);
     PP.physics.add(s, pedana1, PP.physics.type.STATIC);
@@ -397,12 +397,12 @@ function create (s) {
 
     //funzioni richiamate
     create_lettera(s, 100, 170);
-    create_lettera(s, 7800, 170);
+    create_lettera(s, 7500, 170);
     //create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s, 10000, 620);
-    //create_player (s, -3500, 620)
+    //create_player (s, 10000, 620);
+    create_player (s, -2200, 620)
     
     create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);

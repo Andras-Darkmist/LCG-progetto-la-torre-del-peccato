@@ -4,6 +4,7 @@ let sfondott0;
 let sfondott1;
 let sfondott2;
 let sfondott3;
+let sfondo_segreto;
 let sfondo_sgabuzzino;
 let sfondo_sgabuzzino_1;
 let transzionett;
@@ -104,7 +105,8 @@ function preload (s) {
     ascensore2 = PP.assets.image.load(s, "Assets/immagini/Ascensore2.PNG");
     ascensoremuro = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
     sfondo_sgabuzzino = PP.assets.image.load(s, "Assets/immagini/sotterraneo lvl1.png")
-    sfondo_sgabuzzino_1 = PP.assets.image.load(s, "Assets/immagini/sotterraneo lvl1_1.png")
+    sfondo_sgabuzzino_1 = PP.assets.image.load(s, "Assets/immagini/sotterraneo lvl1_1.png");
+    sfondo_segreto = PP.assets.image.load (s, "Assets/immagini/Sfondo_stanza_segreta.PNG");
 
     cartello_sgabuzzino = PP.assets.image.load (s, "Assets/immagini/Cartello - sotterraneo.png")
     cartello_pedana = PP.assets.image.load (s, "Assets/immagini/Cartello - pedana.png")
@@ -121,7 +123,11 @@ function preload (s) {
     // sfondo livello 2 di luigi
 
 function create (s) {
-    
+    let bg_segreto04 = PP.assets.image.add(s, sfondo_segreto, 6000, -950, 0, 1);
+    let bg_segreto03 = PP.assets.image.add(s, sfondo_segreto, 5100, -750, 0, 1);
+    let bg_segreto01 = PP.assets.image.add(s, sfondo_segreto, 5400, -750, 0, 1);
+    let bg_segreto02 = PP.assets.image.add(s, sfondo_segreto, 6000, -750, 0, 1);
+    let bg_segreto = PP.assets.image.add(s, sfondo_segreto, 6000, -850, 0, 1);
 
     bg = PP.assets.tilesprite.add(s, img_background, 0, 30, 2800, 380, 0, 0);
     bg.tile_geometry.scroll_factor_x = 0.1;
@@ -187,6 +193,8 @@ function create (s) {
 
     let sgabuzzino = PP.assets.image.add(s,sfondo_sgabuzzino, 11150, 620, 0, 0);
     let sgabuzzino_1 = PP.assets.image.add(s,sfondo_sgabuzzino_1, 11150, 620, 1, 0);
+
+    
 
     
     //let bgtt0 = PP.assets.image.add(s, sfondott0, -588, 0, 0, 0);
@@ -401,8 +409,8 @@ function create (s) {
     //create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    //create_player (s, 10000, 620);
-    create_player (s, -2200, 620)
+    create_player (s, 6300, -970);
+    //create_player (s, -2200, 620)
     
     create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);

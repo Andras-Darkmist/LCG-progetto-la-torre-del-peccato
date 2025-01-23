@@ -20,7 +20,7 @@ function preload (s){
     ascensore1_3 = PP.assets.image.load(s, "Assets/immagini/Ascensore1.PNG");
     ascensore2_3 = PP.assets.image.load(s, "Assets/immagini/Ascensore2.PNG");
     ascensoremuro_3 = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
-    porta_fine_gioco_img = PP.assets.image.load (s, "Assets/immagini/Porta 1.png");
+    porta_fine_gioco_img = PP.assets.image.load (s, "Assets/immagini/porta1.png");
     
     preload_porta3(s);
     preload_caricatore (s);
@@ -34,7 +34,6 @@ function preload (s){
 
 function create (s){
     PP.game_state.set_variable("Monete_checkpoint", PP.game_state.get_variable("Monete"));
-    PP.game_state.set_variable("Monete", 30);
     PP.game_state.set_variable("Lettere_checkpoint", PP.game_state.get_variable("Lettere"));
 
     
@@ -69,7 +68,7 @@ function create (s){
     create_caricatore(s);
     load_animazioni_caricatore(s);
     
-    create_player (s, 100, 500,);
+    create_player (s, 50, 620,);
     configure_player_animations(s);
 
 

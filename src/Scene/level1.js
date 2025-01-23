@@ -444,6 +444,7 @@ function create (s) {
 
     let muro1 = PP.assets.image.add(s, transzionett, 3590, 0, 0, 0);
     let muro1_1 = PP.assets.image.add(s, transzionett, 3590, 0, 0, 1);
+    muro1_1.geometry.flip_y = true;
 
     
 

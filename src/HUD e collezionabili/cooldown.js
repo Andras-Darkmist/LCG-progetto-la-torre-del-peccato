@@ -9,12 +9,12 @@ function preload_cooldown (s) {
 }
 
 function create_cooldown(s) {
-    cool = PP.assets.image.add(s, img_cool, 750, 40, 0, 0);
+    cool = PP.assets.image.add(s, img_cool, 60, 130, 0, 0);
     cool.geometry.scale_x = 0.5;
     cool.geometry.scale_y = 0.5;
     cool.tile_geometry.scroll_factor_x = 0;
     cool.tile_geometry.scroll_factor_y = 0;
-    cool_scarico = PP.assets.image.add(s, img_cool_scarico, 750, -1000, 0, 0);
+    cool_scarico = PP.assets.image.add(s, img_cool_scarico, 60, -1000, 0, 0);
     cool_scarico.geometry.scale_x = 0.5;
     cool_scarico.geometry.scale_y = 0.5;
     cool_scarico.tile_geometry.scroll_factor_x = 0;
@@ -23,10 +23,10 @@ function create_cooldown(s) {
 
 function cooldown_carico(s) {
     cool_scarico.geometry.y = -1000;
-    cool.geometry.y = 40;
+    cool.geometry.y = 130;
 }
 
 function cooldown_scarico(s) {
     cool.geometry.y = -1000;
-    cool_scarico.geometry.y = 40;
+    cool_scarico.geometry.y = 130;
 }

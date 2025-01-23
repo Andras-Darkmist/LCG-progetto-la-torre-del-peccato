@@ -432,6 +432,8 @@ function create (s) {
     create_slot_animata(s, 6600, 620);
 
     let muro1 = PP.assets.image.add(s, transzionett, 3590, 0, 0, 0);
+    let muro1_1 = PP.assets.image.add(s, transzionett, 3590, 0, 0, 1);
+
     
 
     

@@ -32,7 +32,7 @@ function preload_piatt_move (s) {
     posizioni_cambio_direz_alto.push(620); // limite alto terza piatt
 
     posizioni_cambio_direz_basso.push(315); // limite basso prima piatt
-    posizioni_cambio_direz_basso.push(-325); // limite basso seconda piatt
+    posizioni_cambio_direz_basso.push(-310); // limite basso seconda piatt
     posizioni_cambio_direz_basso.push(1695); // limite basso terza piatt
 }
 

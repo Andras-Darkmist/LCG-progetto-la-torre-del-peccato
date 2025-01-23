@@ -29,6 +29,7 @@ function preload (s){
 
 function create (s){
     PP.game_state.set_variable("Monete_checkpoint", PP.game_state.get_variable("Monete"));
+    PP.game_state.set_variable("Monete", 30);
     PP.game_state.set_variable("Lettere_checkpoint", PP.game_state.get_variable("Lettere"));
 
     
@@ -69,7 +70,7 @@ function create (s){
     ascensore_muro.geometry.flip_x = true;
     PP.physics.add(s, ascensore_muro, PP.physics.type.STATIC);
     PP.physics.add_collider(s, player, ascensore_muro);
-    create_porta3(s, 1300, 620-150);
+    create_porta3(s, 1300, 190);
     
     create_score(s);
     create_vite(s);

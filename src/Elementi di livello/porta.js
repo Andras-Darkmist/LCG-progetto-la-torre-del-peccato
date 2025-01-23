@@ -1,4 +1,6 @@
 let img_porta;
+let img_porta_ascensore;
+
 let img_porta_aperta;
 let porte_aperte = [];
 let porte = [];
@@ -8,6 +10,7 @@ function preload_porta (s) {
     porte_aperte = []
     img_porta = PP.assets.image.load(s, "assets/immagini/porta1.png", 150, 156);
     img_porta_aperta = PP.assets.image.load(s, "assets/immagini/porta1aperta.png", 150, 156);
+    img_porta_ascensore = PP.assets.image.load (s, "assets/immagini/porta di ferro.png");
 }
 
 function create_porta (s, x, y){
@@ -18,6 +21,13 @@ function create_porta (s, x, y){
     porte.push(porta);
     porte_aperte.push(porta_aperta);
 }
+
+function create_porta_ascensore (s, x, y){
+    let porta = PP.assets.image.add(s, img_porta_ascensore, x, y, 0, 0);
+    PP.physics.add(s, porta, PP.physics.type.STATIC);
+    porte.push(porta);
+}
+
 
 function update_porta (s) {
 }

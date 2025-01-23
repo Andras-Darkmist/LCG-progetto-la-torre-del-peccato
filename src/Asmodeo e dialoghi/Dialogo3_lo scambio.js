@@ -10,12 +10,17 @@ let fine_lettura_testo_3 = false;
 let lettura_testo_3 = false;
 let condizione_finale3 = false;
 
+let Soldi_finali;
+let txt_soldi;
+let img_soldi;
+
 function preload_Dialogo3 (s) {
     Dialogo3=[];
         
     dialogo3_1_img = PP.assets.image.load(s, "assets/immagini/Dialoghi livello 3/Dialogo_1.png", 150, 150);
     dialogo3_2_img = PP.assets.image.load(s, "assets/immagini/Dialoghi livello 3/Dialogo_2.png", 150, 150);
     dialogo3_3_img = PP.assets.image.load(s, "assets/immagini/Dialoghi livello 3/Dialogo_3.png", 150, 150);
+    img_soldi = PP.assets.image.load (s, "assets/immagini/Soldi.PNG");
 }
 
 function create_Dialogo3 (s){
@@ -74,6 +79,12 @@ function update_Dialogo3(s) {
                         {
                             prev_score = 0;
                             PP.game_state.set_variable("Monete", prev_score);
+                            txt_soldi = PP.shapes.text_styled_add(s, 750, 20, "100000", 50, "Helvetica", "normal", "0xffffff", null, 0, 0);
+                            Soldi_finali = PP.assets.image.add(s, img_soldi, 700, 20, 0, 0);
+                            Soldi_finali.tile_geometry.scroll_factor_x = 0;
+                            Soldi_finali.tile_geometry.scroll_factor_y = 0;
+                            txt_soldi.tile_geometry.scroll_factor_x = 0;
+                            txt_soldi.tile_geometry.scroll_factor_y = 0;
                             condizione_finale3 = true;
                         }
                     ultima_cassa.geometry.body_y = 10000;

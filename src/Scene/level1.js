@@ -413,7 +413,7 @@ function create (s) {
     create_cassa (s, 11170, 780);
 
     create_porta (s, 3450, 320);
-    create_porta (s, 12700, 320);
+    create_porta_ascensore (s, 12700, 190);
 
     create_piatt (s, 5100, 320);
     create_piatt (s, 5900, -320);
@@ -729,13 +729,13 @@ function update (s) {
     // per porta finale
     
     if(chiusura_porta_finale == false){
-        porte[1].geometry.y = -50;
-        porte[1].geometry.body_y = -50;
+        porte[1].geometry.y = -150;
+        porte[1].geometry.body_y = -150;
     }
 
     if(chiusura_porta_finale == true){
-        porte[1].geometry.y = 320;
-        porte[1].geometry.body_y = 320;
+        porte[1].geometry.y = 190;
+        porte[1].geometry.body_y = 190;
     }
 
     chiusura_porta_finale = true;

@@ -13,7 +13,7 @@ function create_porta3 (s, x, y){
 function update_porta3 (s) {
     if (morte_animazioni_caricatore == true)
     {
-            porta3.geometry.body_y = 0;
-            porta3.geometry.y = 0;
+            porta3.geometry.body_y = -100;
+            porta3.geometry.y = -100;
     }
 }

@@ -65,6 +65,8 @@ function preload (s) {
     preload_piatt_move_level2 (s);
     preload_piatt_move_orizz (s);
 
+    preload_cooldown(s);
+
     pavimento1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma_Tavola disegno 1V.png");
     pavimento1_90 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma_Tavola disegno 1V - Copia.png");
 
@@ -660,7 +662,7 @@ function create (s) {
   
     create_score(s);
     create_vite(s);
-
+    create_cooldown(s);
 
     configure_player_animations(s);
 }

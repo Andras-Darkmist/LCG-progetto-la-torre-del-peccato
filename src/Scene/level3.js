@@ -29,6 +29,7 @@ function preload (s){
     preload_player (s);
     preload_vite (s);
     preload_score (s);
+    preload_cooldown (s);
 }
 
 function create (s){
@@ -82,6 +83,7 @@ function create (s){
     
     create_score(s);
     create_vite(s);
+    create_cooldown(s);
     PP.physics.add_collider_f(s, player, pavimento1, salto_si);
     PP.physics.add_collider_f(s, player, pavimento2, salto_si);
     PP.physics.add_collider_f(s, player, pavimento3, salto_si);

@@ -9,11 +9,17 @@ let sfondo_sgabuzzino;
 let sfondo_sgabuzzino_1;
 let transzionett;
 let img_background;
+let img_background_no_soffitto;
 let img_colonne;
+let img_colonne_centro;
+let img_colonne_sopra;
+let img_colonne_sotto;
 let img_volte;
 let volte_dietro;
 let img_slot_nuove;
 let colonne_davanti;
+let colonne_sopra;
+let colonne_sotto;
 let colonne_davanti_sopra;
 let slot_nuove;
 let img_moquette;
@@ -82,8 +88,12 @@ function preload (s) {
     preload_Dialogo1 (s);
 
     img_background = PP.assets.image.load(s, "Assets/Immagini/carta parati.png");
+    img_background_no_soffitto = PP.assets.image.load(s, "Assets/Immagini/carta da parati no soffitto.png");
     img_slot_nuove = PP.assets.image.load(s, "Assets/Immagini/slot sfondo.png");
     img_colonne = PP.assets.image.load(s, "Assets/Immagini/colonne davanti copia.png");
+    img_colonne_centro = PP.assets.image.load(s, "Assets/Immagini/parte centrale colonne davanti.png");
+    img_colonne_sopra = PP.assets.image.load(s, "Assets/Immagini/parte alta colonne davanti.png");
+    img_colonne_sotto = PP.assets.image.load(s, "Assets/Immagini/parte bassa colonne davanti.png");
     img_lampa = PP.assets.image.load(s, "Assets/Immagini/lampadari.png");
     img_pavi_prosp = PP.assets.image.load(s, "Assets/Immagini/moquette prospettica.png"); 
 
@@ -130,15 +140,16 @@ function create (s) {
     let bg_segreto02 = PP.assets.image.add(s, sfondo_segreto, 6000, -750, 0, 1);
     let bg_segreto = PP.assets.image.add(s, sfondo_segreto, 6000, -850, 0, 1);
 
-    bg = PP.assets.tilesprite.add(s, img_background, 0, 30, 2800, 380, 0, 0);
+    bg = PP.assets.tilesprite.add(s, img_background_no_soffitto, 0, 30, 2800, 380, 0, 0);
     bg.tile_geometry.scroll_factor_x = 0.1;
+
     bg_sopra = PP.assets.tilesprite.add(s, img_background, 0, -600, 2800, 380, 0, 0);
     bg_sopra.tile_geometry.scroll_factor_x = 0.1;
     
     volte_dietro = PP.assets.tilesprite.add(s, img_volte, -2000, 100, 20000, 453, 0, 0);
     volte_dietro.tile_geometry.scroll_factor_x = 0.1;
     
-    lampadari = PP.assets.tilesprite.add(s, img_lampa, -2000, 40, 20000, 93, 0, 0);
+    lampadari = PP.assets.tilesprite.add(s, img_lampa, -2000, -600, 20000, 93, 0, 0);
     lampadari.tile_geometry.scroll_factor_x = 0.2;
 
     pavi_prosp = PP.assets.tilesprite.add(s, img_pavi_prosp, -2000, 550, 20000, 100, 0, 0);
@@ -150,12 +161,17 @@ function create (s) {
     moquette = PP.assets.tilesprite.add(s, img_moquette, 0, 650, 12000, 172, 0, 0);
     moquette.tile_geometry.scroll_factor_x = 0.1;
 
-    colonne_davanti = PP.assets.tilesprite.add(s, img_colonne, 0, 0, 2800, 650, 0, 0);
-    colonne_davanti.tile_geometry.scroll_factor_x = 0;
+    //colonne_davanti = PP.assets.tilesprite.add(s, img_colonne, 0, 0, 2800, 650, 0, 0);
+    //colonne_davanti.tile_geometry.scroll_factor_x = 0;    
 
-    colonne_davanti_sopra = PP.assets.tilesprite.add(s, img_colonne, 0, -650, 2800, 650, 0, 0);
+    colonne_davanti_sopra = PP.assets.tilesprite.add(s, img_colonne_centro, 0, -450, 2800, 1070, 0, 0);
     colonne_davanti_sopra.tile_geometry.scroll_factor_x = 0;
-
+    
+    colonne_sopra = PP.assets.tilesprite.add(s, img_colonne_sopra, 0, -450, 2800, 70, 0, 0);
+    colonne_sopra.tile_geometry.scroll_factor_x = 0;
+    
+    colonne_sotto = PP.assets.tilesprite.add(s, img_colonne_sotto, 0, 506, 2800, 114, 0, 0);
+    colonne_sotto.tile_geometry.scroll_factor_x = 0;
 
     bg.geometry.scale_x = 1.7;
     bg.geometry.scale_y = 1.7;
@@ -413,7 +429,7 @@ function create (s) {
     create_lettera(s, 7100, -1400);
 
     //create_player (s, 6300, -970);
-    create_player (s, -2200, 620)
+    create_player (s, 6000, -320)
     
     create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);
@@ -700,8 +716,10 @@ function update (s) {
     //bg.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.1; 
     //bg_sopra.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.1;
     slot_nuove.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.4;
-    colonne_davanti.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
+    //colonne_davanti.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
     colonne_davanti_sopra.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
+    colonne_sopra.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
+    colonne_sotto.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8;
     moquette.tile_geometry.x = PP.camera.get_scroll_x(s) * 0.8
     //bg.tile_geometry.y = PP.camera.get_scroll_y(s);
 

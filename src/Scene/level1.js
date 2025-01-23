@@ -59,6 +59,7 @@ function preload (s) {
     collider_casse_sopra = [];
 
     preload_vite (s);
+    preload_cooldown(s);
     preload_lettera (s);
     preload_score (s);
     preload_player (s);
@@ -378,12 +379,14 @@ function create (s) {
     
 
     //funzioni richiamate
+    create_cooldown(s);
+
     create_lettera(s, 100, 170);
     create_lettera(s, 7800, 170);
     //create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s, 10830, 620);
+    create_player (s, 3600, 620);
     
     create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);
@@ -785,6 +788,15 @@ function update (s) {
         PP.physics.set_velocity_y(casse[1], 0);
         casse[1].geometry.x = 2550
         casse[1].geometry.y = 250
+    }
+
+    // cassa dopo la porta tutorial
+    
+    if (casse[2].geometry.x <= 3700 || casse[2].geometry.x >= 7700){
+        PP.physics.set_velocity_x(casse[1], 0);
+        PP.physics.set_velocity_y(casse[1], 0);
+        casse[2].geometry.x = 4500
+        casse[2].geometry.y = 250
     }
 
     // casse enigma finale

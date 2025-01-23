@@ -3,7 +3,7 @@ let player;
 let png_shu;
 
 let player_speed = 300;
-let jump_init_speed = 350;
+let jump_init_speed = 380;
 let floor_height = 620;
 let player_dash = 1000;
 let danno_on = false;
@@ -230,6 +230,7 @@ function dash_reset(s) {
 
 function reenable_dash(s) {
     dash_disable = false;
+    cooldown_carico(s);
 }
 
 function manage_dash(s) {
@@ -252,6 +253,7 @@ function manage_dash(s) {
                 //console.log(PP.physics.get_velocity_x(player));
             }
             move_disable = true;
+            cooldown_scarico(s);
             PP.physics.set_allow_gravity(player, false);
             PP.timers.add_timer(s, 2000, reenable_dash, false);
             PP.timers.add_timer(s, 300, dash_reset, false);

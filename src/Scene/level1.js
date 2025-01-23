@@ -409,8 +409,8 @@ function create (s) {
     //create_lettera(s, 7000, 170);
     create_lettera(s, 7100, -1400);
 
-    create_player (s, 6300, -970);
-    //create_player (s, -2200, 620)
+    //create_player (s, 6300, -970);
+    create_player (s, -2200, 620)
     
     create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);

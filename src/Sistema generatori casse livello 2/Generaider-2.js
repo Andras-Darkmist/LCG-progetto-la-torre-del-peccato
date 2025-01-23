@@ -10,8 +10,8 @@ function preload_generatore2 (s){
 }
 
 function create_generatore2 (s){
-    barra2 = PP.assets.image.add(s, img_barra2, 6070, 1230, 0, 0);
-    generatore2 = PP.assets.image.add(s, img_generatore2, 6000, 1230, 0, 0);
+    barra2 = PP.assets.image.add(s, img_barra2, 6070-2200, 1230+500, 0, 0);
+    generatore2 = PP.assets.image.add(s, img_generatore2, 6000-2200, 1230+500, 0, 0);
     
     PP.physics.add(s, generatore2, PP.physics.type.DYNAMIC);
     PP.physics.set_immovable(generatore2, true);
@@ -19,10 +19,10 @@ function create_generatore2 (s){
 }
 
 function update_generatore2 (s) {
-    if (generatore2.geometry.x <= 6000) {
+    if (generatore2.geometry.x <= 6000-2200) {
         PP.physics.set_velocity_x(generatore2, 500);
     }
-    if (generatore2.geometry.x >= 6700) {
+    if (generatore2.geometry.x >= 6700-2200) {
         PP.physics.set_velocity_x(generatore2, -500);
     }
 }

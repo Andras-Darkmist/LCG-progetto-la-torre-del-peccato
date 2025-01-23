@@ -2,7 +2,7 @@ let img_porta_3;
 let porta3;
 
 function preload_porta3 (s) {
-    img_porta_3 = PP.assets.image.load(s, "assets/immagini/porta1.png", 150, 156);
+    img_porta_3 = PP.assets.image.load(s, "assets/immagini/porta di ferro.png", 150, 156);
 }
 
 function create_porta3 (s, x, y){

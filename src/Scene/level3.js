@@ -1,6 +1,9 @@
 let img_pavimento;
 let img_muro;
 
+let porta_fine_gioco;
+
+let porta_fine_gioco_img;
 
 let img_bg3;
 
@@ -17,6 +20,7 @@ function preload (s){
     ascensore1_3 = PP.assets.image.load(s, "Assets/immagini/Ascensore1.PNG");
     ascensore2_3 = PP.assets.image.load(s, "Assets/immagini/Ascensore2.PNG");
     ascensoremuro_3 = PP.assets.image.load(s, "Assets/immagini/AscensoreMuro.PNG");
+    porta_fine_gioco_img = PP.assets.image.load (s, "Assets/immagini/Porta 1.png");
     
     preload_porta3(s);
     preload_caricatore (s);
@@ -29,9 +33,10 @@ function preload (s){
 
 function create (s){
     PP.game_state.set_variable("Monete_checkpoint", PP.game_state.get_variable("Monete"));
+    PP.game_state.set_variable("Monete", 30);
     PP.game_state.set_variable("Lettere_checkpoint", PP.game_state.get_variable("Lettere"));
 
-    PP.game_state.set_variable("Monete", 5);
+    
     let bg = PP.assets.image.add (s, img_bg3, -20, -200, 0, 0);
     let bg_2 = PP.assets.image.add (s, img_bg3, 1180, -200, 0, 0);
     let bg_3 = PP.assets.image.add (s, img_bg3, 1180+1200, -200, 0, 0);
@@ -51,6 +56,10 @@ function create (s){
     
     let pavimento3 = PP.assets.image.add (s, img_pavimento, 2600, 620, 0, 0);
     PP.physics.add (s, pavimento3, PP.physics.type.STATIC);
+
+    porta_fine_gioco = PP.assets.image.add (s, porta_fine_gioco_img, 2700, 620, 0, 1);
+    PP.physics.add (s, porta_fine_gioco, PP.physics.type.STATIC);
+
     //let pavimento2_90 = PP.assets.image.add (s, img_muro, 1300, 620-150, 0, 0);
     //PP.physics.add (s, pavimento2_90, PP.physics.type.STATIC);
 
@@ -69,13 +78,14 @@ function create (s){
     ascensore_muro.geometry.flip_x = true;
     PP.physics.add(s, ascensore_muro, PP.physics.type.STATIC);
     PP.physics.add_collider(s, player, ascensore_muro);
-    create_porta3(s, 1300, 620-150);
+    create_porta3(s, 1300, 190);
     
     create_score(s);
     create_vite(s);
     PP.physics.add_collider_f(s, player, pavimento1, salto_si);
     PP.physics.add_collider_f(s, player, pavimento2, salto_si);
-    PP.physics.add_collider_f(s, player, pavimento3, goto_final);
+    PP.physics.add_collider_f(s, player, pavimento3, salto_si);
+    PP.physics.add_collider_f(s, player, porta_fine_gioco, goto_final);
 
     PP.physics.add_overlap_f(s, player, caricatore, danno_caricatore);
     PP.physics.add_collider(s, player, porta3);

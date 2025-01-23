@@ -5,6 +5,7 @@ let caricatore;
 let danno_reaload = true;;
 let vulnerabile = false;
 let morte_animazioni_caricatore = false;
+let morte_caricatore = false;
 let caricatore_vita;
 let vite_char = [];
 let curr_anim_caricatore = "Base";
@@ -15,7 +16,7 @@ let ultima_guardia;
 
 function preload_caricatore(s) {
     img_enemy_3 = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Sprite Caricatore.PNG", 258, 260);
-    img_vita_char = PP.assets.image.load(s, "Assets/Immagini/Barra_vita_caricatore.PNG");
+    img_vita_char = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Barra_vita_caricatore.PNG", 150, 50);
     Nome_boss = PP.assets.image.load(s, "assets/immagini/Nome boss.png");
 }
 
@@ -28,7 +29,7 @@ function create_caricatore(s) {
     caricatore.geometry.scale_y = 1;
     for (let i=0; i<caricatore_vita; i++)
         {
-             let cuore = PP.assets.image.add(s, img_vita_char, 380+i*170, 650, 0, 0);
+             let cuore = PP.assets.sprite.add(s, img_vita_char, 380+i*170, 650, 0, 0);
              cuore.tile_geometry.scroll_factor_x = 0;
              cuore.tile_geometry.scroll_factor_y = 0;
             vite_char.push(cuore);
@@ -43,12 +44,19 @@ function load_animazioni_caricatore(s){
     PP.assets.sprite.animation_add(caricatore, "carica", 0, 5, 5, -1);
     PP.assets.sprite.animation_add(caricatore, "corsa", 5, 9, 5, -1);
     PP.assets.sprite.animation_add(caricatore, "Frenata", 10, 11, 5, -1);
+    PP.assets.sprite.animation_add(caricatore, "MORTIS", 13, 17, 5, -1);
     PP.assets.sprite.animation_play(caricatore, "Base");
+    for (let i = 0; i < vite_char.length; i++) {
+        PP.assets.sprite.animation_add(vite_char[i], "Static", 0, 0, 5, -1);
+        PP.assets.sprite.animation_add(vite_char[i], "Danno", 0, 1, 5, -1);
+        PP.assets.sprite.animation_play(vite_char[i], "Static");
+    }
+    
 }
 
 
 function charge(s) {
-    if (morte_animazioni_caricatore == false) {
+    if (morte_caricatore == false) { 
         vulnerabile = false;
         next_anim_caricatore = "corsa";
         let sp;
@@ -65,7 +73,7 @@ function charge(s) {
 }
 
 function charge_stop(s) {
-    if (morte_animazioni_caricatore == false) {
+    if (morte_caricatore == false) {
         vulnerabile = false;
         next_anim_caricatore = "Frenata";
         PP.physics.set_velocity_x(caricatore, 0);
@@ -74,7 +82,7 @@ function charge_stop(s) {
 }
 
 function update_caricatore(s) {
-    if (morte_animazioni_caricatore == false) {
+    if (morte_caricatore == false) {
         if (attack_check2 == true) {
             return;
         }
@@ -111,11 +119,9 @@ function danno_caricatore (s, obj1, obj2) {
                 console.log(caricatore_vita);
                 if (caricatore_vita <= 0)
                 {
-                    PP.assets.destroy (obj2);
-                    morte_animazioni_caricatore = true;
-                    PP.assets.destroy (ultima_guardia);
-                    let prev_score = PP.game_state.get_variable("Monete");
-                    PP.game_state.set_variable("Monete", prev_score+10);
+                    morte_caricatore = true;
+                    next_anim_caricatore = "MORTIS";
+                    PP.timers.add_timer (s, 1000, caricatore_sciolto, false);
                 }
             }
         else if (eseguendo_dash == true){
@@ -126,7 +132,14 @@ function danno_caricatore (s, obj1, obj2) {
             vita_persa (s);
         }
     }
-    
+
+    function caricatore_sciolto (s) {
+        morte_animazioni_caricatore = true;
+        PP.assets.destroy (ultima_guardia);
+        PP.assets.destroy (caricatore);
+        let prev_score = PP.game_state.get_variable("Monete");
+        PP.game_state.set_variable("Monete", prev_score+10);
+    } 
     /*if (eseguendo_dash == true && vulnerabile == true){
         caricatore_vita --;
         console.log(caricatore_vita);

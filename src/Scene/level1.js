@@ -209,6 +209,7 @@ function create (s) {
     let bgtt3 = PP.assets.image.add(s, sfondott3, -688, 0, 0, 0);
 
     let sgabuzzino = PP.assets.image.add(s,sfondo_sgabuzzino, 11150, 620, 0, 0);
+    
     let sgabuzzino_1 = PP.assets.image.add(s,sfondo_sgabuzzino_1, 11150, 620, 1, 0);
 
     
@@ -421,7 +422,6 @@ function create (s) {
     
 
     //funzioni richiamate
-    create_cooldown(s);
 
     create_lettera(s, 100, 170);
     create_lettera(s, 7500, 170);
@@ -429,7 +429,7 @@ function create (s) {
     create_lettera(s, 7100, -1400);
 
     //create_player (s, 6300, -970);
-    create_player (s, 6000, -320)
+    create_player (s, -2500, 620)
     
     create_cassa (s, -50, 450);
     create_cassa (s, 2550, 450);
@@ -702,6 +702,7 @@ function create (s) {
     let ascensore_muro = PP.assets.image.add(s, ascensoremuro, 12855, -150, 0, 0);
     create_score(s);
     create_vite(s);
+    create_cooldown(s);
 
     create_Asmodeo(s);
     create_Dialogo1(s);

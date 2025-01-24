@@ -2,7 +2,7 @@ let img_enemy_3;
 let img_vita_char;
 let attack_check2 = false;
 let caricatore;
-let danno_reaload = true;;
+let danno_reaload = true;
 let vulnerabile = false;
 let morte_animazioni_caricatore = false;
 let morte_caricatore = false;
@@ -15,6 +15,13 @@ let Nome_boss;
 let ultima_guardia;
 
 function preload_caricatore(s) {
+    morte_animazioni_caricatore = false;
+    morte_caricatore = false;
+    attack_check2 = false;
+    danno_reaload = true;
+    vite_char = [];
+    curr_anim_caricatore = "Base";
+    next_anim_caricatore = curr_anim_caricatore;
     img_enemy_3 = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Sprite Caricatore.PNG", 258, 260);
     img_vita_char = PP.assets.sprite.load_spritesheet(s, "Assets/Immagini/Barra_vita_caricatore.PNG", 150, 50);
     Nome_boss = PP.assets.image.load(s, "assets/immagini/Nome boss.png");

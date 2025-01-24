@@ -1,5 +1,3 @@
-let img_background;
-
 let bg1;
 let bg2;
 let bg3;
@@ -75,7 +73,6 @@ function preload (s) {
     pavimento3 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-02V.png");
     scala1 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-05V.png");
     scala2 = PP.assets.image.load(s, "Assets/Immagini/Piattaforme/Piattaforma-04.png");
-    img_background = PP.assets.image.load(s, "Assets/Immagini/natura morta.jpg");
     spine_img = PP.assets.image.load(s, "Assets/Immagini/Spine.PNG");
     pulsante = PP.assets.image.load(s, "Assets/Immagini/Pulsante.PNG");
     ILBUCO = PP.assets.image.load(s, "Assets/Immagini/Buco senza fonto (oggetto effettivo).PNG");
@@ -359,8 +356,8 @@ function create (s) {
     //barr_1 = PP.shapes.rectangle_add(s, 0, 0, 1, 1280, "0x000000", 0);
     //PP.physics.add(s, barr_1, PP.physics.type.STATIC);
 
-    platform1 = PP.shapes.rectangle_add(s, 640, 200, 400, 19, "0xFA0000", 1);
-    PP.physics.add(s, platform1, PP.physics.type.STATIC);
+    //platform1 = PP.shapes.rectangle_add(s, 640, 200, 400, 19, "0xFA0000", 1);
+    //PP.physics.add(s, platform1, PP.physics.type.STATIC);
 
     
 
@@ -372,8 +369,8 @@ function create (s) {
     create_generatore2 (s);
     create_generatore3 (s);
     
-    //create_player (s, -530, 600);
-    create_player (s, 4900, 1650);
+    create_player (s, -530, 600);
+    
     //create_piatt (s);
     //create_cassa (s, 300, 200);
     create_cassa_generaider1 (s, 300, 1000);
@@ -394,7 +391,7 @@ function create (s) {
     //player
     
     //PP.physics.add_collider(s, player, barr_1);
-    PP.physics.add_collider(s, player, platform1);
+    //PP.physics.add_collider(s, player, platform1);
     
     for (let i = 0; i < casse.length; i++) {
         PP.physics.add_collider_f(s, player, casse[i], salto_si);

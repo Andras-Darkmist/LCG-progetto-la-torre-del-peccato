@@ -3,6 +3,7 @@ let casse_generaider2 =[];
 let numero_casse2 = 0;
 
 function preload_cassa_generaider2 (s) {
+    casse_generaider2 =[];
     img_cassa2 = PP.assets.image.load(s, "assets/immagini/cassa.png", 150, 156);
 
 }

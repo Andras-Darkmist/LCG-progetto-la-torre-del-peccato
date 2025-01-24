@@ -3,6 +3,7 @@ let casse_generaider1 =[];
 let numero_casse = 0;
 
 function preload_cassa_generaider1 (s) {
+    casse_generaider1 =[];
     img_cassa1 = PP.assets.image.load(s, "assets/immagini/cassa.png", 150, 156);
 
 }
@@ -37,7 +38,6 @@ function spostamento_cassa_generaider1 (s, x, y){
     {
         for (let i=0; i < casse_generaider1.length; i++)
         {
-            
             casse_generaider1[i].geometry.y = 3000;
         }  
         numero_casse = 0;
